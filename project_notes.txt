@@ -53,15 +53,24 @@ pages
 database_design:
 	data:
 		appointments
+			appointment_ID
 			date_and_time
-			patient_id
-			doctor_id
+			patient_ID
+			doctor_ID
 
 		persons
-			person_id
+			person_ID
 			specialization (as enum with 'patient')
 			name
 			surname
 			email
 			password_hash
 			salt
+	
+	specialization
+		GENERAL_PRACTICE 	(Hausartzt)
+		PEDIATRICS			(Kinderarzt)
+		OPHTALMOLOGY		(Augenarzt)
+		DERMATOLOGY			(Hautarzt)
+		CARDIOLOGY			(Herz doctor)
+		OTOLARYNGOLOGY		(HNO Arzt)
