@@ -1,0 +1,76 @@
+standards
+	project_management_method: KanBan
+	programming_language:	C#
+	framework:				Avalonia
+	language_for_comments:	english
+	commit_message_sprache:	english
+	Nameconevtions
+		snake_case
+		CONSTANTS
+		_globals
+		Classes
+		variables
+
+implementation_of_features
+	login
+		-email input field
+		-password input field
+		-register button
+	register
+		-name
+		-surname
+		-email
+		-password
+		-password again
+	choosing a date and time for an appointment
+		-choose doctor -> monthly view -> daily view
+		-confirm view with window with description
+		-reserve appointments while making them
+		-only one appointment per patient per doctor
+		-doctors can't make appointments with themselfes
+	legth and starting times of appointments
+		from Mo. to Fr. between 8:00 and 16:00 with a length of 30 minutes
+	display appointments for patients
+		
+	display appointments for doctors
+		weekly view
+	cancel appointments
+
+pages 
+	patient
+		appointment view
+		make appointments
+		impressum
+		kontakt
+		datenschutz
+		login
+	doctor
+		appointment view
+		impressum
+		kontakt
+		datenschutz
+		login
+database_design:
+	data:
+		appointments
+			appointment_ID
+			date_and_time
+			patient_ID
+			doctor_ID
+
+		persons
+			person_ID
+			specialization (as enum with 'patient')
+			name
+			surname
+			email
+			password_hash
+			salt
+	
+	specialization
+		GENERAL_PRACTICE 	(Hausartzt)
+		PEDIATRICS			(Kinderarzt)
+		OPHTALMOLOGY		(Augenarzt)
+		DERMATOLOGY			(Hautarzt)
+		CARDIOLOGY			(Herz doctor)
+		OTOLARYNGOLOGY		(HNO Arzt)

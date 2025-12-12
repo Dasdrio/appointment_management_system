@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\spieraa\\Documents\\appointment_management_system\\appointment_management_system.csproj": {}
+    "c:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\spieraa\\Documents\\appointment_management_system\\appointment_management_system.csproj": {
+    "c:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\spieraa\\Documents\\appointment_management_system\\appointment_management_system.csproj",
+        "projectUniqueName": "c:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
         "projectName": "appointment_management_system",
-        "projectPath": "C:\\Users\\spieraa\\Documents\\appointment_management_system\\appointment_management_system.csproj",
+        "projectPath": "c:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
         "packagesPath": "C:\\Users\\spieraa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\spieraa\\Documents\\appointment_management_system\\obj\\",
+        "outputPath": "c:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
