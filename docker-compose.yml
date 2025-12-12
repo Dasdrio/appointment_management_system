@@ -6,8 +6,6 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: rootpassword
             MYSQL_DATABASE: appointment_managment
-            MYSQL_USER: root
-            MYSQL_PASSWORD: rootpassword
         ports:
             - "3306:3306"
         volumes:
