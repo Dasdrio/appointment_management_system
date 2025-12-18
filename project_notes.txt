@@ -74,3 +74,18 @@ database_design:
 		DERMATOLOGY			(Hautarzt)
 		CARDIOLOGY			(Herz doctor)
 		OTOLARYNGOLOGY		(HNO Arzt)
+
+Personen ID und Passwort
+1 peter
+2 anna123
+3 weber456
+4 klein789
+5 mueller321
+6 fischer654
+7 becker987
+8 krueger159
+9 jonas753
+
+MYSQL users
+doctor_client doctorpass
+patient_client patientpass
