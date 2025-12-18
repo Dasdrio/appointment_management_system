@@ -1,38 +1,77 @@
 ﻿namespace appointment_management_system.ViewModels;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
-public partial class MainWindowViewModel : ViewModelBase,INotifyPropertyChanged
+using System;
+using System.ComponentModel;
+using System.Windows.Input;
+using System.Runtime.CompilerServices;
+using ReactiveUI;
+
+public partial class MainWindowViewModel : ViewModelBase
 {
-    string _Site_Name = "Our Appointment Management System";
-    string _User_Name = "Max MusterMusterMusterMannnnnn";
-    public string Site_Name {
+    private string _Site_Name = "Our Appointment Management System";
+    private string _User_Name = "Max MusterMusterMusterMannnnnn";
+    
+    public string Site_Name
+    {
         get
         {
-            return _Site_Name;
+          return _Site_Name;  
         }
-        set
-        {
-            _Site_Name = value;
-            OnPropertyChanged(nameof(Site_Name));
-        }
+        set => this.RaiseAndSetIfChanged(ref _Site_Name,value);
     }
-    public string User_Name {
+    public string User_Name
+    {
         get
         {
-            return _User_Name;
+          return _User_Name;  
         }
         set
         {
             _User_Name = value;
-            OnPropertyChanged(nameof(User_Name));
+            this.RaiseAndSetIfChanged(ref _User_Name,value);
         }
     }
-    //Als nächstes Buttons funktionen hinzufügen und binden
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
+    
+    public void Button_Action_View_Appointments()
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //Hier Funktionen einfügen
+        Console.WriteLine("Button_Action_View_Appointments");
     }
+    public void Button_Action_Make_Appointments()
+    {
+        Console.WriteLine("Button_Action_Make_Appointments");
+        //Hier Funktionen einfügen
+    }
+    public void Button_Action_Logout()
+    {
+        Console.WriteLine("Button_Action_Logout");
+        //Hier Funktionen einfügen
+    }
+    public void Button_Action_Impressum()
+    {
+        Console.WriteLine("Button_Action_Impressum");
+        //Hier Funktionen einfügen
+    }
+    public void Button_Action_AGB()
+    {
+        Console.WriteLine("Button_Action_AGB");
+        //Hier Funktionen einfügen
+    }
+    public void Button_Action_Contact()
+    {
+        Console.WriteLine("Button_Action_Contact");
+        //Hier Funktionen einfügen
+    }
+    public void Button_Action_Data_Security_Information()
+    {
+        Console.WriteLine("Button_Action_Data_Security_Information");
+        //Hier Funktionen einfügen
+    }
+    //Template
+    public void Button_Action_()
+    {
+        Console.WriteLine("Button_Action_");
+        //Hier Funktionen einfügen
+    }
+    
 }

@@ -20,20 +20,20 @@
         <Border Background="rgba(204, 229, 255, 0.95)" Grid.Row="2" ></Border>
         <!-- Standardbuttons -->
         <Grid Grid.Column="0" Grid.Row="0" Name="Top_Row_Grid" ColumnDefinitions="*,*,*,*,*" RowDefinitions="*">
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_View_Appointments" >View Appointments</Button>
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_Make_Appointments">Make Appointments</Button>
-            <TextBlock Grid.Column="2" Grid.Row="0" Name="Site_Name" Text="{Binding Site_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="3" Grid.Row="0" Name="User_Name" Text="{Binding User_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="4" Grid.Row="0" Name="Button_Logout">Logout</Button>
+            <Button Command = "{Binding Button_Action_View_Appointments}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_View_Appointments" >View Appointments</Button>
+            <Button Command = "{Binding Button_Action_Make_Appointments}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_Make_Appointments">Make Appointments</Button>
+            <TextBlock Grid.Column="2" Grid.Row="0" Name="TextBlock_Site_Name" Text="{Binding Site_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" Name="TextBlock_User_Name" Text="{Binding User_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Command = "{Binding Button_Action_Logout}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="4" Grid.Row="0" Name="Button_Logout">Logout</Button>
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1" Name="Content_Grid" ColumnDefinitions="*" RowDefinitions="*">
 
         </Grid>
         <Grid Grid.Column="0" Grid.Row="2" Name="Bottom_Row_Grid" ColumnDefinitions="*,*,*,*" RowDefinitions="*">
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_Impressum" >Impressum</Button>
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_AGB">AGB</Button>
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="2" Grid.Row="0" Name="Button_Contact" >Contact</Button>
-            <Button Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="3" Grid.Row="0" Name="Button_Data_Security_Information">Data Security Information</Button>
+            <Button Command = "{Binding Button_Action_Impressum}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_Impressum" >Impressum</Button>
+            <Button Command = "{Binding Button_Action_AGB}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_AGB">AGB</Button>
+            <Button Command = "{Binding Button_Action_Contact}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="2" Grid.Row="0" Name="Button_Contact" >Contact</Button>
+            <Button Command = "{Binding Button_Action_Data_Security_Information}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="3" Grid.Row="0" Name="Button_Data_Security_Information">Data Security Information</Button>
         </Grid>
     </Grid>
 

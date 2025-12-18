@@ -73,3 +73,11 @@ c:\Users\spieraa\Documents\GitHub\appointment_management_system\obj\Debug\net9.0
 c:\Users\spieraa\Documents\GitHub\appointment_management_system\obj\Debug\net9.0\appointment_management_system.pdb
 c:\Users\spieraa\Documents\GitHub\appointment_management_system\obj\Debug\net9.0\appointment_management_system.genruntimeconfig.cache
 c:\Users\spieraa\Documents\GitHub\appointment_management_system\obj\Debug\net9.0\ref\appointment_management_system.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\DynamicData.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\ReactiveUI.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\ReactiveUI.Avalonia.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Splat.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Splat.Builder.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Splat.Core.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Splat.Logging.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\System.Reactive.dll

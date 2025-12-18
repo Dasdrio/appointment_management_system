@@ -7,5 +7,6 @@ public partial class NotsoMainWindow : MainWindow
     public NotsoMainWindow()
     {
         InitializeComponent();
+        
     }
 }
