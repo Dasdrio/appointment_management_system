@@ -86,6 +86,4 @@ Personen ID und Passwort
 8 krueger159
 9 jonas753
 
-MYSQL users
-doctor_client doctorpass
-patient_client patientpass
+access_client accesspassword
