@@ -8,5 +8,13 @@ using ReactiveUI;
 
 public class LoginContentModel : ViewModelBase
 {
-    public string Text => "Login";
+    private string _Text = "Login";
+    public string Text
+    {
+        get
+        {
+          return _Text;  
+        }
+        set => this.RaiseAndSetIfChanged(ref _Text,value);
+    }
 }

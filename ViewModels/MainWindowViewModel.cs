@@ -8,8 +8,9 @@ using ReactiveUI;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    
-    private ViewModelBase _currentLoginContent = new LoginContentModel();
+    private ViewModelBase Login_Content = new LoginContentModel();
+    private ViewModelBase Impressum_Content = new ImpressumContentModel();
+    private ViewModelBase _currentLoginContent;
 
     public ViewModelBase CurrentLoginContent
     {
@@ -18,17 +19,15 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     private string _User_Name = "Max MusterMusterMusterMannnnnn";
     private string _Password = "";
-    public string Site_Name => "Our System";
-    //Das was kurz für:
-    //private string _Site_Name = "Our Appointment Management System";
-    /*public string Site_Name
+    private string _Site_Name = "Our Appointment Management System";
+    public string Site_Name
     {
         get
         {
-          return _Site_Name;  
+          return _Site_Name;
         }
         set => this.RaiseAndSetIfChanged(ref _Site_Name,value);
-    }*/
+    }
     public string User_Name
     {
         get
@@ -55,18 +54,20 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         //Add funktionality here
         Console.WriteLine("Button_Action_Redirect_Login and: "+User_Name);
+        CurrentLoginContent = Login_Content;
         
     }
     public void Button_Action_Redirect_Register()
     {
         //Add funktionality here
+        CurrentLoginContent = null;
         Console.WriteLine("Button_Action_Redirect_Register");
     }
     public void Button_Action_Login()
     {
         //Add funktionality here
         Console.WriteLine("Button_Action_Login");
-        CurrentLoginContent = new LoginContentModel();
+        
     }
     
     //Main Page (Only change the Content Grid to the aproriate content) exept for the logout there you should create a new LoginWindow with the User logged out
@@ -88,7 +89,7 @@ public partial class MainWindowViewModel : ViewModelBase
     //All Pages (Only change the Content Grid to the aproriate content)
     public void Button_Action_Impressum()
     {
-        CurrentLoginContent = new ImpressumContentModel();
+        CurrentLoginContent = Impressum_Content;
         Console.WriteLine("Button_Action_Impressum");
         //Add funktionality here
     }

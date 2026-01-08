@@ -3,7 +3,9 @@
         xmlns:vm="clr-namespace:appointment_management_system.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Class="appointment_management_system.Views.LoginContent"
+        x:Class="appointment_management_system.Views.LoginContentModel"
         x:DataType="vm:LoginContentModel">
-    <Grid> <TextBlock Text="{Binding Text}" FontSize="20"/> </Grid>
+    <Grid> 
+        <TextBlock Text="{Binding Text}" FontSize="20"/>
+    </Grid>
 </UserControl>

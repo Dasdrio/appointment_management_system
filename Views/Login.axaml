@@ -10,13 +10,13 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="appointment_management_system">
     <Window.Resources>
-        <!-- Irgendwie kommt hier ständig ein Fehler-->
+        <!-- Irgendwie kommt hier ständig ein Fehler
         <DataTemplate DataType="vm:LoginContentModel">
             <vm:LoginContentModel />
         </DataTemplate>
         <DataTemplate DataType="vm:LoginContentModel">
             <vm:ImpressumContentModel />
-        </DataTemplate>
+        </DataTemplate>-->
     </Window.Resources>
     <Grid Name="Main_Grid" ColumnDefinitions="*" RowDefinitions="100,*,50">
         <!-- Background and Backgroundimage -->
@@ -28,9 +28,6 @@
             <Button Command = "{Binding Button_Action_Redirect_Login}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_Redirect_Login" >Zum Login</Button>
             <Button Command = "{Binding Button_Action_Redirect_Register}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_Redirect_Register">Zum Registeren</Button>
         </Grid>
-        <!--<Grid Grid.Column="0" Grid.Row="1" Name="Content_Grid" ColumnDefinitions="*" RowDefinitions="*">
-
-        </Grid>-->
         <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding CurrentLoginContent}"/>
         <Grid Grid.Column="0" Grid.Row="2" Name="Bottom_Row_Grid" ColumnDefinitions="*,*,*,*" RowDefinitions="*">
             <Button Command = "{Binding Button_Action_Impressum}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_Impressum" >Impressum</Button>
