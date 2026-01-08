@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:appointment_management_system.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="appointment_management_system.Views.LoginContentModel"
+        x:DataType="vm:LoginContentModel">
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*"> 
+        <TextBox Grid.Row="0" Name="User_Name" Text="{Binding User_Name}" FontSize="20"/>
+        <TextBox Grid.Row="1" Name="Password" Text="{Binding Password}" FontSize="20"/>
+        <Button Grid.Row="2" Command="{Binding Button_Action_Login}" FontSize="20">Login</Button>
+    </Grid>
+</UserControl>

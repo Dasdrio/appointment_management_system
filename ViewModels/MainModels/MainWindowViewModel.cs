@@ -8,16 +8,35 @@ using ReactiveUI;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase Login_Content = new LoginContentModel();
-    private ViewModelBase Impressum_Content = new ImpressumContentModel();
-    private ViewModelBase _currentLoginContent;
-
-    public ViewModelBase CurrentLoginContent
+    private ViewModelBase Login_Content;
+    private ViewModelBase Impressum_Content;
+    private ViewModelBase _current_Content;
+    private ViewModelBase _Current_Top;
+    public ViewModelBase _Login_Header;
+    public ViewModelBase _Main_Header;
+    public ViewModelBase _Blank_Content;
+    //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
+    public MainWindowViewModel()
     {
-        get => _currentLoginContent;
-        set => this.RaiseAndSetIfChanged(ref _currentLoginContent,value);
+        Login_Content = new LoginContentModel(this);
+        Impressum_Content = new ImpressumContentModel();
+        _Blank_Content = new blankContentModel();
+        _Main_Header = new MainHeaderModel(this);
+        _Login_Header = new LoginHeaderModel(this);
+        _Current_Top = _Login_Header;
+        _current_Content = Impressum_Content;
     }
-    private string _User_Name = "Max MusterMusterMusterMannnnnn";
+    public ViewModelBase current_Content
+    {
+        get => _current_Content;
+        set => this.RaiseAndSetIfChanged(ref _current_Content,value);
+    }
+    public ViewModelBase Current_Top
+    {
+        get => _Current_Top;
+        set => this.RaiseAndSetIfChanged(ref _Current_Top,value);
+    }
+    private string _User_Name = "";
     private string _Password = "";
     private string _Site_Name = "Our Appointment Management System";
     public string Site_Name
@@ -48,48 +67,13 @@ public partial class MainWindowViewModel : ViewModelBase
         }
         set => this.RaiseAndSetIfChanged(ref _Password,value);
     }
-    //Button functions
-    //Login Page (Only change the Content Grid to the aproriate content) exept for the login there you should create a new MainWindow with the User logged in
-    public void Button_Action_Redirect_Login()
-    {
-        //Add funktionality here
-        Console.WriteLine("Button_Action_Redirect_Login and: "+User_Name);
-        CurrentLoginContent = Login_Content;
-        
-    }
-    public void Button_Action_Redirect_Register()
-    {
-        //Add funktionality here
-        CurrentLoginContent = null;
-        Console.WriteLine("Button_Action_Redirect_Register");
-    }
-    public void Button_Action_Login()
-    {
-        //Add funktionality here
-        Console.WriteLine("Button_Action_Login");
-        
-    }
-    
+    //Button functions    
     //Main Page (Only change the Content Grid to the aproriate content) exept for the logout there you should create a new LoginWindow with the User logged out
-    public void Button_Action_View_Appointments()
-    {
-        //Add funktionality here
-        Console.WriteLine("Button_Action_View_Appointments");
-    }
-    public void Button_Action_Make_Appointments()
-    {
-        Console.WriteLine("Button_Action_Make_Appointments");
-        //Add funktionality here
-    }
-    public void Button_Action_Logout()
-    {
-        Console.WriteLine("Button_Action_Logout");
-        //Add funktionality here
-    }
+    
     //All Pages (Only change the Content Grid to the aproriate content)
     public void Button_Action_Impressum()
     {
-        CurrentLoginContent = Impressum_Content;
+        current_Content = Impressum_Content;
         Console.WriteLine("Button_Action_Impressum");
         //Add funktionality here
     }
@@ -108,11 +92,11 @@ public partial class MainWindowViewModel : ViewModelBase
         Console.WriteLine("Button_Action_Data_Security_Information");
         //Add funktionality here
     }
-    //Template
+    /*Template
     public void Button_Action_()
     {
         Console.WriteLine("Button_Action_");
         //Add funktionality here
-    }
+    }*/
     //Functionality Funktions
 }

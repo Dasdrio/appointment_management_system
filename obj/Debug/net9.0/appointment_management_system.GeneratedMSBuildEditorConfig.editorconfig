@@ -24,14 +24,23 @@ build_property.EnableCodeStyleSeverity =
 [c:/Users/spieraa/Documents/GitHub/appointment_management_system/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/ImpressumContent.axaml]
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/FooterViews/ImpressumContent.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/Login.axaml]
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/LoginViews/LoginContent.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/LoginContent.axaml]
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/LoginViews/LoginHeader.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainWindow.axaml]
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/LoginViews/RegisterContent.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainViews/blankContent.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainViews/MainHeader.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainViews/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
