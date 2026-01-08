@@ -76,14 +76,14 @@ database_design:
 		OTOLARYNGOLOGY		(HNO Arzt)
 
 Personen ID und Passwort
-1 peter
-2 anna123
-3 weber456
-4 klein789
-5 mueller321
-6 fischer654
-7 becker987
-8 krueger159
-9 jonas753
+1 peter PATIENT
+2 anna123 PATIENT
+3 weber456 GENERAL_PRACTICE
+4 klein789 PEDIATRICS
+5 mueller321 CARDIOLOGY
+6 fischer654 DERMATOLOGY
+7 becker987 OPHTALMOLOGY
+8 krueger159 OTOLARYNGOLOGY
+9 jonas753 PATIENT
 
 access_client accesspassword
