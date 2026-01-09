@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.LoginContentModel"
         x:DataType="vm:LoginContentModel">
-    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*"> 
-        <TextBox Grid.Row="0" Name="User_Name" Text="{Binding User_Name}" FontSize="20"/>
-        <TextBox Grid.Row="1" Name="Password" Text="{Binding Password}" FontSize="20"/>
-        <Button Grid.Row="2" Command="{Binding Button_Action_Login}" FontSize="20">Login</Button>
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*"> 
+        <TextBox Grid.Row="0" Name="User_Name" Text="{Binding User_Name,Mode=TwoWay}" FontSize="20"/>
+        <TextBox Grid.Row="1" Name="Password" Text="{Binding Password,Mode=TwoWay}" FontSize="20"/>
+        <Button Grid.Row="2"  Command="{Binding Button_Action_Login}" FontSize="20" >Login</Button>
     </Grid>
 </UserControl>

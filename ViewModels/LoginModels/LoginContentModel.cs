@@ -16,32 +16,26 @@ public class LoginContentModel : ViewModelBase
     {
         this.Parent = Parent;
     }
-    private string _User_Name = "";
     public string User_Name
     {
         get
         {
-          return _User_Name;
+          return Parent.User_Name;
         }
         set
         {
             Parent.User_Name = value;
-            _User_Name = value;
-            this.RaiseAndSetIfChanged(ref _User_Name,value);
         } 
     }
-    private string _Password = "";
     public string Password
     {
         get
         {
-          return _Password;  
+          return Parent.Password;  
         }
         set
         {
             Parent.Password = value;
-            _Password = value;
-            this.RaiseAndSetIfChanged(ref _Password,value);
         } 
     }
     public void Button_Action_Login()
@@ -51,7 +45,6 @@ public class LoginContentModel : ViewModelBase
         //Dann weiter
         Parent.Current_Top = Parent._Main_Header;
         Password = "";
-        User_Name = "";
         Parent.Password ="";
         Parent.current_Content = Parent._Blank_Content;
         Console.WriteLine("Button_Action_Login");

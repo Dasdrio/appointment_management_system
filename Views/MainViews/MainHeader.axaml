@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.MainHeaderModel"
         x:DataType="vm:MainHeaderModel">
-    <Grid Name="Top_Row_Grid" ColumnDefinitions="*,*,*,*,*" RowDefinitions="*">
+    <Grid Name="Top_Row_Grid" ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*">
         <Button Command = "{Binding Button_Action_View_Appointments}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_View_Appointments" >View Appointments</Button>
         <Button Command = "{Binding Button_Action_Make_Appointments}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_Make_Appointments">Make Appointments</Button>
         <TextBlock Grid.Column="2" Grid.Row="0" Name="TextBlock_Site_Name" Text="{Binding Site_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="3" Grid.Row="0" Name="TextBlock_User_Name" Text="{Binding User_Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Command = "{Binding Button_Action_Logout}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="4" Grid.Row="0" Name="Button_Logout">Logout</Button>
+        <Button Grid.Column="4" Grid.Row="0" Command = "{Binding Button_Action_Logout}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Name="Button_Logout">Logout</Button>
     </Grid>
 </UserControl>

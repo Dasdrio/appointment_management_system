@@ -5,6 +5,10 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls;
+using System.Threading;
+using appointment_management_system.Views;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
@@ -15,8 +19,9 @@ public partial class MainWindowViewModel : ViewModelBase
     public ViewModelBase _Login_Header;
     public ViewModelBase _Main_Header;
     public ViewModelBase _Blank_Content;
+    private IClassicDesktopStyleApplicationLifetime desktop;
     //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
-    public MainWindowViewModel()
+    public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop)
     {
         Login_Content = new LoginContentModel(this);
         Impressum_Content = new ImpressumContentModel();
@@ -25,6 +30,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _Login_Header = new LoginHeaderModel(this);
         _Current_Top = _Login_Header;
         _current_Content = Impressum_Content;
+        this.desktop = desktop;
     }
     public ViewModelBase current_Content
     {
@@ -79,6 +85,8 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     public void Button_Action_AGB()
     {
+        desktop.MainWindow.Hide();
+        desktop.MainWindow.Show();
         Console.WriteLine("Button_Action_AGB");
         //Add funktionality here
     }
