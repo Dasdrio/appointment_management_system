@@ -39,14 +39,7 @@ public class Database_access
         }
     }
 
-    public static int login(String email, String password) //User login returns the user_ID back
-    {
-        int user_ID = 0;
-
-        return user_ID;
-    }
-
-    public static void delete_person(int person_ID, String password) //deletion of the own AC
+    public static void delete_person(int person_ID) //deletion of the own AC
     {
         //Passwortabfrage einarbeiten
         string procedure = "sp_delete_person";
@@ -57,24 +50,27 @@ public class Database_access
         command.ExecuteNonQuery();
     }
 
-    public static String[] view_person(int person_ID) //get Infrmation abbaut a Person by their ID
+    public static String? get_password(String email)
     {
+        String? password = null;
+
         try{
-            string procedure = "sp_view_person_by_ID";
+            string procedure = "sp_view_person_by_email";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
             
-            Console.Write("Start querry");
-            command.Parameters.AddWithValue("p_person_ID", person_ID);
+            command.Parameters.AddWithValue("p_email", email);
             MySqlDataReader reader = command.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
-                String[] temp = {(string)reader[0], (string)reader[1], (string)reader[2], (string)reader[3], (string)reader[4], (string)reader[5]};
-                return temp;
+                return reader[5].ToString();    
             }
-        }catch(Exception ex){
-            Console.Write("Fehler Meldung: " + ex);
+            
         }
-        return null;
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+
+        return password;
     }
 }
