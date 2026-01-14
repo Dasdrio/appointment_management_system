@@ -1,6 +1,8 @@
 ﻿namespace appointment_management_system.ViewModels;
 
 using System;
+using System.Text;
+using System.Security.Cryptography;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
@@ -9,6 +11,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls;
 using System.Threading;
 using appointment_management_system.Views;
+using System.Runtime.Intrinsics.Arm;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
@@ -94,4 +97,20 @@ public partial class MainWindowViewModel : ViewModelBase
         //add functionality here
     }*/
     //functionality functions
+    public string SHA256HashCreator(string unhashed_password)
+    {
+        string hash;
+        using(SHA256 SHA256_hash = SHA256.Create())
+        {
+             // Byte array representation of source string
+            var source_bytes = Encoding.UTF8.GetBytes(unhashed_password);
+
+            // Generate hash value(Byte Array) for input data
+            var hash_bytes = SHA256_hash.ComputeHash(source_bytes);
+
+            // Convert hash byte array to string
+            hash = BitConverter.ToString(hash_bytes).Replace("-", string.Empty);
+        }
+        return hash;
+    }
 }
