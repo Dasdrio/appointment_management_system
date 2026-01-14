@@ -10,44 +10,26 @@ using appointment_management_system.Views;
 
 public class LoginContentModel : ViewModelBase
 {
-    //Ich übergebe im Constructer den MainWindowViewModel, um nachher im Main Menu immer noch User_Name und Passwort zu haben
+    //I pass the MainWindowViewModel in the constructor so that I still have the user name and password in the main menu later on.
     private MainWindowViewModel Parent;
-    public LoginContentModel(MainWindowViewModel Parent)
-    {
+    public LoginContentModel(MainWindowViewModel Parent){
         this.Parent = Parent;
     }
-    public string User_Name
-    {
-        get
-        {
-          return Parent.User_Name;
-        }
-        set
-        {
-            Parent.User_Name = value;
-        } 
+    public string user_name{
+        get => Parent.user_name;
+        set => Parent.user_name = value;
     }
-    public string Password
-    {
-        get
-        {
-          return Parent.Password;  
-        }
-        set
-        {
-            Parent.Password = value;
-        } 
+    public string password{
+        get => Parent.password; 
+        set => Parent.password = value;
     }
-    public void Button_Action_Login()
-    {
-        //Hier Login überprüfung einfügen
+    public void Button_Action_Login(){
+        //add login check
 
-        //Dann weiter
-        Parent.Current_Top = Parent._Main_Header;
-        Password = "";
-        Parent.Password ="";
-        Parent.current_Content = Parent._Blank_Content;
+        //then continue
+        Parent.current_header = Parent._main_header;
+        Parent.current_content = Parent._blank_content;
+        password = "";
         Console.WriteLine("Button_Action_Login");
     }
-
 }

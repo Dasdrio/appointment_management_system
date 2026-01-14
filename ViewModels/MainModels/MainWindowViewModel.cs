@@ -12,99 +12,77 @@ using appointment_management_system.Views;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase Login_Content;
-    private ViewModelBase Impressum_Content;
-    private ViewModelBase _current_Content;
-    private ViewModelBase _Current_Top;
-    public ViewModelBase _Login_Header;
-    public ViewModelBase _Main_Header;
-    public ViewModelBase _Blank_Content;
+    private ViewModelBase login_content;
+    private ViewModelBase impressum_content;
+    //the current content of the window. Can be swaped out with other ViewModelBases (use the property to access the field)
+    private ViewModelBase _current_content;
+    private ViewModelBase _current_header;
+    public ViewModelBase _login_header;
+    public ViewModelBase _main_header;
+    public ViewModelBase _blank_content;
     private IClassicDesktopStyleApplicationLifetime desktop;
+    private string _user_name = "";
+    private string _password = "";
+    private string _site_name = "Our Appointment Management System";
     //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
-    public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop)
-    {
-        Login_Content = new LoginContentModel(this);
-        Impressum_Content = new ImpressumContentModel();
-        _Blank_Content = new blankContentModel();
-        _Main_Header = new MainHeaderModel(this);
-        _Login_Header = new LoginHeaderModel(this);
-        _Current_Top = _Login_Header;
-        _current_Content = Impressum_Content;
+    public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop){
+        login_content = new LoginContentModel(this);
+        impressum_content = new ImpressumContentModel();
+        _blank_content = new blankContentModel();
+        _main_header = new MainHeaderModel(this);
+        _login_header = new LoginHeaderModel(this);
+        _current_header = _login_header;
+        _current_content = impressum_content;
         this.desktop = desktop;
     }
-    public ViewModelBase current_Content
-    {
-        get => _current_Content;
-        set => this.RaiseAndSetIfChanged(ref _current_Content,value);
+    public ViewModelBase current_content{
+        get => _current_content;
+        set => this.RaiseAndSetIfChanged(ref _current_content,value);
     }
-    public ViewModelBase Current_Top
-    {
-        get => _Current_Top;
-        set => this.RaiseAndSetIfChanged(ref _Current_Top,value);
+    public ViewModelBase current_header{
+        get => _current_header;
+        set => this.RaiseAndSetIfChanged(ref _current_header,value);
     }
-    private string _User_Name = "";
-    private string _Password = "";
-    private string _Site_Name = "Our Appointment Management System";
-    public string Site_Name
-    {
-        get
-        {
-          return _Site_Name;
-        }
-        set => this.RaiseAndSetIfChanged(ref _Site_Name,value);
+    
+    public string site_name{
+        get => _site_name;
+        set => this.RaiseAndSetIfChanged(ref _site_name,value);
     }
-    public string User_Name
-    {
-        get
-        {
-          return _User_Name;  
-        }
-        set
-        {
-            _User_Name = value;
-            this.RaiseAndSetIfChanged(ref _User_Name,value);
+    public string user_name{
+        get => _user_name;  
+        set{
+            _user_name = value;
+            this.RaiseAndSetIfChanged(ref _user_name,value);
         }
     }
-    public string Password
-    {
-        get
-        {
-          return _Password;  
-        }
-        set => this.RaiseAndSetIfChanged(ref _Password,value);
+    public string password{
+        get => _password;  
+        set => this.RaiseAndSetIfChanged(ref _password,value);
     }
     //Button functions    
-    //Main Page (Only change the Content Grid to the aproriate content) exept for the logout there you should create a new LoginWindow with the User logged out
     
-    //All Pages (Only change the Content Grid to the aproriate content)
-    public void Button_Action_Impressum()
-    {
-        current_Content = Impressum_Content;
-        Console.WriteLine("Button_Action_Impressum");
-        //Add funktionality here
+    //All Pages (Only change the Content Grid to the apropriate content)
+    public void button_action_impressum(){
+        current_content = impressum_content;
+        Console.WriteLine("button_action_impressum");
+        //add functionality here
     }
-    public void Button_Action_AGB()
-    {
-        desktop.MainWindow.Hide();
-        desktop.MainWindow.Show();
-        Console.WriteLine("Button_Action_AGB");
-        //Add funktionality here
+    public void button_action_AGB(){
+        Console.WriteLine("button_action_AGB");
+        //add functionality here
     }
-    public void Button_Action_Contact()
-    {
-        Console.WriteLine("Button_Action_Contact");
-        //Add funktionality here
+    public void button_action_contact(){
+        Console.WriteLine("button_action_contact");
+        //add functionality here
     }
-    public void Button_Action_Data_Security_Information()
-    {
-        Console.WriteLine("Button_Action_Data_Security_Information");
-        //Add funktionality here
+    public void button_action_data_security_information(){
+        Console.WriteLine("button_action_data_security_information");
+        //add functionality here
     }
     /*Template
-    public void Button_Action_()
-    {
+    public void Button_Action_(){
         Console.WriteLine("Button_Action_");
-        //Add funktionality here
+        //add functionality here
     }*/
-    //Functionality Funktions
+    //functionality functions
 }

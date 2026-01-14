@@ -16,26 +16,26 @@ public class RegisterContentModel : ViewModelBase
     {
         this.Parent = Parent;
     }
-    public string User_Name
+    public string user_name
     {
         get
         {
-          return Parent.User_Name;
+          return Parent.user_name;
         }
         set
         {
-            Parent.User_Name = value;
+            Parent.user_name = value;
         } 
     }
-    public string Password
+    public string password
     {
         get
         {
-          return Parent.Password;  
+          return Parent.password;  
         }
         set
         {
-            Parent.Password = value;
+            Parent.password = value;
         } 
     }
     public void Button_Action_Register()

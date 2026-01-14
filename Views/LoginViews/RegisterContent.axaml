@@ -6,8 +6,8 @@
         x:Class="appointment_management_system.Views.RegisterContentModel"
         x:DataType="vm:RegisterContentModel">
     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*"> 
-        <TextBox Grid.Row="0" Name="User_Name" Text="{Binding User_Name}" FontSize="20"/>
-        <TextBox Grid.Row="1" Name="Password" Text="{Binding Password}" FontSize="20"/>
+        <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name}" FontSize="20"/>
+        <TextBox Grid.Row="1" Name="password" Text="{Binding password}" FontSize="20"/>
         <Button Grid.Row="2" Command="{Binding Button_Action_Register}" FontSize="20">Register</Button>
     </Grid>
 </UserControl>

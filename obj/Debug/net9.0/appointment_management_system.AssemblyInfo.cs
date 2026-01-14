@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("appointment_management_system")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8a5bc0084da1361cbacb6b71afd4e4468fc794c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7207e11c7ffdd7f8ea9fe97d26cbd3164564d35")]
 [assembly: System.Reflection.AssemblyProductAttribute("appointment_management_system")]
 [assembly: System.Reflection.AssemblyTitleAttribute("appointment_management_system")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -6,8 +6,8 @@
         x:Class="appointment_management_system.Views.LoginContentModel"
         x:DataType="vm:LoginContentModel">
     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*"> 
-        <TextBox Grid.Row="0" Name="User_Name" Text="{Binding User_Name,Mode=TwoWay}" FontSize="20"/>
-        <TextBox Grid.Row="1" Name="Password" Text="{Binding Password,Mode=TwoWay}" FontSize="20"/>
+        <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name,Mode=TwoWay}" FontSize="20"/>
+        <TextBox Grid.Row="1" Name="password" Text="{Binding password,Mode=TwoWay}" FontSize="20"/>
         <Button Grid.Row="2"  Command="{Binding Button_Action_Login}" FontSize="20" >Login</Button>
     </Grid>
 </UserControl>

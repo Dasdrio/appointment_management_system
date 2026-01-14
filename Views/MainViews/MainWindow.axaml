@@ -11,7 +11,7 @@
         Title="appointment_management_system"
         Height="450"
         Width="450"
-        CanResize="False">
+        CanResize="True">
     <Window.Resources>
         <!-- Irgendwie kommt hier ständig ein Fehler
         <DataTemplate DataType="vm:LoginContentModel">
@@ -31,15 +31,13 @@
             <Button Command = "{Binding Button_Action_Redirect_Login}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="0" Grid.Row="0" Name="Button_Redirect_Login" >Zum Login</Button>
             <Button Command = "{Binding Button_Action_Redirect_Register}" Background="rgba(255, 255, 150, 1)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Column="1" Grid.Row="0" Name="Button_Redirect_Register">Zum Registeren</Button>
         </Grid>-->
-        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding Current_Top}"/>
-        <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding current_Content}"/>
+        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding current_header}"/>
+        <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding current_content}"/>
         <StackPanel Grid.Column="0" Grid.Row="2" Name="Bottom_Row_Grid" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command = "{Binding Button_Action_Impressum}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5" Name="Button_Impressum" >Impressum</Button>
-            <Button Command = "{Binding Button_Action_AGB}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5" Name="Button_AGB">AGB</Button>
-            <Button Command = "{Binding Button_Action_Contact}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5"  Name="Button_Contact" >Contact</Button>
-            <Button Command = "{Binding Button_Action_Data_Security_Information}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5" Name="Button_Data_Security_Information">Data Security Information</Button>
+            <Button Command = "{Binding button_action_impressum}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5" Name="Button_Impressum" >Impressum</Button>
+            <Button Command = "{Binding button_action_AGB}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5" Name="Button_AGB">AGB</Button>
+            <Button Command = "{Binding button_action_contact}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5"  Name="Button_Contact" >Contact</Button>
+            <Button Command = "{Binding button_action_data_security_information}" Background="rgba(255, 255, 150, 1)" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Margin="5" Name="Button_Data_Security_Information">Data Security Information</Button>
         </StackPanel>
     </Grid>
-
-
 </Window>

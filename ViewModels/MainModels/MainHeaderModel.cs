@@ -27,36 +27,36 @@ public class MainHeaderModel : ViewModelBase
         _currentMainContent = Make_Appointments_Content;
     }
 
-    private string _User_Name = "";
-    private string _Password = "";
-    private string _Site_Name = "Our Appointment Management System";
-    public string Site_Name
+    private string _user_name = "";
+    private string _password = "";
+    private string _site_name = "Our Appointment Management System";
+    public string site_name
     {
         get
         {
-          return _Site_Name;
+          return _site_name;
         }
-        set => this.RaiseAndSetIfChanged(ref _Site_Name,value);
+        set => this.RaiseAndSetIfChanged(ref _site_name,value);
     }
-    public string User_Name
+    public string user_name
     {
         get
         {
-          return _User_Name;  
+          return _user_name;  
         }
         set
         {
-            _User_Name = value;
-            this.RaiseAndSetIfChanged(ref _User_Name,value);
+            _user_name = value;
+            this.RaiseAndSetIfChanged(ref _user_name,value);
         }
     }
-    public string Password
+    public string password
     {
         get
         {
-          return _Password;  
+          return _password;  
         }
-        set => this.RaiseAndSetIfChanged(ref _Password,value);
+        set => this.RaiseAndSetIfChanged(ref _password,value);
     }
     public void Button_Action_View_Appointments()
     {
@@ -71,9 +71,9 @@ public class MainHeaderModel : ViewModelBase
     public void Button_Action_Logout()
     {
         Console.WriteLine("Button_Action_Logout");
-        Parent.Current_Top = Parent._Login_Header;
-        Parent.current_Content = Parent._Blank_Content;
-        Parent.User_Name = "";
+        Parent.current_header = Parent._login_header;
+        Parent.current_content = Parent._blank_content;
+        Parent.user_name = "";
         //Add funktionality here
     }
 
