@@ -14,6 +14,9 @@ public partial class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase login_content;
     private ViewModelBase impressum_content;
+    private ViewModelBase AGB_content;
+    private ViewModelBase data_security_information_content;
+    private ViewModelBase contact_content;
     //the current content of the window. Can be swaped out with other ViewModelBases (use the property to access the field)
     private ViewModelBase _current_content;
     private ViewModelBase _current_header;
@@ -26,8 +29,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private string _site_name = "Our Appointment Management System";
     //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
     public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop){
-        login_content = new LoginContentModel(this);
         impressum_content = new ImpressumContentModel();
+        AGB_content = new AGB_content_model();
+        contact_content = new contact_content_model();
+        data_security_information_content = new data_security_information_content_model();
+        login_content = new LoginContentModel(this);
         _blank_content = new blankContentModel();
         _main_header = new MainHeaderModel(this);
         _login_header = new LoginHeaderModel(this);
@@ -68,14 +74,17 @@ public partial class MainWindowViewModel : ViewModelBase
         //add functionality here
     }
     public void button_action_AGB(){
+        current_content = AGB_content;
         Console.WriteLine("button_action_AGB");
         //add functionality here
     }
     public void button_action_contact(){
+        current_content = contact_content;
         Console.WriteLine("button_action_contact");
         //add functionality here
     }
     public void button_action_data_security_information(){
+        current_content = data_security_information_content;
         Console.WriteLine("button_action_data_security_information");
         //add functionality here
     }

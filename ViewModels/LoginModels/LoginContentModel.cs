@@ -31,5 +31,6 @@ public class LoginContentModel : ViewModelBase
         Parent.current_content = Parent._blank_content;
         password = "";
         Console.WriteLine("Button_Action_Login");
+        Console.WriteLine("UserName: "+Parent.user_name);
     }
 }
