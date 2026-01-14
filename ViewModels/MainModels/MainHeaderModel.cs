@@ -10,7 +10,7 @@ using appointment_management_system.Views;
 
 public class MainHeaderModel : ViewModelBase
 {
-    private MainWindowViewModel Parent;
+    private MainWindowViewModel parent;
     private ViewModelBase View_Appointments_Content;
     private ViewModelBase Make_Appointments_Content;
     private ViewModelBase _currentMainContent;
@@ -19,11 +19,11 @@ public class MainHeaderModel : ViewModelBase
         get => _currentMainContent;
         set => this.RaiseAndSetIfChanged(ref _currentMainContent,value);
     }
-    public MainHeaderModel(MainWindowViewModel Parent)
+    public MainHeaderModel(MainWindowViewModel parent)
     {
-        this.Parent = Parent;
-        View_Appointments_Content = new LoginContentModel(Parent);
-        Make_Appointments_Content = new RegisterContentModel(Parent);
+        this.parent = parent;
+        View_Appointments_Content = new LoginContentModel(parent);
+        Make_Appointments_Content = new RegisterContentModel(parent);
         _currentMainContent = Make_Appointments_Content;
     }
     private string _site_name = "Our Appointment Management System";
@@ -39,17 +39,17 @@ public class MainHeaderModel : ViewModelBase
     {
         get
         {
-          return Parent.user_name;  
+          return parent.user_name;  
         }
-        set => Parent.user_name = value;
+        set => parent.user_name = value;
     }
     public string password
     {
         get
         {
-          return Parent.password;  
+          return parent.password;  
         }
-        set => Parent.password = value;
+        set => parent.password = value;
     }
     public void Button_Action_View_Appointments()
     {
@@ -64,9 +64,9 @@ public class MainHeaderModel : ViewModelBase
     public void Button_Action_Logout()
     {
         Console.WriteLine("Button_Action_Logout");
-        Parent.current_header = Parent._login_header;
-        Parent.current_content = Parent._blank_content;
-        //Parent.user_name = "";
+        parent.current_header = parent._login_header;
+        parent.current_content = parent._blank_content;
+        //parent.user_name = "";
         //Add funktionality here
     }
 

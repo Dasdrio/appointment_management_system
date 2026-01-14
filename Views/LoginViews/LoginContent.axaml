@@ -8,6 +8,6 @@
     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*"> 
         <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name}" FontSize="20"/>
         <TextBox Grid.Row="1" Name="password" Text="{Binding password}" FontSize="20"/>
-        <Button Grid.Row="2"  Command="{Binding Button_Action_Login}" FontSize="20" >Login</Button>
+        <Button Grid.Row="2"  Command="{Binding button_action_login}" FontSize="20" >Login</Button>
     </Grid>
 </UserControl>
