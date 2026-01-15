@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using DynamicData;
 using MySqlConnector;
 namespace appointment_management_system;
 
@@ -10,8 +11,7 @@ public class Database_access
     private static MySqlConnection mysql_connection;
     private static MySqlCommand? command;
 
-    private Database_access()
-    {
+    private Database_access(){
         mysql_connection = new MySqlConnection();
         try{
             mysql_connection.ConnectionString = mysql_connection_string;
@@ -21,16 +21,15 @@ public class Database_access
         }
 
     }
-    private static void close_database()
-    {
+    private static void close_database(){
         if(instance != null){
             mysql_connection.Close();
             instance = null;
         }
     }
 
-    public static Database_access get_instance() //required to call for database connection
-    {
+    //required to call for database connection
+    public static Database_access get_instance(){ 
         if(instance == null){
             instance = new Database_access();
             return instance;  
@@ -38,24 +37,23 @@ public class Database_access
             return instance;    
         }
     }
-
-    public static void delete_person(int person_ID) //deletion of the own AC
-    {
-        //Passwortabfrage einarbeiten
-        string procedure = "sp_delete_person";
+    //deletion of the own AC
+    public static void delete_person(int person_ID){ 
+    
+        string procedure = "";
         command = new MySqlCommand(procedure, mysql_connection);
         command.CommandType = CommandType.StoredProcedure;
         
-        command.Parameters.AddWithValue("p_person_ID", person_ID);
+        command.Parameters.AddWithValue("", person_ID);
         command.ExecuteNonQuery();
     }
 
-    public static String? get_password(String email)
+    public static String? get_password_hash(String email)
     {
         String? password = null;
 
         try{
-            string procedure = "sp_view_person_by_email";
+            string procedure = "";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
             
@@ -63,7 +61,7 @@ public class Database_access
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                return reader[5].ToString();    
+                password = reader[0].ToString();    
             }
             
         }
