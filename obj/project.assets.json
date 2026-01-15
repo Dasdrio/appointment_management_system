@@ -2018,23 +2018,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spieraa\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\brugerlu\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
+      "projectUniqueName": "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
       "projectName": "appointment_management_system",
-      "projectPath": "C:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
-      "packagesPath": "C:\\Users\\spieraa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\spieraa\\Documents\\GitHub\\appointment_management_system\\obj\\",
+      "projectPath": "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
+      "packagesPath": "C:\\Users\\brugerlu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\spieraa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\brugerlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
