@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
 
-public class data_security_information_content_model : ViewModelBase
+public class _data_security_information_content_model : ViewModelBase
 {
     public string Text => "Data Security Info";
 }

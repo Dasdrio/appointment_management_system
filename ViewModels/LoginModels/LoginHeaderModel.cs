@@ -11,7 +11,7 @@ using appointment_management_system.Views;
 public class LoginHeaderModel : ViewModelBase
 {
     private MainWindowViewModel parent;
-    private ViewModelBase login_content;
+    private ViewModelBase _login_content;
     private ViewModelBase Register_Content;
     public ViewModelBase CurrentLoginContent
     {
@@ -21,15 +21,15 @@ public class LoginHeaderModel : ViewModelBase
     public LoginHeaderModel(MainWindowViewModel parent)
     {
         this.parent = parent;
-        login_content = new LoginContentModel(parent);
+        _login_content = new LoginContentModel(parent);
         Register_Content = new RegisterContentModel(parent);
-        parent.current_content = login_content;
+        parent.current_content = _login_content;
     }
     public void Button_Action_Redirect_Login()
     {
         //Add functionality here
         Console.WriteLine("Button_Action_Redirect_Login and: "+parent.user_name);
-        CurrentLoginContent = login_content;
+        CurrentLoginContent = _login_content;
         
     }
     public void Button_Action_Redirect_Register()

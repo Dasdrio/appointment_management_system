@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
 
-public class contact_content_model : ViewModelBase
+public class _contact_content_model : ViewModelBase
 {
     public string Text => "Contact";
 }

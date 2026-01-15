@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
 
-public class AGB_content_model : ViewModelBase
+public class _AGB_content_model : ViewModelBase
 {
     public string Text => "AGB";
 }

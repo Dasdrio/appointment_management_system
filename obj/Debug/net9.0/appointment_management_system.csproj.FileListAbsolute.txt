@@ -164,3 +164,6 @@ c:\Users\brugerlu\Documents\GitHub\appointment_management_system\obj\Debug\net9.
 c:\Users\brugerlu\Documents\GitHub\appointment_management_system\obj\Debug\net9.0\appointment_management_system.pdb
 C:\Users\brugerlu\Documents\GitHub\appointment_management_system\obj\Debug\net9.0\appointment_management_system.genruntimeconfig.cache
 C:\Users\brugerlu\Documents\GitHub\appointment_management_system\obj\Debug\net9.0\ref\appointment_management_system.dll
+c:\Users\brugerlu\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+c:\Users\brugerlu\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+c:\Users\brugerlu\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\MySqlConnector.dll

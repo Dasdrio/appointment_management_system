@@ -13,11 +13,11 @@ using System.Runtime.Intrinsics.Arm;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase login_content;
-    private ViewModelBase impressum_content;
-    private ViewModelBase AGB_content;
-    private ViewModelBase data_security_information_content;
-    private ViewModelBase contact_content;
+    private ViewModelBase _login_content;
+    private ViewModelBase _impressum_content;
+    private ViewModelBase _AGB_content;
+    private ViewModelBase _data_security_information_content;
+    private ViewModelBase _contact_content;
     //the current content of the window. Can be swaped out with other ViewModelBases (use the property to access the field)
     private ViewModelBase _current_content;
     private ViewModelBase _current_header;
@@ -33,16 +33,16 @@ public partial class MainWindowViewModel : ViewModelBase
     private string _site_name = "Our Appointment Management System";
     //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
     public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop){
-        impressum_content = new ImpressumContentModel();
-        AGB_content = new AGB_content_model();
-        contact_content = new contact_content_model();
-        data_security_information_content = new data_security_information_content_model();
-        login_content = new LoginContentModel(this);
+        _impressum_content = new ImpressumContentModel();
+        _AGB_content = new _AGB_content_model();
+        _contact_content = new _contact_content_model();
+        _data_security_information_content = new _data_security_information_content_model();
+        _login_content = new LoginContentModel(this);
         _blank_content = new blankContentModel();
         _main_header = new MainHeaderModel(this);
         _login_header = new LoginHeaderModel(this);
         _current_header = _login_header;
-        _current_content = impressum_content;
+        _current_content = _impressum_content;
         this.desktop = desktop;
     }
     public ViewModelBase current_content{
@@ -82,22 +82,22 @@ public partial class MainWindowViewModel : ViewModelBase
     
     //All Pages (Only change the Content Grid to the apropriate content)
     public void button_action_impressum(){
-        current_content = impressum_content;
+        current_content = _impressum_content;
         Console.WriteLine("button_action_impressum");
         //add functionality here
     }
     public void button_action_AGB(){
-        current_content = AGB_content;
+        current_content = _AGB_content;
         Console.WriteLine("button_action_AGB");
         //add functionality here
     }
     public void button_action_contact(){
-        current_content = contact_content;
+        current_content = _contact_content;
         Console.WriteLine("button_action_contact");
         //add functionality here
     }
     public void button_action_data_security_information(){
-        current_content = data_security_information_content;
+        current_content = _data_security_information_content;
         Console.WriteLine("button_action_data_security_information");
         //add functionality here
     }
