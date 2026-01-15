@@ -21,35 +21,35 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/App.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/AGB_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/AGB_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/contact_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/contact_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/data_security_information_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/data_security_information_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/Impressum_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/FooterViews/Impressum_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/LoginViews/Login_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/LoginViews/Login_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/LoginViews/Login_header.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/LoginViews/Login_header.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/LoginViews/Register_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/LoginViews/Register_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/MainViews/Blank_content.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/MainViews/Blank_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/MainViews/Main_header.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/MainViews/Main_header.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/MainViews/Main_window.axaml]
+[C:/Users/fockenda/Documents/GitHub/appointment_management_system/Views/MainViews/Main_window.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -75,7 +75,7 @@ public class Database_access
     }
 
     public static String[]? get_personal_information(String email){
-        String[] information = null;
+        String[]? information = null;
         List<String> information_list = new List<String>();
         try{
             string procedure = "sp_persons_get_information_by_email";
