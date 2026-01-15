@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Data;
 using DynamicData;
 using MySqlConnector;
@@ -48,27 +51,50 @@ public class Database_access
         command.ExecuteNonQuery();
     }
 
-    public static String? get_password_hash(String email)
-    {
+    public static String? get_password_hash(String email){
         String? password = null;
 
         try{
-            string procedure = "";
+            string procedure = "sp_persons_get_password_hash_by_email";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
             
             command.Parameters.AddWithValue("p_email", email);
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                password = reader[0].ToString();    
+            using(MySqlDataReader reader = command.ExecuteReader()){
+                
+                while (reader.Read()){
+                    password = reader[0].ToString();    
+                }    
             }
-            
+              
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-
         return password;
+    }
+
+    public static String[]? get_personal_information(String email){
+        String[] information = null;
+        List<String> information_list = new List<String>();
+        try{
+            string procedure = "sp_persons_get_information_by_email";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+            
+            command.Parameters.AddWithValue("p_email", email);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+                
+                while (reader.Read()){
+                    information_list.Add(reader[0].ToString());
+                    information = information_list.ToArray();    
+                }
+                    
+            } 
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return information;
     }
 }
