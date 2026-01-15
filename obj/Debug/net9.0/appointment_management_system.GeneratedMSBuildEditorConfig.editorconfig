@@ -56,3 +56,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainViews/patient/Main_header_patient.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainViews/patient/Make_appointments_patient_content.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[c:/Users/spieraa/Documents/GitHub/appointment_management_system/Views/MainViews/patient/View_appointments_patient_content.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

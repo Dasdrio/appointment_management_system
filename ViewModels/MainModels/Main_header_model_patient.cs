@@ -15,7 +15,7 @@ public class Main_header_model_patient : View_model_base{
     public Main_header_model_patient(MainWindow_view_model parent){
         this.parent = parent;
         //View_Appointments_Content = new some_other_model(parent);
-        //Make_Appointments_Content = new some_model(parent);
+        Make_Appointments_Content = new Make_appointments_patient_content_model();
     }
     private string _site_name = "Our Appointment Management System";
     public string site_name{
@@ -36,6 +36,7 @@ public class Main_header_model_patient : View_model_base{
     }
     public void Button_Action_Make_Appointments(){
         Console.WriteLine("Button_Action_Make_Appointments");
+        parent.current_content = Make_Appointments_Content;
         //Add funktionality here
     }
     public void Button_Action_Logout(){

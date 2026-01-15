@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:appointment_management_system.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="appointment_management_system.Views.Make_appointments_patient_content_model"
+        x:DataType="vm:Make_appointments_patient_content_model">
+    <Grid Name="Top_Row_Grid" ColumnDefinitions="*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="rgba(255, 255, 255, 1)" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Button IsVisible="{Binding visable[0]}" Command = "{Binding button_action_back}" Background="rgba(255, 255, 255, 1)" Name="Button_Back" Content="{Binding texte[0]}" ></Button>
+               
+        </StackPanel>
+   </Grid>
+</UserControl>
