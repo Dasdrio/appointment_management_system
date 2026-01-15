@@ -25,13 +25,17 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = new MainWindow_view_model(desktop),
             };
+            desktop.MainWindow.Closed += (sender,e) => Shutdown(desktop);
         }
 
         base.OnFrameworkInitializationCompleted();
     }
-
+    private void Shutdown(IClassicDesktopStyleApplicationLifetime desktop)
+    {
+            desktop.Shutdown();
+    }
     private void DisableAvaloniaDataAnnotationValidation()
     {
         // Get an array of plugins to remove
