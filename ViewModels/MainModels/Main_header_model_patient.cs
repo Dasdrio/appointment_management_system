@@ -8,7 +8,7 @@ using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
 
-public class Main_header_model : View_model_base{
+public class Main_header_model_patient : View_model_base{
     private MainWindow_view_model parent;
     private View_model_base View_Appointments_Content;
     private View_model_base Make_Appointments_Content;
@@ -17,7 +17,7 @@ public class Main_header_model : View_model_base{
         get => _currentMainContent;
         set => this.RaiseAndSetIfChanged(ref _currentMainContent,value);
     }
-    public Main_header_model(MainWindow_view_model parent){
+    public Main_header_model_patient(MainWindow_view_model parent){
         this.parent = parent;
         View_Appointments_Content = new Login_content_model(parent);
         Make_Appointments_Content = new Register_content_model(parent);
@@ -48,7 +48,7 @@ public class Main_header_model : View_model_base{
         Console.WriteLine("Button_Action_Logout");
         parent.current_header = parent._login_header;
         parent.current_content = parent._blank_content;
-        //parent.user_name = "";
+        parent.user_name = "";
         //Add funktionality here
     }
 

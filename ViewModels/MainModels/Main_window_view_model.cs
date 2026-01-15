@@ -19,7 +19,7 @@ public partial class MainWindow_view_model : View_model_base
     private View_model_base _data_security_information_content;
     private View_model_base _contact_content;
     public View_model_base _login_header;
-    public View_model_base _main_header;
+    public View_model_base _main_header_patient;
     public View_model_base _blank_content;
     //the current content of the window. Can be swaped out with other View_model_bases (use the property to access the field)
     private View_model_base _current_content;
@@ -39,7 +39,7 @@ public partial class MainWindow_view_model : View_model_base
         _data_security_information_content = new Data_security_information_content_model();
         _login_content = new Login_content_model(this);
         _blank_content = new Blank_content_model();
-        _main_header = new Main_header_model(this);
+        _main_header_patient = new Main_header_model_patient(this);
         _login_header = new Login_header_model(this);
         _current_header = _login_header;
         _current_content = _impressum_content;
