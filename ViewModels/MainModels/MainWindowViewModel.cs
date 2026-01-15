@@ -1,8 +1,6 @@
 ﻿namespace appointment_management_system.ViewModels;
 
 using System;
-using System.Text;
-using System.Security.Cryptography;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
@@ -29,6 +27,9 @@ public partial class MainWindowViewModel : ViewModelBase
     private IClassicDesktopStyleApplicationLifetime desktop;
     private string _user_name = "";
     private string _password = "";
+    private string _surname = "";
+    private string _first_name = "";
+    private uint _user_id = 0; //default value user ids are starting at 1
     private string _site_name = "Our Appointment Management System";
     //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
     public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop){
@@ -59,14 +60,23 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     public string user_name{
         get => _user_name;  
-        set{
-            _user_name = value;
-            this.RaiseAndSetIfChanged(ref _user_name,value);
-        }
+        set =>  this.RaiseAndSetIfChanged(ref _user_name,value);
     }
     public string password{
         get => _password;  
         set => this.RaiseAndSetIfChanged(ref _password,value);
+    }
+        public string surname{
+        get => _surname;
+        set => this.RaiseAndSetIfChanged(ref _surname,value);
+    }
+    public string first_name{
+        get => _first_name;
+        set => this.RaiseAndSetIfChanged(ref _first_name,value);
+    }
+    public uint user_id{
+        get => _user_id;
+        set => this.RaiseAndSetIfChanged(ref _user_id,value);
     }
     //Button functions    
     
@@ -96,21 +106,5 @@ public partial class MainWindowViewModel : ViewModelBase
         Console.WriteLine("Button_Action_");
         //add functionality here
     }*/
-    //functionality functions
-    public string SHA256HashCreator(string unhashed_password)
-    {
-        string hash;
-        using(SHA256 SHA256_hash = SHA256.Create())
-        {
-             // Byte array representation of source string
-            var source_bytes = Encoding.UTF8.GetBytes(unhashed_password);
-
-            // Generate hash value(Byte Array) for input data
-            var hash_bytes = SHA256_hash.ComputeHash(source_bytes);
-
-            // Convert hash byte array to string
-            hash = BitConverter.ToString(hash_bytes).Replace("-", string.Empty);
-        }
-        return hash;
-    }
+    
 }
