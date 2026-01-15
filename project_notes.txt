@@ -13,6 +13,7 @@ standards
 		DirectoryName
 		CONSTANT_NAME
 
+//Ich bin eine Änderung zum Test des GIT-ignore
 
 implementation_of_features
 	login
