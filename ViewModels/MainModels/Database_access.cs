@@ -48,8 +48,7 @@ public class Database_access
         command.ExecuteNonQuery();
     }
 
-    public static String? get_password_hash(String email)
-    {
+    public static String? get_password_hash(String email){
         String? password = null;
 
         try{
@@ -59,8 +58,7 @@ public class Database_access
             
             command.Parameters.AddWithValue("p_email", email);
             MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
+            while (reader.Read()){
                 password = reader[0].ToString();    
             }
             

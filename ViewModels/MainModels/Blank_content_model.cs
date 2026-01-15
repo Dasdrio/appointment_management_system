@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
 
-public class Blank_content_model : View_model_base
-{
+public class Blank_content_model : View_model_base{
 
 }

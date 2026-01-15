@@ -18,12 +18,12 @@ public partial class MainWindow_view_model : View_model_base
     private View_model_base _AGB_content;
     private View_model_base _data_security_information_content;
     private View_model_base _contact_content;
-    //the current content of the window. Can be swaped out with other View_model_bases (use the property to access the field)
-    private View_model_base _current_content;
-    private View_model_base _current_header;
     public View_model_base _login_header;
     public View_model_base _main_header;
     public View_model_base _blank_content;
+    //the current content of the window. Can be swaped out with other View_model_bases (use the property to access the field)
+    private View_model_base _current_content;
+    private View_model_base _current_header;
     private IClassicDesktopStyleApplicationLifetime desktop;
     private string _user_name = "";
     private string _password = "";
