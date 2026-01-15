@@ -8,21 +8,21 @@ using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
 
-public class LoginHeaderModel : ViewModelBase
+public class Login_header_model : View_model_base
 {
-    private MainWindowViewModel parent;
-    private ViewModelBase _login_content;
-    private ViewModelBase Register_Content;
-    public ViewModelBase CurrentLoginContent
+    private MainWindow_view_model parent;
+    private View_model_base _login_content;
+    private View_model_base Register_Content;
+    public View_model_base CurrentLoginContent
     {
         get => parent.current_content;
         set => parent.current_content = value;
     }
-    public LoginHeaderModel(MainWindowViewModel parent)
+    public Login_header_model(MainWindow_view_model parent)
     {
         this.parent = parent;
-        _login_content = new LoginContentModel(parent);
-        Register_Content = new RegisterContentModel(parent);
+        _login_content = new Login_content_model(parent);
+        Register_Content = new Register_content_model(parent);
         parent.current_content = _login_content;
     }
     public void Button_Action_Redirect_Login()

@@ -27,29 +27,29 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/AGB_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/contact_content.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/Contact_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/data_security_information_content.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/Data_security_information_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/ImpressumContent.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/FooterViews/Impressum_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/LoginViews/LoginContent.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/LoginViews/Login_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/LoginViews/LoginHeader.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/LoginViews/Login_header.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/LoginViews/RegisterContent.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/LoginViews/Register_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/MainViews/blankContent.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/MainViews/Blank_content.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/MainViews/MainHeader.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/MainViews/Main_header.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/MainViews/MainWindow.axaml]
+[c:/Users/brugerlu/Documents/GitHub/appointment_management_system/Views/MainViews/Main_window.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

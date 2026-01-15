@@ -6,7 +6,7 @@ using System;
 
 namespace appointment_management_system.ViewModels;
 
-public abstract class ViewModelBase : ReactiveObject
+public abstract class View_model_base : ReactiveObject
 {
     //functionality functions
     public string SHA256HashCreator(string unhashed_password)

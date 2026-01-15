@@ -5,11 +5,14 @@ standards
 	language_for_comments:	english
 	commit_message_sprache:	english
 	Nameconevtions
-		snake_case
-		CONSTANTS
-		_globals
-		Classes
-		variables
+		_field_name
+		property_name
+		method_name
+		Class_name
+		File_name
+		DirectoryName
+		CONSTANT_NAME
+
 
 implementation_of_features
 	login

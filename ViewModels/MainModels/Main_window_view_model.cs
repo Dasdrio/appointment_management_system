@@ -11,19 +11,19 @@ using System.Threading;
 using appointment_management_system.Views;
 using System.Runtime.Intrinsics.Arm;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindow_view_model : View_model_base
 {
-    private ViewModelBase _login_content;
-    private ViewModelBase _impressum_content;
-    private ViewModelBase _AGB_content;
-    private ViewModelBase _data_security_information_content;
-    private ViewModelBase _contact_content;
-    //the current content of the window. Can be swaped out with other ViewModelBases (use the property to access the field)
-    private ViewModelBase _current_content;
-    private ViewModelBase _current_header;
-    public ViewModelBase _login_header;
-    public ViewModelBase _main_header;
-    public ViewModelBase _blank_content;
+    private View_model_base _login_content;
+    private View_model_base _impressum_content;
+    private View_model_base _AGB_content;
+    private View_model_base _data_security_information_content;
+    private View_model_base _contact_content;
+    //the current content of the window. Can be swaped out with other View_model_bases (use the property to access the field)
+    private View_model_base _current_content;
+    private View_model_base _current_header;
+    public View_model_base _login_header;
+    public View_model_base _main_header;
+    public View_model_base _blank_content;
     private IClassicDesktopStyleApplicationLifetime desktop;
     private string _user_name = "";
     private string _password = "";
@@ -32,24 +32,24 @@ public partial class MainWindowViewModel : ViewModelBase
     private uint _user_id = 0; //default value user ids are starting at 1
     private string _site_name = "Our Appointment Management System";
     //Überprüfen ob das funktioniert. Der Top Content sollte mit dem LoginTop Content ausgetauscht werden und darüber dann auch den Content dieser Wiederum kann auch Impressum durch die MainWindowView Anzeigen. Mal sehen
-    public MainWindowViewModel(IClassicDesktopStyleApplicationLifetime desktop){
-        _impressum_content = new ImpressumContentModel();
-        _AGB_content = new _AGB_content_model();
-        _contact_content = new _contact_content_model();
-        _data_security_information_content = new _data_security_information_content_model();
-        _login_content = new LoginContentModel(this);
-        _blank_content = new blankContentModel();
-        _main_header = new MainHeaderModel(this);
-        _login_header = new LoginHeaderModel(this);
+    public MainWindow_view_model(IClassicDesktopStyleApplicationLifetime desktop){
+        _impressum_content = new Impressum_content_model();
+        _AGB_content = new AGB_content_model();
+        _contact_content = new Contact_content_model();
+        _data_security_information_content = new Data_security_information_content_model();
+        _login_content = new Login_content_model(this);
+        _blank_content = new Blank_content_model();
+        _main_header = new Main_header_model(this);
+        _login_header = new Login_header_model(this);
         _current_header = _login_header;
         _current_content = _impressum_content;
         this.desktop = desktop;
     }
-    public ViewModelBase current_content{
+    public View_model_base current_content{
         get => _current_content;
         set => this.RaiseAndSetIfChanged(ref _current_content,value);
     }
-    public ViewModelBase current_header{
+    public View_model_base current_header{
         get => _current_header;
         set => this.RaiseAndSetIfChanged(ref _current_header,value);
     }

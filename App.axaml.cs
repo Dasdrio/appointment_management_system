@@ -25,7 +25,7 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(desktop),
+                DataContext = new MainWindow_view_model(desktop),
             };
             desktop.MainWindow.Closed += (sender,e) => Shutdown(desktop);
         }

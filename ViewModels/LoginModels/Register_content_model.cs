@@ -8,11 +8,11 @@ using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
 
-public class RegisterContentModel : ViewModelBase
+public class Register_content_model : View_model_base
 {
-    //Ich übergebe im Constructer den MainWindowViewModel, um nachher im Main Menu immer noch User_Name und Passwort zu haben
-    private MainWindowViewModel parent;
-    public RegisterContentModel(MainWindowViewModel parent)
+    //Ich übergebe im Constructer den MainWindow_view_model, um nachher im Main Menu immer noch User_Name und Passwort zu haben
+    private MainWindow_view_model parent;
+    public Register_content_model(MainWindow_view_model parent)
     {
         this.parent = parent;
     }

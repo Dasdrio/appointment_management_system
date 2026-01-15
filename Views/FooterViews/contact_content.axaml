@@ -3,8 +3,8 @@
         xmlns:vm="clr-namespace:appointment_management_system.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Class="appointment_management_system.Views._contact_content_model"
-        x:DataType="vm:_contact_content_model">
+        x:Class="appointment_management_system.Views.Contact_content_model"
+        x:DataType="vm:Contact_content_model">
     <Grid> 
         <TextBlock Text="{Binding Text}" FontSize="20"/> 
     </Grid>

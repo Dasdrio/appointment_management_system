@@ -8,22 +8,22 @@ using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
 
-public class MainHeaderModel : ViewModelBase
+public class Main_header_model : View_model_base
 {
-    private MainWindowViewModel parent;
-    private ViewModelBase View_Appointments_Content;
-    private ViewModelBase Make_Appointments_Content;
-    private ViewModelBase _currentMainContent;
-    public ViewModelBase CurrentMainContent
+    private MainWindow_view_model parent;
+    private View_model_base View_Appointments_Content;
+    private View_model_base Make_Appointments_Content;
+    private View_model_base _currentMainContent;
+    public View_model_base CurrentMainContent
     {
         get => _currentMainContent;
         set => this.RaiseAndSetIfChanged(ref _currentMainContent,value);
     }
-    public MainHeaderModel(MainWindowViewModel parent)
+    public Main_header_model(MainWindow_view_model parent)
     {
         this.parent = parent;
-        View_Appointments_Content = new LoginContentModel(parent);
-        Make_Appointments_Content = new RegisterContentModel(parent);
+        View_Appointments_Content = new Login_content_model(parent);
+        Make_Appointments_Content = new Register_content_model(parent);
         _currentMainContent = Make_Appointments_Content;
     }
     private string _site_name = "Our Appointment Management System";

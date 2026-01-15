@@ -1,8 +1,8 @@
 using Avalonia.Controls;
 namespace appointment_management_system.Views;
-public partial class LoginContentModel : UserControl
+public partial class Impressum_content_model : UserControl
 {
-    public LoginContentModel()
+    public Impressum_content_model()
     {
         InitializeComponent();
     }

@@ -8,11 +8,11 @@ using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
 
-public class LoginContentModel : ViewModelBase
+public class Login_content_model : View_model_base
 {
-    //I pass the MainWindowViewModel in the constructor so that I still have the user name and password in the main menu later on.
-    private MainWindowViewModel parent;
-    public LoginContentModel(MainWindowViewModel parent){
+    //I pass the MainWindow_view_model in the constructor so that I still have the user name and password in the main menu later on.
+    private MainWindow_view_model parent;
+    public Login_content_model(MainWindow_view_model parent){
         this.parent = parent;
     }
     public string user_name{

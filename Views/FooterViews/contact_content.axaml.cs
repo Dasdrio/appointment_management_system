@@ -1,8 +1,8 @@
 using Avalonia.Controls;
 namespace appointment_management_system.Views;
-public partial class _contact_content_model : UserControl
+public partial class Contact_content_model : UserControl
 {
-    public _contact_content_model()
+    public Contact_content_model()
     {
         InitializeComponent();
     }

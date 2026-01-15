@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
         x:Class="appointment_management_system.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="vm:MainWindow_view_model"
         Icon="/../Assets/avalonia-logo.ico"
         Title="appointment_management_system"
         Height="450"
@@ -14,11 +14,11 @@
         CanResize="True">
     <Window.Resources>
         <!-- Irgendwie kommt hier ständig ein Fehler
-        <DataTemplate DataType="vm:LoginContentModel">
-            <vm:LoginContentModel />
+        <DataTemplate DataType="vm:Login_content_model">
+            <vm:Login_content_model />
         </DataTemplate>
-        <DataTemplate DataType="vm:LoginContentModel">
-            <vm:ImpressumContentModel />
+        <DataTemplate DataType="vm:Login_content_model">
+            <vm:Impressum_content_model />
         </DataTemplate>-->
     </Window.Resources>
     <Grid Name="Main_Grid" ColumnDefinitions="*" RowDefinitions="100,*,50">
