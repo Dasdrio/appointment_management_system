@@ -167,3 +167,6 @@ C:\Users\brugerlu\Documents\GitHub\appointment_management_system\obj\Debug\net9.
 c:\Users\brugerlu\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 c:\Users\brugerlu\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
 c:\Users\brugerlu\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\MySqlConnector.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+c:\Users\spieraa\Documents\GitHub\appointment_management_system\bin\Debug\net9.0\MySqlConnector.dll
