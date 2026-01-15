@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using ReactiveUI;
 
-public class Impressum_content_model : View_model_base
-{
-    public string Text => "Impressum";
+public class Impressum_content_model : View_model_base{
+    public string text => "Impressum";
 }

@@ -6,6 +6,6 @@
         x:Class="appointment_management_system.Views.Impressum_content_model"
         x:DataType="vm:Impressum_content_model">
     <Grid> 
-        <TextBlock Text="{Binding Text}" FontSize="20"/> 
+        <TextBlock Text="{Binding text}" FontSize="20"/> 
     </Grid>
 </UserControl>

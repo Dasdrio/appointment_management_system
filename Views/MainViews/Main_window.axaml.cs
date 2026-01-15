@@ -5,10 +5,8 @@ using ReactiveUI.Avalonia;
 
 namespace appointment_management_system.Views;
 
-public partial class MainWindow : Window
-{
-    public MainWindow()
-    {
+public partial class MainWindow : Window{
+    public MainWindow(){
         InitializeComponent();
     }
 }
