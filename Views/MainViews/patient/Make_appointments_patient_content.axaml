@@ -6,9 +6,11 @@
         x:Class="appointment_management_system.Views.Make_appointments_patient_content_model"
         x:DataType="vm:Make_appointments_patient_content_model">
     <Grid Name="Top_Row_Grid" ColumnDefinitions="*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
-        <StackPanel Grid.Row="0" Grid.Column="0" Background="rgba(255, 255, 255, 1)" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Button IsVisible="{Binding visable[0]}" Command = "{Binding button_action_back}" Background="rgba(255, 255, 255, 1)" Name="Button_Back" Content="{Binding texte[0]}" ></Button>
-               
-        </StackPanel>
+        <Grid MinHeight="40" ColumnDefinitions="*,*,*" RowDefinitions="*" Margin ="12" Grid.Row="0" Grid.Column="0" Background="rgba(255, 255, 255, 1)" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Button Grid.Column="0" HorizontalAlignment="Left" Command = "{Binding button_action_back}" Background="rgba(255, 255, 255, 1)" Name="Button_Back" Content="{Binding texte[0]}"></Button>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text = "{Binding date}"></TextBlock>
+            <Button Grid.Column="2" HorizontalAlignment="Right" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 255, 1)" Name="Button_Forwoard" Content="{Binding texte[1]}"></Button>
+        </Grid>
+        
    </Grid>
 </UserControl>

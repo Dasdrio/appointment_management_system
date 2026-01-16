@@ -10,7 +10,7 @@ using appointment_management_system.Views;
 using System.Collections.ObjectModel;
 
 public class Make_appointments_patient_content_model : View_model_base{
-    private ObservableCollection<string> _texte = new() {"hallo","Welt"};
+    private ObservableCollection<string> _texte = new() {"back","forward"};
     private ObservableCollection<bool> _visable = new() {false,false};
 
     public ObservableCollection<string> texte {
@@ -21,11 +21,12 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _visable;
         set=> this.RaiseAndSetIfChanged(ref _visable,value);
     }
+    public string date {get;set;} = "01.1999";
     public void button_action_back(){
-        string temp = texte[0];
-        texte[0] = texte[1];
-        texte[1] = temp;
-        Console.WriteLine(texte[0]);
+        
+    }
+    public void button_action_forward(){
+        
     }
 
 }

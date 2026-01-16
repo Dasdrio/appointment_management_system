@@ -1,32 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj": {}
+    "/home/faosx/Dokumente/GitHub/appointment_management_system/appointment_management_system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj": {
+    "/home/faosx/Dokumente/GitHub/appointment_management_system/appointment_management_system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
+        "projectUniqueName": "/home/faosx/Dokumente/GitHub/appointment_management_system/appointment_management_system.csproj",
         "projectName": "appointment_management_system",
-        "projectPath": "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\appointment_management_system.csproj",
-        "packagesPath": "C:\\Users\\brugerlu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brugerlu\\Documents\\GitHub\\appointment_management_system\\obj\\",
+        "projectPath": "/home/faosx/Dokumente/GitHub/appointment_management_system/appointment_management_system.csproj",
+        "packagesPath": "/home/faosx/.nuget/packages/",
+        "outputPath": "/home/faosx/Dokumente/GitHub/appointment_management_system/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\brugerlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/faosx/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -100,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.113/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
