@@ -7,5 +7,5 @@
         x:DataType="vm:View_appointments_patient_content_model">
     <Grid Name="Top_Row_Grid" ColumnDefinitions="50,*,*,*,*,*" RowDefinitions="*">
 
-   </Grid>
+    </Grid>
 </UserControl>
