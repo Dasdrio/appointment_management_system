@@ -87,6 +87,10 @@ public class Database_access
                 
                 while (reader.Read()){
                     information_list.Add(reader[0].ToString());
+                    information_list.Add(reader[1].ToString());
+                    information_list.Add(reader[2].ToString());
+                    information_list.Add(reader[3].ToString());
+                    information_list.Add(reader[4].ToString());
                     information = information_list.ToArray();    
                 }
                     
