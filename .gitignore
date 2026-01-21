@@ -21,10 +21,10 @@ mono_crash.*
 *.cache
 
 # Build results
-Debug/
-DebugPublic/
-Release/
-Releases/
+Debug/*
+DebugPublic/*
+Release/*
+Releases/*
 
 [Dd]ebug/x64/
 [Dd]ebugPublic/x64/
