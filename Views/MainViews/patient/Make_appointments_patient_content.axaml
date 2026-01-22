@@ -14,8 +14,21 @@
                 <TextBlock VerticalAlignment="Center" Text="{Binding month, Mode=TwoWay}"/>
                 <TextBlock VerticalAlignment="Center" Text="Jahr: "/>
                 <TextBlock VerticalAlignment="Center" Text="{Binding year, Mode=TwoWay}"/>
-                <ComboBox Name="specilazation" SelectedIndex="0" MaxDropDownHeight="300" ItemsSource="{Binding specilazation}" SelectedValue="{Binding chosen_specilazation}">
-                
+                <ComboBox Name="specilazation" SelectedIndex="0" MaxDropDownHeight="300"
+                    ItemsSource="{Binding specilazation}" SelectedValue="{Binding chosen_specilazation}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding display_name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Name="doctor" SelectedIndex="0" MaxDropDownHeight="300"
+                    ItemsSource="{Binding doctors}" SelectedValue="{Binding chosen_doctor}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding display_name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
             <Button Margin="5" IsVisible="{Binding button_for_visable}" Grid.Column="2" HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 150, 1)" Name="Button_Forwoard" Content="{Binding button_for_text}"></Button>

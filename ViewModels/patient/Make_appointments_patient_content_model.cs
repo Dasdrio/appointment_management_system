@@ -9,17 +9,23 @@ using Avalonia.Controls;
 using appointment_management_system.Views;
 using System.Collections.ObjectModel;
 using Avalonia.Markup.Xaml.Templates;
+public class specilasation_name_pair
+{
+    public string display_name { get; set; }
+    public Specialization value { get; set; }
+}
+public class id_name_pair
+{
+    public string display_name { get; set; }
+    public int value { get; set; }
+}
 
 public class Make_appointments_patient_content_model : View_model_base{
 
-    public enum specilazations
-    {
-        Hausmeister,
-        Teerputzer,
-        Lungenentferner
-    }
-    private ObservableCollection<string> _specilazation= new();
-    private string _chosen_specilazation;
+    private ObservableCollection<specilasation_name_pair> _specilazation= new();
+    private specilasation_name_pair _chosen_specilazation;
+    private ObservableCollection<id_name_pair> _doctors = new();
+    private id_name_pair _chosen_doctor;
     private ObservableCollection<int> _day = new() {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
     private ObservableCollection<bool> _day_visable;
     private ObservableCollection<string> _weekdays = new() {"Monday","Tuesday","Wednsday","Thurday","Friday"};
@@ -30,17 +36,30 @@ public class Make_appointments_patient_content_model : View_model_base{
     private string _button_for_text = "for";
     private bool _button_back_visable = false;
     private bool _button_for_visable = true;
-    public ObservableCollection<string> specilazation
+    public ObservableCollection<specilasation_name_pair> specilazation
     {
         get => _specilazation;
         set=> this.RaiseAndSetIfChanged(ref _specilazation,value);
     }
-    public string chosen_specilazation{
+    public ObservableCollection<id_name_pair> doctors
+    {
+        get => _doctors;
+        set=> this.RaiseAndSetIfChanged(ref _doctors,value);
+    }
+    public specilasation_name_pair chosen_specilazation{
         get => _chosen_specilazation;
         set
         {
-           Console.WriteLine(value);
+           change_doctors(value.value);
            this.RaiseAndSetIfChanged(ref _chosen_specilazation,value); 
+        } 
+    }
+    public id_name_pair chosen_doctor{
+        get => _chosen_doctor;
+        set
+        {
+           Console.WriteLine(value.value);
+           this.RaiseAndSetIfChanged(ref _chosen_doctor,value); 
         } 
     }
     public ObservableCollection<int> day {
@@ -108,17 +127,30 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _button_for_visable;
         set => this.RaiseAndSetIfChanged(ref _button_for_visable,value);
     }
-
     public Make_appointments_patient_content_model()
     {
         year = currentDateTime.Year;
         month = currentDateTime.Month;
-        foreach(var specilazation_string in Enum.GetValues(typeof(specilazations)))
-        {
-            _specilazation.Add(specilazation_string.ToString());
-        }
+        _specilazation.Add(new specilasation_name_pair{display_name ="Allgemeinmedizin", value= Specialization.GENERAL_PRACTICE});
+        _specilazation.Add(new specilasation_name_pair{display_name ="Kinderheilkunde", value= Specialization.PEDIATRICS});
+        _specilazation.Add(new specilasation_name_pair{display_name ="Augenheilkunde", value= Specialization.OPHTALMOLOGY});
+        _specilazation.Add(new specilasation_name_pair{display_name ="Dermatologie", value= Specialization.DERMATOLOGY});
+        _specilazation.Add(new specilasation_name_pair{display_name ="Kardiologie", value= Specialization.CARDIOLOGY});
+        _specilazation.Add(new specilasation_name_pair{display_name ="Hals-Nasen-Ohren-Heilkunde", value= Specialization.OTOLARYNGOLOGY});
         _chosen_specilazation = _specilazation[0];
+        change_doctors(Specialization.GENERAL_PRACTICE);
+        chosen_doctor = doctors[0];
         calculate_weekdays();
+    }
+    private void change_doctors(Specialization chosen_special)
+    {
+        //Database_access.get_doctor(chosen_special);
+        //Temp stuff get the real doctors then use calculate weekdays and make the ones that are not available not visable at first and every tima a doctor changes
+        doctors = new();
+        doctors.Add(new id_name_pair{display_name =chosen_special.ToString()+" doctor1", value=1});
+        doctors.Add(new id_name_pair{display_name =chosen_special.ToString()+" doctor2", value=2});
+        doctors.Add(new id_name_pair{display_name =chosen_special.ToString()+" doctor3", value=3});
+        chosen_doctor = doctors[0];
     }
     private void calculate_weekdays()
     {
