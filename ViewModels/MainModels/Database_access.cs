@@ -7,6 +7,15 @@ using DynamicData;
 using MySqlConnector;
 namespace appointment_management_system;
 
+
+public enum Specialization{
+        GENERAL_PRACTICE,
+		PEDIATRICS,
+		OPHTALMOLOGY,
+		DERMATOLOGY,
+		CARDIOLOGY,
+		OTOLARYNGOLOGY,
+    }
 public class Database_access
 {
     private static Database_access? instance;
@@ -90,10 +99,9 @@ public class Database_access
                     information_list.Add(reader[1].ToString());
                     information_list.Add(reader[2].ToString());
                     information_list.Add(reader[3].ToString());
-                    information_list.Add(reader[4].ToString());
-                    information = information_list.ToArray();    
+                    information_list.Add(reader[4].ToString());    
                 }
-                    
+                information = information_list.ToArray();                    
             } 
         }
         catch(Exception ex){
@@ -101,4 +109,54 @@ public class Database_access
         }
         return information;
     }
+
+    /*Returns an Array of every doctor in the given specialization
+    every doctor has 3 values id, name and surname*/
+    public static String[]? get_doctor(Specialization specialization){
+        String[]? doctor = null;
+        List<String> doctor_list = new List<string>();
+        try{
+            string procedure = "sp_persons_get_doctor_by_specialization";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+            
+            command.Parameters.AddWithValue("p_specialization", specialization);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+                
+                while (reader.Read()){
+                    doctor_list.Add(reader[0].ToString());
+                    doctor_list.Add(reader[1].ToString());
+                    doctor_list.Add(reader[2].ToString());
+                }
+                doctor=doctor_list.ToArray();
+            }
+              
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return doctor;
+    }
+    
+    
+    //TODO delete after Project Completion
+    /*public static{
+        try{
+            string procedure = "";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+            
+            command.Parameters.AddWithValue("", );
+            using(MySqlDataReader reader = command.ExecuteReader()){
+                
+                while (reader.Read()){      
+                }    
+            }
+              
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        
+    }*/
 }
