@@ -6,16 +6,32 @@
         x:Class="appointment_management_system.Views.Make_appointments_patient_content_model"
         x:DataType="vm:Make_appointments_patient_content_model">
     <Grid Name="MothlyView" ColumnDefinitions="*" RowDefinitions="12,*">
-        <Grid Name="For_Back_Date" MinHeight="40" ColumnDefinitions="*,*,*" RowDefinitions="*" Margin ="12" Grid.Row="0" Grid.Column="0" Background="rgba(255, 255, 255, 1)">
-            <Button Margin="5" IsVisible="{Binding button_back_visable}" Grid.Column="0" HorizontalAlignment="Stretch" Command = "{Binding button_action_back}" Background="rgb(187, 255, 0)" Name="Button_Back" Content="{Binding button_back_text}"></Button>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock.Inlines>
-                    <Run Text="{Binding month}" />
-                    <Run Text=" ." />
-                    <Run Text="{Binding year}" />
-                </TextBlock.Inlines>    
-            </TextBlock>
-            <Button Margin="5" IsVisible="{Binding button_for_visable}" Grid.Column="2" HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(187, 255, 0, 1)" Name="Button_Forwoard" Content="{Binding button_for_text}"></Button>
+        <Grid Name="For_Back_Date" MinHeight="40" MinWidth="300" ColumnDefinitions="*,600,*" RowDefinitions="*" Margin ="12" Grid.Row="0" Grid.Column="0" Background="rgba(255, 255, 255, 1)">
+            <Button Margin="5" IsVisible="{Binding button_back_visable}" Grid.Column="0" HorizontalAlignment="Stretch" Command = "{Binding button_action_back}" Background="rgba(255, 255, 150, 1)" Name="Button_Back" Content="{Binding button_back_text}"></Button>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Monat: "/>
+                <TextBlock VerticalAlignment="Center" Text="{Binding month, Mode=TwoWay}"/>
+                <TextBlock VerticalAlignment="Center" Text="Jahr: "/>
+                <TextBlock VerticalAlignment="Center" Text="{Binding year, Mode=TwoWay}"/>
+                <ComboBox Name="specilazation" SelectedIndex="0" MaxDropDownHeight="300"
+                    ItemsSource="{Binding specilazation}" SelectedValue="{Binding chosen_specilazation}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding display_name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Name="doctor" SelectedIndex="0" MaxDropDownHeight="300"
+                    ItemsSource="{Binding doctors}" SelectedValue="{Binding chosen_doctor}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding display_name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <Button Margin="5" IsVisible="{Binding button_for_visable}" Grid.Column="2" HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 150, 1)" Name="Button_Forwoard" Content="{Binding button_for_text}"></Button>
         </Grid>
         <Grid Name="days" Grid.Row="1" Grid.Column="0" ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,*,*,*" Background="rgba(255, 255, 255, 0.3)" Margin="12" MinHeight="72" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding weekdays[0]}" MinHeight="12"></TextBlock>

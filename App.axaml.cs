@@ -23,6 +23,7 @@ public partial class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
+            Database_access.get_instance();
             desktop.MainWindow = new MainWindow
             {
                 DataContext = new MainWindow_view_model(desktop),
@@ -34,7 +35,8 @@ public partial class App : Application
     }
     private void Shutdown(IClassicDesktopStyleApplicationLifetime desktop)
     {
-            desktop.Shutdown();
+        Database_access.close_database();
+        desktop.Shutdown();
     }
     private void DisableAvaloniaDataAnnotationValidation()
     {
