@@ -33,7 +33,7 @@ public class Database_access
         }
 
     }
-    private static void close_database(){
+    public static void close_database(){
         if(instance != null){
             mysql_connection.Close();
             instance = null;
@@ -137,7 +137,7 @@ public class Database_access
         }
         return doctor;
     }
-    
+    /*returns an array with multiple days the first value is the ammount of appointments and the second is the date of the day*/
     public static String[]? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
         String[]? appointments_and_days = null;
         List<String> appointments_and_days_list = new List<string>();
@@ -150,8 +150,11 @@ public class Database_access
             command.Parameters.AddWithValue("p_date_and_time", date_and_time);
             using(MySqlDataReader reader = command.ExecuteReader()){
                 
-                while (reader.Read()){      
-                }    
+                while (reader.Read()){
+                    appointments_and_days_list.Add(reader[0].ToString());
+                    appointments_and_days_list.Add(reader[1].ToString());
+                }
+                appointments_and_days = appointments_and_days_list.ToArray(); 
             }
               
         }
@@ -160,6 +163,32 @@ public class Database_access
         }
         return appointments_and_days;
     }
+    /*Returns an Array with each appointment on a given day for the doctor.*/
+    public static String[]? get_appointments_on_day(String doctor_ID, DateTime date_and_time){
+        String[]? appointments = null;
+        List<String> appointments_list = new List<string>();
+        try{
+            string procedure = "sp_appointments_get_appointments_on_day";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+            
+            command.Parameters.AddWithValue("p_doctor_ID", doctor_ID);
+            command.Parameters.AddWithValue("p_date_and_time", date_and_time);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+                
+                while (reader.Read()){
+                    appointments_list.Add(reader[0].ToString());
+                }    
+                appointments = appointments_list.ToArray();
+            }
+              
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return appointments;
+    }
+
     
     //TODO delete after Project Completion
     /*public static{
