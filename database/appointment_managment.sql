@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 15. Jan 2026 um 12:35
+-- Erstellungszeit: 23. Jan 2026 um 06:59
 -- Server-Version: 8.0.44
 -- PHP-Version: 8.3.26
 
@@ -25,6 +25,14 @@ DELIMITER $$
 --
 -- Prozeduren
 --
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_find_day` (IN `p_date_and_time` DATETIME, IN `p_doctor_ID` INT)   SELECT COUNT(CAST(date_and_time AS DATE)), CAST(date_and_time AS DATE) FROM `Appointments` 
+WHERE MONTH(date_and_time) = MONTH(p_date_and_time) 
+AND YEAR(date_and_time) = YEAR(p_date_and_time)
+AND doctor_ID = p_doctor_ID
+GROUP BY CAST(date_and_time AS DATE)$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_doctor_by_specialization` (IN `p_specialization` ENUM('PATIENT','GENERAL_PRACTICE','PEDIATRICS','OPHTALMOLOGY','DERMATOLOGY','CARDIOLOGY','OTOLARYNGOLOGY'))   SELECT person_ID, name, surname FROM Persons WHERE specialization = p_specialization$$
+
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_information_by_email` (IN `p_email` VARCHAR(100))   SELECT * FROM Persons WHERE email = p_email$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_password_hash_by_email` (IN `p_email` VARCHAR(100))   SELECT password_hash FROM Persons WHERE email = p_email$$

@@ -138,6 +138,28 @@ public class Database_access
         return doctor;
     }
     
+    public static String[]? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
+        String[]? appointments_and_days = null;
+        List<String> appointments_and_days_list = new List<string>();
+        try{
+            string procedure = "sp_appointments_find_day";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+            
+            command.Parameters.AddWithValue("p_doctor_ID", doctor_ID);
+            command.Parameters.AddWithValue("p_date_and_time", date_and_time);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+                
+                while (reader.Read()){      
+                }    
+            }
+              
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return appointments_and_days;
+    }
     
     //TODO delete after Project Completion
     /*public static{
