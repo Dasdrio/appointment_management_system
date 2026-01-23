@@ -9,6 +9,8 @@ using Avalonia.Controls;
 using appointment_management_system.Views;
 using System.Collections.ObjectModel;
 using Avalonia.Markup.Xaml.Templates;
+using System.Collections.Generic;
+
 public class specilasation_name_pair
 {
     public string display_name { get; set; }
@@ -17,7 +19,7 @@ public class specilasation_name_pair
 public class id_name_pair
 {
     public string display_name { get; set; }
-    public int value { get; set; }
+    public string value { get; set; }
 }
 
 public class Make_appointments_patient_content_model : View_model_base{
@@ -144,13 +146,22 @@ public class Make_appointments_patient_content_model : View_model_base{
     }
     private void change_doctors(Specialization chosen_special)
     {
-        //Database_access.get_doctor(chosen_special);
-        //Temp stuff get the real doctors then use calculate weekdays and make the ones that are not available not visable at first and every tima a doctor changes
+        List<string[]> doctor = Database_access.get_doctor(chosen_special);
+        Console.WriteLine("Begin");
         doctors = new();
-        doctors.Add(new id_name_pair{display_name =chosen_special.ToString()+" doctor1", value=1});
-        doctors.Add(new id_name_pair{display_name =chosen_special.ToString()+" doctor2", value=2});
-        doctors.Add(new id_name_pair{display_name =chosen_special.ToString()+" doctor3", value=3});
-        chosen_doctor = doctors[0];
+        //Now add the doctors to doctors
+        foreach(string[] info in doctor)
+        {
+            doctors.Add(new id_name_pair{display_name =info[1]+" "+info[2], value=info[0]});
+        }
+        Console.WriteLine("End");
+        
+        //Temp stuff get the real doctors then use calculate weekdays and make the ones that are not available not visable at first and every tima a doctor changes
+        if(doctors.Count >= 0)
+        {
+            chosen_doctor = doctors[0];
+        }
+        //Next step is to create a view for the day to choose a time in dropdown and make a description and send it to the database
     }
     private void calculate_weekdays()
     {

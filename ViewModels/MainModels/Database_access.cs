@@ -20,7 +20,7 @@ public enum Specialization{
 public class Database_access
 {
     private static Database_access? instance;
-    private String mysql_connection_string = "server=localhost;port=3306;uid=access_client;pwd=accesspassword;database=appointment_managment";
+    private String mysql_connection_string = "server=localhost;port=3306;uid=access_client;pwd=accesspassword;database=appointment_management";
     private static MySqlConnection mysql_connection;
     private static MySqlCommand? command;
 
@@ -34,7 +34,7 @@ public class Database_access
         }
 
     }
-    private static void close_database(){
+    public static void close_database(){
         if(instance != null){
             mysql_connection.Close();
             instance = null;
@@ -113,30 +113,25 @@ public class Database_access
 
     /*Returns an Array of every doctor in the given specialization
     every doctor has 3 values id, name and surname*/
-    public static String[]? get_doctor(Specialization specialization){
-        String[]? doctor = null;
-        List<String> doctor_list = new List<string>();
+    public static List<string[]>? get_doctor(Specialization specialization){
+        List<string[]> doctor_list = new List<string[]>();
         try{
             string procedure = "sp_persons_get_doctor_by_specialization";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
             
-            command.Parameters.AddWithValue("p_specialization", specialization);
+            command.Parameters.AddWithValue("p_specialization", specialization.ToString());
             using(MySqlDataReader reader = command.ExecuteReader()){
-                
                 while (reader.Read()){
-                    doctor_list.Add(reader[0].ToString());
-                    doctor_list.Add(reader[1].ToString());
-                    doctor_list.Add(reader[2].ToString());
+                    doctor_list.Add(new string[]{reader[0].ToString(),reader[1].ToString(),reader[2].ToString()});
                 }
-                doctor=doctor_list.ToArray();
             }
               
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        return doctor;
+        return doctor_list;
     }
     
     public static String[]? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
