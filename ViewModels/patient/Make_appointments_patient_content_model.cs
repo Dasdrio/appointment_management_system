@@ -60,10 +60,10 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _chosen_doctor;
         set
         {
-            //Console.WriteLine(value.value+" Hallo");
+            //this is very stupid but it works because i calculate all the weekdays to enable the buttons that should be enabeled but the alternative is creating a whole new array and change a funktion so i don't do it
+            calculate_weekdays();
             //I get the appointments of the current months
             List<string[]> appointments_day = Database_access.get_appointments_per_day(value.value,new DateTime((int)year,(int)month,1));
-            //Console.WriteLine("Amount of appointments: "+appointments_day.Count);
             //Now check if works
             foreach(string[] day_info in appointments_day)
             {
@@ -71,12 +71,12 @@ public class Make_appointments_patient_content_model : View_model_base{
                 int day;
                 try
                 {
-                    day = int.Parse(day_info[1]);
+                    day = int.Parse(day_info[1].Split('.')[0]);
                 }
                 catch (System.Exception)
                 {
                     
-                    Console.WriteLine("Error parsing: "+day_info[1]);
+                    Console.WriteLine("Error parsing day: "+day_info[1].Split('.')[0]);
                     continue;
                 }
                 int amount_appointments;
@@ -87,7 +87,7 @@ public class Make_appointments_patient_content_model : View_model_base{
                 catch (System.Exception)
                 {
                     
-                    Console.WriteLine("Error parsing: "+day_info[0]);
+                    Console.WriteLine("Error parsing amount: "+day_info[0]);
                     continue;
                 }
                 
