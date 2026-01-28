@@ -174,6 +174,23 @@ public class Database_access
         return appointments_list;
     }
 
+    public static void insert_appointment(DateTime date_and_time, String patient_ID, String doctor_ID, String description){
+        try{
+            string procedure = "sp_insert_appointment";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_date_and_time", date_and_time);
+            command.Parameters.AddWithValue("p_patient_ID", patient_ID);
+            command.Parameters.AddWithValue("p_patient_ID", doctor_ID);
+            command.Parameters.AddWithValue("p_description", description);
+
+            command.ExecuteNonQuery();
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+    }
     
     //TODO delete after Project Completion
     /*public static{
