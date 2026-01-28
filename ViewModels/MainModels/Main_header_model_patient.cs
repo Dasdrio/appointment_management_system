@@ -23,8 +23,7 @@ public class Main_header_model_patient : View_model_base{
         set => this.RaiseAndSetIfChanged(ref _site_name,value);
     }
     public string user_name{
-        get => parent.user_name;  
-        set => parent.user_name = value;
+        get => parent.first_name+" "+parent.surname;
     }
     public string password{
         get => parent.password;  
@@ -43,7 +42,12 @@ public class Main_header_model_patient : View_model_base{
         Console.WriteLine("Button_Action_Logout");
         parent.current_header = parent._login_header;
         parent.current_content = parent._blank_content;
+        //I delete the header so no patient can get info about the doctor if they search in ram ot something
+        parent._main_header_patient = null;
         parent.user_name = "";
+        parent.first_name = "";
+        parent.surname = "";
+        parent.user_id = 0;
         //Add funktionality here
     }
 

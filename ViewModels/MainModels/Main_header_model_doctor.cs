@@ -21,8 +21,7 @@ public class Main_header_model_doctor : View_model_base{
         set => this.RaiseAndSetIfChanged(ref _site_name,value);
     }
     public string user_name{
-        get => parent.user_name;  
-        set => parent.user_name = value;
+        get => parent.first_name+" "+parent.surname;  
     }
     public string password{
         get => parent.password;  
@@ -32,15 +31,16 @@ public class Main_header_model_doctor : View_model_base{
         //Add funktionality here
         Console.WriteLine("Button_Action_View_Appointments");
     }
-    public void Button_Action_Make_Appointments(){
-        Console.WriteLine("Button_Action_Make_Appointments");
-        //Add funktionality here
-    }
     public void Button_Action_Logout(){
         Console.WriteLine("Button_Action_Logout");
         parent.current_header = parent._login_header;
         parent.current_content = parent._blank_content;
+        //I delete the header so no patient can get info about the doctor if they search in ram ot something
+        parent._main_header_doctor = null;
         parent.user_name = "";
+        parent.first_name = "";
+        parent.surname = "";
+        parent.user_id = 0;
         //Add funktionality here
     }
 

@@ -84,8 +84,8 @@ public class Database_access
         return password;
     }
 
-    public static List<String[]>? get_personal_information(String email){
-        List<String[]> information_list = new List<String[]>();
+    public static String[]? get_personal_information(String email){
+        String[] information_list = null;
         try{
             string procedure = "sp_persons_get_information_by_email";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
@@ -93,9 +93,9 @@ public class Database_access
             
             command.Parameters.AddWithValue("p_email", email);
             using(MySqlDataReader reader = command.ExecuteReader()){
-                
+                //should be just one user because email is unique
                 while (reader.Read()){
-                    information_list.Add(new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()});   
+                    information_list =new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()};   
                 }                 
             } 
         }
@@ -128,6 +128,7 @@ public class Database_access
         return doctor_list;
     }
     /*returns an array with multiple days the first value is the ammount of appointments and the second is the date of the day*/
+    //I get an array with all the days in the current month
     public static List<String[]>? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
         List<String[]> appointments_and_days_list = new List<string[]>();
         try{

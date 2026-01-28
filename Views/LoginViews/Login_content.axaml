@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.Login_content_model"
         x:DataType="vm:Login_content_model">
-    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*"> 
+    <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*"> 
         <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name}" FontSize="20"/>
         <TextBox Grid.Row="1" Name="password" Text="{Binding password}" FontSize="20"/>
         <Button Grid.Row="2"  Command="{Binding button_action_login}" FontSize="20" >Login</Button>
+        <TextBlock Grid.Row="3" Name="Message" Text="{Binding message}" FontSize="20"/>
     </Grid>
 </UserControl>
