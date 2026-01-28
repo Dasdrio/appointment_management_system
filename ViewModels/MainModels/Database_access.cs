@@ -107,7 +107,7 @@ public class Database_access
 
     /*Returns an Array of every doctor in the given specialization
     every doctor has 3 values id, name and surname*/
-    public static List<string[]>? get_doctor(Specialization specialization){
+    public static List<string[]> get_doctor(Specialization specialization){
         List<string[]> doctor_list = new List<string[]>();
         try{
             string procedure = "sp_persons_get_doctor_by_specialization";
@@ -127,9 +127,9 @@ public class Database_access
         }
         return doctor_list;
     }
-    /*returns an array with multiple days the first value is the ammount of appointments and the second is the date of the day*/
-    //I get an array with all the days in the current month
-    public static List<String[]>? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
+    /*returns an array with multiple days the first value is the ammount of appointments and the second is the date of the day
+    returns each day in the given month and year*/
+    public static List<String[]> get_appointments_per_day(String doctor_ID, DateTime date_and_time){
         List<String[]> appointments_and_days_list = new List<string[]>();
         try{
             string procedure = "sp_appointments_find_day";
@@ -152,7 +152,7 @@ public class Database_access
         return appointments_and_days_list;
     }
     /*Returns an Array with each appointment on a given day for the doctor.*/
-    public static  List<String[]>? get_appointments_on_day(String doctor_ID, DateTime date_and_time){
+    public static  List<String[]> get_appointments_on_day(String doctor_ID, DateTime date_and_time){
         List<String[]> appointments_list = new List<string[]>();
         try{
             string procedure = "sp_appointments_get_appointments_on_day";
@@ -175,6 +175,23 @@ public class Database_access
         return appointments_list;
     }
 
+    public static void insert_appointment(DateTime date_and_time, String patient_ID, String doctor_ID, String description){
+        try{
+            string procedure = "sp_insert_appointment";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_date_and_time", date_and_time);
+            command.Parameters.AddWithValue("p_patient_ID", patient_ID);
+            command.Parameters.AddWithValue("p_patient_ID", doctor_ID);
+            command.Parameters.AddWithValue("p_description", description);
+
+            command.ExecuteNonQuery();
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+    }
     
     //TODO delete after Project Completion
     /*public static{
