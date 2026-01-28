@@ -84,9 +84,8 @@ public class Database_access
         return password;
     }
 
-    public static String[]? get_personal_information(String email){
-        String[]? information = null;
-        List<String> information_list = new List<String>();
+    public static List<String[]>? get_personal_information(String email){
+        List<String[]> information_list = new List<String[]>();
         try{
             string procedure = "sp_persons_get_information_by_email";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
@@ -96,19 +95,14 @@ public class Database_access
             using(MySqlDataReader reader = command.ExecuteReader()){
                 
                 while (reader.Read()){
-                    information_list.Add(reader[0].ToString());
-                    information_list.Add(reader[1].ToString());
-                    information_list.Add(reader[2].ToString());
-                    information_list.Add(reader[3].ToString());
-                    information_list.Add(reader[4].ToString());    
-                }
-                information = information_list.ToArray();                    
+                    information_list.Add(new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()});   
+                }                 
             } 
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        return information;
+        return information_list;
     }
 
     /*Returns an Array of every doctor in the given specialization
@@ -134,9 +128,8 @@ public class Database_access
         return doctor_list;
     }
     /*returns an array with multiple days the first value is the ammount of appointments and the second is the date of the day*/
-    public static String[]? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
-        String[]? appointments_and_days = null;
-        List<String> appointments_and_days_list = new List<string>();
+    public static List<String[]>? get_appointments_per_day(String doctor_ID, DateTime date_and_time){
+        List<String[]> appointments_and_days_list = new List<string[]>();
         try{
             string procedure = "sp_appointments_find_day";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
@@ -147,22 +140,19 @@ public class Database_access
             using(MySqlDataReader reader = command.ExecuteReader()){
                 
                 while (reader.Read()){
-                    appointments_and_days_list.Add(reader[0].ToString());
-                    appointments_and_days_list.Add(reader[1].ToString());
+                    appointments_and_days_list.Add(new string[]{reader[0].ToString(), reader[1].ToString()});
                 }
-                appointments_and_days = appointments_and_days_list.ToArray(); 
             }
               
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        return appointments_and_days;
+        return appointments_and_days_list;
     }
     /*Returns an Array with each appointment on a given day for the doctor.*/
-    public static String[]? get_appointments_on_day(String doctor_ID, DateTime date_and_time){
-        String[]? appointments = null;
-        List<String> appointments_list = new List<string>();
+    public static  List<String[]>? get_appointments_on_day(String doctor_ID, DateTime date_and_time){
+        List<String[]> appointments_list = new List<string[]>();
         try{
             string procedure = "sp_appointments_get_appointments_on_day";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
@@ -173,16 +163,15 @@ public class Database_access
             using(MySqlDataReader reader = command.ExecuteReader()){
                 
                 while (reader.Read()){
-                    appointments_list.Add(reader[0].ToString());
+                    appointments_list.Add(new String[]{reader[0].ToString()});
                 }    
-                appointments = appointments_list.ToArray();
             }
               
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        return appointments;
+        return appointments_list;
     }
 
     
@@ -192,18 +181,16 @@ public class Database_access
             string procedure = "";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
-            
+
             command.Parameters.AddWithValue("", );
             using(MySqlDataReader reader = command.ExecuteReader()){
-                
-                while (reader.Read()){      
-                }    
+
+                while (reader.Read()){
+                }
             }
-              
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        
     }*/
 }
