@@ -24,6 +24,7 @@ public class id_name_pair
 
 public class Make_appointments_patient_content_model : View_model_base{
 
+    public Window describe_appointment;
     private ObservableCollection<specilasation_name_pair> _specilazation= new();
     private specilasation_name_pair _chosen_specilazation;
     private ObservableCollection<id_name_pair> _doctors = new();
@@ -105,8 +106,6 @@ public class Make_appointments_patient_content_model : View_model_base{
                     _day_visable[pos_day] = false;
                     Console.WriteLine("Day "+ day+" is disabled");
                 }
-                //continue by checking if it works by manually inserting appointments into database
-
             }
             this.RaiseAndSetIfChanged(ref _chosen_doctor,value); 
         } 
@@ -309,7 +308,12 @@ public class Make_appointments_patient_content_model : View_model_base{
     }
     public void button_action_day(int pos)
     {
+        describe_appointment = new appointment_management_system.Views.Make_day_appointment_patient_content_model()
+        {
+            DataContext = new Make_day_appointment_patient_content_model(this,day[pos]),
+        };
         Console.WriteLine(pos);
+        describe_appointment.Show();
     }
 
 }
