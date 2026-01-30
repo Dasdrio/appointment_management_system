@@ -32,7 +32,6 @@ public class Database_access
         }catch(MySqlException ex){
             Console.WriteLine(ex.ToString());
         }
-
     }
     public static void close_database(){
         if(instance != null){
@@ -76,14 +75,12 @@ public class Database_access
                     password = reader[0].ToString();    
                 }    
             }
-              
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
         return password;
     }
-
     public static List<String[]> get_personal_information(String email){
         List<String[]> information_list = new List<String[]>();
         try{
@@ -97,16 +94,18 @@ public class Database_access
                 while (reader.Read()){
                     information_list.Add(new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()});   
                 }                 
-            } 
+            }
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
         return information_list;
     }
-
-    /*Returns an Array of every doctor in the given specialization
-    every doctor has 3 values id, name and surname*/
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="specialization"></param>
+    /// <returns></returns>
     public static List<string[]> get_doctor(Specialization specialization){
         List<string[]> doctor_list = new List<string[]>();
         try{
@@ -120,15 +119,22 @@ public class Database_access
                     doctor_list.Add(new string[]{reader[0].ToString(),reader[1].ToString(),reader[2].ToString()});
                 }
             }
-              
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
         return doctor_list;
     }
-    /*returns an array with multiple days the first value is the ammount of appointments and the second is the date of the day
-    returns each day in the given month and year*/
+    /// <summary>
+    /// Counts the ammount of appointments in a given month for each day
+    /// </summary>
+    /// <param name="doctor_ID">The person_ID of the doctor</param>
+    /// <param name="date_and_time">The complete date and time for the wanted day</param>
+    /// <example>For Example:
+    /// <code> Database_acces.get_appointments_on_day("3", new DateTime(2017, 07, 25, 23, 45, 5));
+    /// </code>
+    /// </example>
+    /// <returns>Returns a List of String Arrays containing the ammount of appointments and the day</returns>
     public static List<String[]> get_appointments_per_day(String doctor_ID, DateTime date_and_time){
         List<String[]> appointments_and_days_list = new List<string[]>();
         try{
@@ -144,14 +150,22 @@ public class Database_access
                     appointments_and_days_list.Add(new string[]{reader[0].ToString(), reader[1].ToString()});
                 }
             }
-              
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
         return appointments_and_days_list;
     }
-    /*Returns an Array with each appointment on a given day for the doctor.*/
+    /// <summary>
+    /// Selects each appointment for the given doctor on the given day from the table appointments.
+    /// </summary>
+    /// <param name="doctor_ID">The person_ID of the doctor</param>
+    /// <param name="date_and_time">The complete date and time for the wanted day</param>
+    /// <example>For Example:
+    /// <code> Database_acces.get_appointments_on_day("3", new DateTime(2017, 07, 25, 23, 45, 5));
+    /// </code>
+    /// </example>
+    /// <returns>An List with every appointment an doctor has</returns>
     public static  List<String[]> get_appointments_on_day(String doctor_ID, DateTime date_and_time){
         List<String[]> appointments_list = new List<string[]>();
         try{
@@ -167,14 +181,19 @@ public class Database_access
                     appointments_list.Add(new String[]{reader[0].ToString()});
                 }    
             }
-              
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
         return appointments_list;
     }
-
+    /// <summary>
+    /// Inserts the given params into the table appoiintments
+    /// </summary>
+    /// <param name="date_and_time">The day and time of the appointment</param>
+    /// <param name="patient_ID">The person_ID of the patient</param>
+    /// <param name="doctor_ID">The person_ID of the doctor</param>
+    /// <param name="description">A short summary for the appointment</param>
     public static void insert_appointment(DateTime date_and_time, String patient_ID, String doctor_ID, String description){
         try{
             string procedure = "sp_insert_appointment";
@@ -183,7 +202,7 @@ public class Database_access
 
             command.Parameters.AddWithValue("p_date_and_time", date_and_time);
             command.Parameters.AddWithValue("p_patient_ID", patient_ID);
-            command.Parameters.AddWithValue("p_patient_ID", doctor_ID);
+            command.Parameters.AddWithValue("p_doctor_ID", doctor_ID);
             command.Parameters.AddWithValue("p_description", description);
 
             command.ExecuteNonQuery();
