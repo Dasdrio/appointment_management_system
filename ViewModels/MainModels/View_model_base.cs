@@ -8,7 +8,7 @@ namespace appointment_management_system.ViewModels;
 
 public abstract class View_model_base : ReactiveObject{
     //functionality functions
-    public string SHA256HashCreator(string unhashed_password){
+    public string SHA256_hash_creator(string unhashed_password){
         string hash;
         using(SHA256 SHA256_hash = SHA256.Create()){
              // Byte array representation of source string
@@ -21,5 +21,15 @@ public abstract class View_model_base : ReactiveObject{
             hash = BitConverter.ToString(hash_bytes).Replace("-", string.Empty);
         }
         return hash;
+    }
+    public bool is_email(string posible_mail)
+    {
+        int at_pos = posible_mail.IndexOf('@');
+        //testing if @ is there and not at the start of the string and behind the @ is at least one char
+        if(at_pos < 1 && posible_mail.Length>at_pos+2)
+        {
+            return false;
+        }
+        return true;
     }
 }

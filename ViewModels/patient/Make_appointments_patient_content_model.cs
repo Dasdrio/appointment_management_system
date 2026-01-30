@@ -60,8 +60,55 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _chosen_doctor;
         set
         {
-           Console.WriteLine(value.value);
-           this.RaiseAndSetIfChanged(ref _chosen_doctor,value); 
+            //Console.WriteLine(value.value+" Hallo");
+            //I get the appointments of the current months
+            List<string[]> appointments_day = Database_access.get_appointments_per_day(value.value,new DateTime((int)year,(int)month,1));
+            //Console.WriteLine("Amount of appointments: "+appointments_day.Count);
+            //Now check if works
+            foreach(string[] day_info in appointments_day)
+            {
+                //Parsing info
+                int day;
+                try
+                {
+                    day = int.Parse(day_info[1]);
+                }
+                catch (System.Exception)
+                {
+                    
+                    Console.WriteLine("Error parsing: "+day_info[1]);
+                    continue;
+                }
+                int amount_appointments;
+                try
+                {
+                    amount_appointments = int.Parse(day_info[0]);
+                }
+                catch (System.Exception)
+                {
+                    
+                    Console.WriteLine("Error parsing: "+day_info[0]);
+                    continue;
+                }
+                
+                //Then you check if the amount of appintments is greater or equals to 16 to determane if the button should be visable or not
+                if(amount_appointments >= 16)
+                {
+                    Console.WriteLine("Day "+ day+" is enabled");
+                    continue;
+                }
+                else
+                {
+                    //determane the pos of the bool if the button is visable
+                    int pos_day = this.day.IndexOf(day);
+                    //then set so false
+                    _day_visable[pos_day] = false;
+                    Console.WriteLine("Day "+ day+" is disabled");
+                }
+                //continue by checking if it works by manually inserting appointments into database
+
+            }
+            this.RaiseAndSetIfChanged(ref _chosen_doctor,value); 
         } 
     }
     public ObservableCollection<int> day {
@@ -147,14 +194,12 @@ public class Make_appointments_patient_content_model : View_model_base{
     private void change_doctors(Specialization chosen_special)
     {
         List<string[]> doctor = Database_access.get_doctor(chosen_special);
-        Console.WriteLine("Begin");
         doctors = new();
         //Now add the doctors to doctors
         foreach(string[] info in doctor)
         {
             doctors.Add(new id_name_pair{display_name =info[1]+" "+info[2], value=info[0]});
         }
-        Console.WriteLine("End");
         
         //Temp stuff get the real doctors then use calculate weekdays and make the ones that are not available not visable at first and every tima a doctor changes
         if(doctors.Count >= 0)
