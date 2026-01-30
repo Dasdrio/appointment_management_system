@@ -8,7 +8,6 @@ using MySqlConnector;
 using System.ComponentModel;
 namespace appointment_management_system;
 
-
 public enum Specialization{
         GENERAL_PRACTICE,
 		PEDIATRICS,
@@ -33,6 +32,9 @@ public class Database_access
             Console.WriteLine(ex.ToString());
         }
     }
+    /// <summary>
+    /// Closes and destroys the instance of the database
+    /// </summary>
     public static void close_database(){
         if(instance != null){
             mysql_connection.Close();
@@ -40,7 +42,10 @@ public class Database_access
         }
     }
 
-    //required to call for database connection
+    /// <summary>
+    /// Creates an instance of the database or returns an existing one
+    /// </summary>
+    /// <returns>the instance for the database acces</returns>
     public static Database_access get_instance(){ 
         if(instance == null){
             instance = new Database_access();
@@ -49,17 +54,24 @@ public class Database_access
             return instance;    
         }
     }
-    //deletion of the own AC
+    /// <summary>
+    /// Deletes the AC of the Person
+    /// </summary>
+    /// <param name="person_ID"></param>
     public static void delete_person(int person_ID){ 
     
         string procedure = "";
         command = new MySqlCommand(procedure, mysql_connection);
         command.CommandType = CommandType.StoredProcedure;
-        
+
         command.Parameters.AddWithValue("", person_ID);
         command.ExecuteNonQuery();
     }
-
+    /// <summary>
+    /// Selects the person by the given email to return the passwordhash
+    /// </summary>
+    /// <param name="email">The email of the person thath wants to log in</param>
+    /// <returns>The passwordhash as a String</returns>
     public static String? get_password_hash(String email){
         String? password = null;
 
@@ -81,6 +93,7 @@ public class Database_access
         }
         return password;
     }
+    // TODO conversation with the Devs for the Clientsites abaut changing return value
     public static List<String[]> get_personal_information(String email){
         List<String[]> information_list = new List<String[]>();
         try{
@@ -93,7 +106,7 @@ public class Database_access
                 
                 while (reader.Read()){
                     information_list.Add(new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()});   
-                }                 
+                }            
             }
         }
         catch(Exception ex){
@@ -102,10 +115,10 @@ public class Database_access
         return information_list;
     }
     /// <summary>
-    /// 
+    /// Selects the doctors working in the given specialization.
     /// </summary>
     /// <param name="specialization"></param>
-    /// <returns></returns>
+    /// <returns>A List containing a String Arrays with the ID, name and surname of each doctor in the given specialization</returns>
     public static List<string[]> get_doctor(Specialization specialization){
         List<string[]> doctor_list = new List<string[]>();
         try{
