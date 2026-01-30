@@ -7,7 +7,7 @@
         x:DataType="vm:Login_content_model">
     <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*"> 
         <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name}" FontSize="20"/>
-        <TextBox Grid.Row="1" Name="password" Text="{Binding password}" FontSize="20"/>
+        <TextBox Grid.Row="1" Name="password" Text="{Binding password}" PasswordChar="☺" FontSize="20"/>
         <Button Grid.Row="2"  Command="{Binding button_action_login}" FontSize="20" >Login</Button>
         <TextBlock Grid.Row="3" Name="Message" Text="{Binding message}" FontSize="20"/>
     </Grid>

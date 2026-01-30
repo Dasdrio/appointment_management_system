@@ -25,7 +25,7 @@ public partial class MainWindow_view_model : View_model_base
     //the current content of the window. Can be swaped out with other View_model_bases (use the property to access the field)
     private View_model_base _current_content;
     private View_model_base _current_header;
-    private IClassicDesktopStyleApplicationLifetime desktop;
+    private IClassicDesktopStyleApplicationLifetime _desktop;
     private string _user_name = "";
     private string _password = "";
     private string _surname = "";
@@ -43,7 +43,11 @@ public partial class MainWindow_view_model : View_model_base
         _login_header = new Login_header_model(this);
         _current_header = _login_header;
         _current_content = _impressum_content;
-        this.desktop = desktop;
+        this._desktop = desktop;
+    }
+    public IClassicDesktopStyleApplicationLifetime desktop
+    {
+        get=>_desktop;
     }
     public View_model_base current_content{
         get => _current_content;

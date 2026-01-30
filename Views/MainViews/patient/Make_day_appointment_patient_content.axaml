@@ -12,7 +12,7 @@
         Height="450"
         Width="450"
         CanResize="True">
-    <Grid Name="Main_Grid" ColumnDefinitions="*,*" RowDefinitions="*,*,*">
+    <Grid Name="Main_Grid" ColumnDefinitions="*" RowDefinitions="*,*,5*,*">
         <!-- Background and Backgroundimage -->
         <Image Stretch="UniformToFill" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="\..\..\Assets\wartezimmer.jpg"/>
         <TextBlock Grid.Row="0" Name="doctor_name" Text="{Binding doctor_name.display_name}"></TextBlock>
@@ -24,6 +24,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Grid.Row="2" Command="{Binding make_appointment}">Hallo</Button>
+        <TextBox Grid.Row="2" Text="{Binding description}" TextWrapping="Wrap"></TextBox>
+        <Button Grid.Row="3" Command="{Binding make_appointment}">Hallo</Button>
     </Grid>
 </Window>

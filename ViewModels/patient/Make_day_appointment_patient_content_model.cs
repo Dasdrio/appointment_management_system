@@ -15,6 +15,8 @@ public class time_name_pair
 }
 public class Make_day_appointment_patient_content_model : View_model_base{
     private int day;
+    private uint user_id;
+    private string _description;
     private time_name_pair _chosen_time;
     private Make_appointments_patient_content_model parent;
     //Continue here adding the doctor and stuff
@@ -32,13 +34,18 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         get => parent.chosen_doctor;
         set => parent.chosen_doctor=value;
     }
+    public string description
+    {
+        get=>_description;
+        set=>this.RaiseAndSetIfChanged(ref _description,value);
+    }
     public ObservableCollection<time_name_pair> times_appointmens
     {
         get=>_times_appointmens;
         set=>this.RaiseAndSetIfChanged(ref _times_appointmens,value);
     }
 
-    public Make_day_appointment_patient_content_model(Make_appointments_patient_content_model parent,int day)
+    public Make_day_appointment_patient_content_model(Make_appointments_patient_content_model parent,int day,uint user_id)
     {
         for(int i = 0; i <= 16; i++)
         {
@@ -48,10 +55,20 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         _chosen_time = _times_appointmens[0];
         this.parent =parent;
         this.day = day;
+        this.user_id = user_id;
     }
     public void make_appointment()
     {
         //now add the logic to add an appointment and to recalculate the weekdays
+        if(parent.year == null || parent.month == null)
+        {
+            Console.WriteLine("No year or no month or both");
+            parent.describe_appointment.Close();
+        }
+        DateTime appointment_time = new DateTime((int)parent.year,(int)parent.month,day,chosen_time.value.Hour,chosen_time.value.Minute,0);
+        //add button for text and so
+        Database_access.insert_appointment(appointment_time,""+user_id,parent.chosen_doctor.value,description);
+        Console.WriteLine("appointment time: "+appointment_time+" userid: "+user_id+" doctor: "+parent.chosen_doctor.value+"");
         Console.WriteLine(chosen_time.value+" <-time name:"+doctor_name.display_name+" month: "+parent.month+" day:"+day);
         parent.describe_appointment.Close();
     }

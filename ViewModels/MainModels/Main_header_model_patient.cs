@@ -15,7 +15,7 @@ public class Main_header_model_patient : View_model_base{
     public Main_header_model_patient(MainWindow_view_model parent){
         this.parent = parent;
         //View_Appointments_Content = new some_other_model(parent);
-        Make_Appointments_Content = new Make_appointments_patient_content_model();
+        Make_Appointments_Content = new Make_appointments_patient_content_model(parent);
     }
     private string _site_name = "Our Appointment Management System";
     public string site_name{

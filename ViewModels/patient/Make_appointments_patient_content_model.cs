@@ -10,6 +10,7 @@ using appointment_management_system.Views;
 using System.Collections.ObjectModel;
 using Avalonia.Markup.Xaml.Templates;
 using System.Collections.Generic;
+using Avalonia.Dialogs.Internal;
 
 public class specilasation_name_pair
 {
@@ -25,6 +26,7 @@ public class id_name_pair
 public class Make_appointments_patient_content_model : View_model_base{
 
     public Window describe_appointment;
+    private MainWindow_view_model parent;
     private ObservableCollection<specilasation_name_pair> _specilazation= new();
     private specilasation_name_pair _chosen_specilazation;
     private ObservableCollection<id_name_pair> _doctors = new();
@@ -175,8 +177,9 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _button_for_visable;
         set => this.RaiseAndSetIfChanged(ref _button_for_visable,value);
     }
-    public Make_appointments_patient_content_model()
+    public Make_appointments_patient_content_model(MainWindow_view_model parent)
     {
+        this.parent = parent;
         year = currentDateTime.Year;
         month = currentDateTime.Month;
         _specilazation.Add(new specilasation_name_pair{display_name ="Allgemeinmedizin", value= Specialization.GENERAL_PRACTICE});
@@ -310,10 +313,12 @@ public class Make_appointments_patient_content_model : View_model_base{
     {
         describe_appointment = new appointment_management_system.Views.Make_day_appointment_patient_content_model()
         {
-            DataContext = new Make_day_appointment_patient_content_model(this,day[pos]),
+            DataContext = new Make_day_appointment_patient_content_model(this,day[pos],parent.user_id),
         };
         Console.WriteLine(pos);
-        describe_appointment.Show();
+        
+        describe_appointment.ShowDialog(parent.desktop.MainWindow);
+        
     }
 
 }
