@@ -52,7 +52,8 @@ public class Login_content_model : View_model_base
             message = "Das Passwort ist falsch";
             return;
         }
-        string[] user = Database_access.get_personal_information(parent.user_name);
+        List<string[]> temp_user = Database_access.get_personal_information(parent.user_name);
+        string[] user = temp_user[0];
         //Console.WriteLine("person_ID: "+user[0]+" Specialization:"+user[1]+" name:"+user[2]+" surname:"+user[3]+" e-mail:"+user[4]);
         //saving info
         try

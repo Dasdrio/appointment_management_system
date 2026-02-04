@@ -36,6 +36,8 @@ public class Main_header_model_patient : View_model_base{
     public void Button_Action_Make_Appointments(){
         Console.WriteLine("Button_Action_Make_Appointments");
         parent.current_content = Make_Appointments_Content;
+        //I don't know why i have to calculate that every time i switch into this view even if nothing changed, but otherwhise not all days that should be disabled are disabled
+        ((Make_appointments_patient_content_model)Make_Appointments_Content).calculate_appointment_days(((Make_appointments_patient_content_model)Make_Appointments_Content).chosen_doctor.value);
         //Add funktionality here
     }
     public void Button_Action_Logout(){
