@@ -26,7 +26,11 @@ public abstract class View_model_base : ReactiveObject{
     {
         int at_pos = posible_mail.IndexOf('@');
         //testing if @ is there and not at the start of the string and behind the @ is at least one char
-        if(at_pos < 1 && posible_mail.Length>at_pos+2)
+        if(at_pos == -1|| at_pos == 0)
+        {
+            return false;
+        }
+        if (at_pos + 1 >= posible_mail.Length)
         {
             return false;
         }

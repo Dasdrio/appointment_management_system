@@ -17,7 +17,7 @@ public class time_name_pair
     public TimeOnly value { get; set; }
 }
 public class Make_day_appointment_patient_content_model : View_model_base{
-    private int day;
+    private int _day;
     private uint user_id;
     private string _description;
     private time_name_pair _chosen_time;
@@ -47,7 +47,21 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         get=>_times_appointmens;
         set=>this.RaiseAndSetIfChanged(ref _times_appointmens,value);
     }
-
+    public int day
+    {
+        get=> _day;
+        set=> this.RaiseAndSetIfChanged(ref _day,value);
+    }
+    public int? month
+    {
+        get => parent.month;
+        set => parent.month = value;
+    }
+    public int? year
+    {
+        get => parent.year;
+        set => parent.year = year;
+    }
     public Make_day_appointment_patient_content_model(Make_appointments_patient_content_model parent,int day,uint user_id)
     {
         List<string> times_at_day = Database_access.get_appointments_on_day(parent.chosen_doctor.value,new DateTime((int)parent.year,(int)parent.month,day));

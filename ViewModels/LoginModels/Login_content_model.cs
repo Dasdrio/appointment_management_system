@@ -37,12 +37,14 @@ public class Login_content_model : View_model_base
         if (!is_email(parent.user_name))
         {
             message = "Das ist kein gültiges e-mail format";
+            Console.WriteLine(message);
             return;
         }
         string? hash = Database_access.get_password_hash(parent.user_name);
         if(hash == null)
         {
             message = "Die E-Mail existiert nicht";
+            Console.WriteLine(message);
             return;
         }
         hash = hash.ToLower();

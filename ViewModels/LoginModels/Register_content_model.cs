@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
+using Avalonia.Markup.Xaml.Styling;
 
 public class Register_content_model : View_model_base
 {
@@ -15,16 +16,40 @@ public class Register_content_model : View_model_base
     public Register_content_model(MainWindow_view_model parent){
         this.parent = parent;
     }
+    private string _user_name = "";
+    private string _password = "";
+    private string _repeat_password = "";
+    private string _first_name = "";
+    private string _surname = "";
+    private string _message = "";
     public string user_name{
-        get => parent.user_name;
-        set => parent.user_name = value;
+        get => _user_name;
+        set => this.RaiseAndSetIfChanged(ref _user_name,value);
     }
     public string password{
-        get => parent.password;  
-        set => parent.password = value;
+        get => _password;  
+        set => this.RaiseAndSetIfChanged(ref _password,value);
     }
+    public string repeat_password{
+        get => _repeat_password;
+        set => this.RaiseAndSetIfChanged(ref _repeat_password,value);
+    }
+    public string first_name{
+        get => _first_name;  
+        set => this.RaiseAndSetIfChanged(ref _first_name,value);
+    }
+    public string surname{
+        get => _surname;
+        set => this.RaiseAndSetIfChanged(ref _surname,value);
+    }
+    public string message{
+        get => _message;
+        set => this.RaiseAndSetIfChanged(ref _message,value);
+    }
+
     public void Button_Action_Register(){
         //Add funktionality here
+        message = "register";
         Console.WriteLine("Button_Action_Register");
     }
 

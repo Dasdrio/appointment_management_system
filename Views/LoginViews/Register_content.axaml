@@ -5,9 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.Register_content_model"
         x:DataType="vm:Register_content_model">
-    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*"> 
-        <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name}" FontSize="20"/>
-        <TextBox Grid.Row="1" Name="password" Text="{Binding password}" FontSize="20"/>
-        <Button Grid.Row="2" Command="{Binding Button_Action_Register}" FontSize="20">Register</Button>
-    </Grid>
+    <Grid ColumnDefinitions="*,*" 
+      RowDefinitions="
+        Auto,Auto,
+        Auto,Auto,
+        Auto,Auto,
+        Auto,Auto,
+        Auto,
+        Auto">
+
+    <!-- Benutzername -->
+    <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+               Text="Benutzername"
+               FontSize="14"/>
+
+    <TextBox Grid.Row="1" Grid.ColumnSpan="2"
+             Name="UserNameBox"
+             Text="{Binding user_name, Mode=TwoWay}"
+             FontSize="20"/>
+
+    <!-- Vorname -->
+    <TextBlock Grid.Row="2" Grid.Column="0"
+               Text="Vorname"
+               FontSize="14"/>
+
+    <TextBlock Grid.Row="2" Grid.Column="1"
+               Text="Nachname"
+               FontSize="14"/>
+
+    <TextBox Grid.Row="3" Grid.Column="0"
+             Name="FirstNameBox"
+             Text="{Binding first_name, Mode=TwoWay}"
+             FontSize="20"/>
+
+    <TextBox Grid.Row="3" Grid.Column="1"
+             Name="SurnameBox"
+             Text="{Binding surname, Mode=TwoWay}"
+             FontSize="20"/>
+
+    <!-- Passwort -->
+    <TextBlock Grid.Row="4" Grid.ColumnSpan="2"
+               Text="Passwort"
+               FontSize="14"/>
+
+    <TextBox Grid.Row="5" Grid.ColumnSpan="2"
+             Name="PasswordBox"
+             Text="{Binding password, Mode=TwoWay}"
+             FontSize="20"
+             PasswordChar="☺"
+             />
+
+    <!-- Passwort wiederholen -->
+    <TextBlock Grid.Row="6" Grid.ColumnSpan="2"
+               Text="Passwort wiederholen"
+               FontSize="14"/>
+
+    <TextBox Grid.Row="7" Grid.ColumnSpan="2"
+             Name="RepeatPasswordBox"
+             PasswordChar="☺"
+             Text="{Binding repeat_password, Mode=TwoWay}"
+             FontSize="20"/>
+
+    <!-- Register Button -->
+    <Button Grid.Row="8" Grid.ColumnSpan="2"
+            Command="{Binding Button_Action_Register}"
+            FontSize="20"
+            HorizontalAlignment="Stretch">
+        Register
+    </Button>
+
+    <!-- Meldung -->
+    <TextBlock Grid.Row="9" Grid.ColumnSpan="2"
+               Text="{Binding message}"
+               FontSize="16"
+               Foreground="Red"
+               TextWrapping="Wrap"/>
+
+</Grid>
 </UserControl>
