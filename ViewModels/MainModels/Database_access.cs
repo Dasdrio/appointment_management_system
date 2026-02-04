@@ -170,8 +170,8 @@ public class Database_access
     /// </code>
     /// </example>
     /// <returns>An List with every appointment an doctor has</returns>
-    public static  List<String[]> get_appointments_on_day(String doctor_ID, DateTime date_and_time){
-        List<String[]> appointments_list = new List<string[]>();
+    public static  List<String> get_appointments_on_day(String doctor_ID, DateTime date_and_time){
+        List<String> appointments_list = new List<string>();
         try{
             string procedure = "sp_appointments_get_appointments_on_day";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
@@ -182,7 +182,7 @@ public class Database_access
             using(MySqlDataReader reader = command.ExecuteReader()){
                 
                 while (reader.Read()){
-                    appointments_list.Add(new String[]{reader[0].ToString()});
+                    appointments_list.Add(reader[0].ToString());
                 }    
             }
         }
