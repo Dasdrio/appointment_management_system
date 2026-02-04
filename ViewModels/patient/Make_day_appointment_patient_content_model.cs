@@ -8,6 +8,8 @@ using ReactiveUI;
 using Avalonia.Controls;
 using appointment_management_system.Views;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+
 public class time_name_pair
 {
     public string display_time { get; set; }="";
@@ -47,6 +49,7 @@ public class Make_day_appointment_patient_content_model : View_model_base{
 
     public Make_day_appointment_patient_content_model(Make_appointments_patient_content_model parent,int day,uint user_id)
     {
+        List<string[]> times_at_day = Database_access.get_appointments_on_day(doctor_name.value,new DateTime((int)parent.year,(int)parent.month,day));
         for(int i = 0; i <= 16; i++)
         {
             TimeOnly time_to_add = new TimeOnly(8+i/2,i%2*30);
