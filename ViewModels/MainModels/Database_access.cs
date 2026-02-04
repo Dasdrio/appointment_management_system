@@ -55,19 +55,6 @@ public class Database_access
         }
     }
     /// <summary>
-    /// Deletes the AC of the Person
-    /// </summary>
-    /// <param name="person_ID"></param>
-    public static void delete_person(int person_ID){ 
-    
-        string procedure = "";
-        command = new MySqlCommand(procedure, mysql_connection);
-        command.CommandType = CommandType.StoredProcedure;
-
-        command.Parameters.AddWithValue("", person_ID);
-        command.ExecuteNonQuery();
-    }
-    /// <summary>
     /// Selects the person by the given email to return the passwordhash
     /// </summary>
     /// <param name="email">The email of the person thath wants to log in</param>
@@ -93,7 +80,11 @@ public class Database_access
         }
         return password;
     }
-    // TODO conversation with the Devs for the Clientsites abaut changing return value
+    /// <summary>
+    /// A Query to get every information about an client
+    /// </summary>
+    /// <param name="email">The email of the person thath is logged in</param>
+    /// <returns>A List with an String Array Values ID, specialization, name and surname</returns>
     public static List<String[]> get_personal_information(String email){
         List<String[]> information_list = new List<String[]>();
         try{
