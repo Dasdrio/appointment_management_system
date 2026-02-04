@@ -31,11 +31,6 @@ public class Make_day_appointment_patient_content_model : View_model_base{
             this.RaiseAndSetIfChanged(ref _chosen_time,value);
         }
     }
-    public id_name_pair doctor_name
-    {
-        get => parent.chosen_doctor;
-        set => parent.chosen_doctor=value;
-    }
     public string description
     {
         get=>_description;
@@ -49,7 +44,14 @@ public class Make_day_appointment_patient_content_model : View_model_base{
 
     public Make_day_appointment_patient_content_model(Make_appointments_patient_content_model parent,int day,uint user_id)
     {
-        List<string[]> times_at_day = Database_access.get_appointments_on_day(doctor_name.value,new DateTime((int)parent.year,(int)parent.month,day));
+        List<string[]> times_at_day = Database_access.get_appointments_on_day(parent.chosen_doctor.value,new DateTime((int)parent.year,(int)parent.month,day));
+        foreach(string[] hallo in times_at_day)
+        {
+            foreach(string hi in hallo)
+            {
+                Console.WriteLine(hi);   
+            }
+        }
         for(int i = 0; i <= 16; i++)
         {
             TimeOnly time_to_add = new TimeOnly(8+i/2,i%2*30);
@@ -72,7 +74,7 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         //add button for text and so
         Database_access.insert_appointment(appointment_time,""+user_id,parent.chosen_doctor.value,description);
         Console.WriteLine("appointment time: "+appointment_time+" userid: "+user_id+" doctor: "+parent.chosen_doctor.value+"");
-        Console.WriteLine(chosen_time.value+" <-time name:"+doctor_name.display_name+" month: "+parent.month+" day:"+day);
+        Console.WriteLine(chosen_time.value+" <-time name:"+parent.chosen_doctor.display_name+" month: "+parent.month+" day:"+day);
         parent.describe_appointment.Close();
     }
 }
