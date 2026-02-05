@@ -215,7 +215,7 @@ public class Make_appointments_patient_content_model : View_model_base{
                 //Failsafe if something goes wrong
                 if(pos_day == -1)
                 {
-                    Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake!");
+                    Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake (It could also be that an appointment somehow got on the Weekend!");
                     continue;
 
                 }
@@ -241,6 +241,7 @@ public class Make_appointments_patient_content_model : View_model_base{
         int year = (int)this.year;
         if(year <= currentDateTime.Year && month < currentDateTime.Month)
         {
+            Console.WriteLine("Hi");
             return;
         }
         DateTime beginning_of_month = new DateTime(year,month,1);
@@ -263,14 +264,13 @@ public class Make_appointments_patient_content_model : View_model_base{
             i += weekday_at_beginning-5;
             weekday = 0;
         }
-        
+        Console.WriteLine(days_in_month);
         //button_pos++;
         while(i<=days_in_month){
             if(weekday <= 4){
                 day[button_pos] = i;
-                button_pos++;
-                weekday++;
-                if (i < currentDateTime.Day && month <=currentDateTime.Month && year <=currentDateTime.Year)
+
+                if (i < currentDateTime.Day && month <= currentDateTime.Month && year <= currentDateTime.Year)
                 {
                     day_visable[button_pos] = false;
                 }
@@ -278,6 +278,8 @@ public class Make_appointments_patient_content_model : View_model_base{
                 {
                     day_visable[button_pos] = true;
                 }
+                button_pos++;
+                weekday++;
                 i++;
             }
             else{ 

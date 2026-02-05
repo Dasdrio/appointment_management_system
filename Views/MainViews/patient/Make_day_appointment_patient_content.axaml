@@ -31,7 +31,9 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Row="3" Text="{Binding description}" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+        <ScrollViewer Grid.Row="3">
+            <TextBox Text="{Binding description}" TextWrapping="Wrap" AcceptsReturn="True" ></TextBox>
+        </ScrollViewer>
         <Button Grid.Row="4" Command="{Binding make_appointment}">Termin vereinbaren</Button>
     </Grid>
 </Window>
