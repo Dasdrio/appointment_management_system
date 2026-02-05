@@ -240,6 +240,77 @@ public class Database_access
             Console.WriteLine(ex.ToString());
         }
     }
+    /// <summary>
+    /// Selects every appointment from the given date and time for the given patient
+    /// </summary>
+    /// <param name="p_patient_ID">The id of the selected Patient</param>
+    /// <param name="p_date_and_time">The date and time as a startingpoint for the selection</param>
+    /// <returns>Returns a List with String Arrays that contains the values 
+    /// (appointment_ID, date_and_time, name of the doctor, surname of the doctor, description)
+    /// </returns>
+    public static List<String[]> get_appointments_as_patient(int p_patient_ID, DateTime p_date_and_time)
+    {
+        List<String[]> appointments = new List<string[]>();
+        try{
+            string procedure = "sp_appointments_get_appointments_from_patient";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_patient_ID", p_patient_ID);
+            command.Parameters.AddWithValue("p_date_and_time", p_date_and_time);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+
+                while (reader.Read())
+                {
+                    appointments.Add(new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()});
+                }
+            }
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return appointments;
+    }
+    /// <summary>
+    /// Updates the description of the appointment
+    /// </summary>
+    /// <param name="p_appointment_ID">The Id of the appointment to update</param>
+    /// <param name="p_description">The new description</param>
+    public static void update_description(int p_appointment_ID, String p_description)
+    {
+        try{
+            string procedure = "sp_appointments_update_description";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_appointment_ID", p_appointment_ID);
+            command.Parameters.AddWithValue("p_description", p_description);
+
+            command.ExecuteNonQuery();
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+    }
+    /// <summary>
+    /// Deletes the appointment
+    /// </summary>
+    /// <param name="p_appointment_ID">The appointment to delete</param>
+    public static void delete_appointment(int p_appointment_ID)
+    {
+        try{
+            string procedure = "sp_delete_appointment";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_appointment_ID", p_appointment_ID);
+            
+            command.ExecuteNonQuery();
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+    }
     //TODO delete after Project Completion
     /*public static{
         try{
