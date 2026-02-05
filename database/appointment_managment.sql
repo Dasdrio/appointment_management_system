@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 28. Jan 2026 um 12:09
+-- Erstellungszeit: 05. Feb 2026 um 07:26
 -- Server-Version: 8.0.44
 -- PHP-Version: 8.3.26
 
@@ -42,6 +42,8 @@ CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_doctor_by_specialization` (I
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_information_by_email` (IN `p_email` VARCHAR(100))   SELECT * FROM Persons WHERE email = p_email$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_password_hash_by_email` (IN `p_email` VARCHAR(100))   SELECT password_hash FROM Persons WHERE email = p_email$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_insert_person` (IN `p_name` VARCHAR(50), IN `p_surname` VARCHAR(50), IN `p_email` VARCHAR(100), IN `p_password_hash` VARCHAR(64))   INSERT INTO Persons Values(null, "PATIENT", p_name, p_surname, p_email, p_password_hash)$$
 
 DELIMITER ;
 
@@ -96,7 +98,9 @@ CREATE TABLE `appointment_managment_log` (
 
 INSERT INTO `appointment_managment_log` (`log_ID`, `name_user`, `name_table`, `trigger_time`, `target_ID`, `action_performed`) VALUES
 (1, 'root@%', 'Persons', '2026-01-07 09:03:35', 10, 'INSERT'),
-(2, 'root@%', 'Persons', '2026-01-07 09:08:53', 10, 'DELETE');
+(2, 'root@%', 'Persons', '2026-01-07 09:08:53', 10, 'DELETE'),
+(3, 'root@%', 'Persons', '2026-02-05 07:17:21', 11, 'INSERT'),
+(4, 'root@%', 'Persons', '2026-02-05 07:17:28', 11, 'DELETE');
 
 -- --------------------------------------------------------
 
@@ -183,13 +187,13 @@ ALTER TABLE `Appointments`
 -- AUTO_INCREMENT für Tabelle `appointment_managment_log`
 --
 ALTER TABLE `appointment_managment_log`
-  MODIFY `log_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `log_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `Persons`
 --
 ALTER TABLE `Persons`
-  MODIFY `person_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `person_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints der exportierten Tabellen

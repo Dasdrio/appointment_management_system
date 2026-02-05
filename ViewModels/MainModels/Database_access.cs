@@ -215,7 +215,31 @@ public class Database_access
             Console.WriteLine(ex.ToString());
         }
     }
-    
+    /// <summary>
+    /// Inserts the data of a new person in the database
+    /// </summary>
+    /// <param name="p_name">The name of the Person as a String</param>
+    /// <param name="p_surname">The surname of the Person as a String</param>
+    /// <param name="p_email">The email of the Person as a String</param>
+    /// <param name="p_password_hash">The hasched password of the Person as a String</param>
+    public static void inser_new_person(String p_name, String p_surname, String p_email, String p_password_hash)
+    {
+        try{
+            string procedure = "sp_persons_insert_person";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_name", p_name);
+            command.Parameters.AddWithValue("p_surname", p_surname);
+            command.Parameters.AddWithValue("p_email", p_email);
+            command.Parameters.AddWithValue("p_password_hash", p_password_hash);
+
+            command.ExecuteNonQuery();
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+    }
     //TODO delete after Project Completion
     /*public static{
         try{
