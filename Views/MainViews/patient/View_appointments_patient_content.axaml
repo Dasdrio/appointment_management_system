@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.View_appointments_patient_content_model"
         x:DataType="vm:View_appointments_patient_content_model">
-    <Grid Name="Top_Row_Grid" ColumnDefinitions="50,*,*,*,*,*" RowDefinitions="*">
+    <Grid Name="Top_Row_Grid" ColumnDefinitions="Auto,*,3*,Auto,Auto" RowDefinitions="*">
+        <Button Grid.Row="0" Grid.Column="0" Margin="5" IsVisible="{Binding button_back_visable}" HorizontalAlignment="Stretch" Command = "{Binding button_action_back}" Background="rgba(255, 255, 150, 1)" Name="Button_Back" Content="back"></Button>
+        <Button Grid.Row="0" Grid.Column="4" Margin="5" IsVisible="{Binding button_for_visable}"  HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 150, 1)" Name="Button_Forwoard" Content="for"></Button>
 
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding my_Appointments[0]}"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding my_Appointments[0]}"/>
+        
     </Grid>
 </UserControl>

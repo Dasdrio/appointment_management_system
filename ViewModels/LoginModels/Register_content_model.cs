@@ -86,6 +86,7 @@ public class Register_content_model : View_model_base
         }
         password = SHA256_hash_creator(password);
         //Insert command to insert user here
+        Database_access.inser_new_person(first_name,surname,user_name,password);
         message = "Sie wurden erfolgreich registriert. Bitte loggen sie sich im Login fenster ein";
         Console.WriteLine("Button_Action_Register");
     }
