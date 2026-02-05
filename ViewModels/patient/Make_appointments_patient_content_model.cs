@@ -212,6 +212,13 @@ public class Make_appointments_patient_content_model : View_model_base{
             {
                 //determane the pos of the bool if the button is visable
                 int pos_day = this.day.IndexOf(day);
+                //Failsafe if something goes wrong
+                if(pos_day == -1)
+                {
+                    Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake!");
+                    continue;
+
+                }
                 //then set so false
                 _day_visable[pos_day] = false;
                 Console.WriteLine("Day "+ day+" is disabled");
@@ -260,15 +267,17 @@ public class Make_appointments_patient_content_model : View_model_base{
         //button_pos++;
         while(i<=days_in_month){
             if(weekday <= 4){
-                if (i < currentDateTime.Day && month <=currentDateTime.Month && year <=currentDateTime.Year)
-                {
-                    i++;
-                    continue;
-                }
                 day[button_pos] = i;
-                day_visable[button_pos] = true;
                 button_pos++;
                 weekday++;
+                if (i < currentDateTime.Day && month <=currentDateTime.Month && year <=currentDateTime.Year)
+                {
+                    day_visable[button_pos] = false;
+                }
+                else
+                {
+                    day_visable[button_pos] = true;
+                }
                 i++;
             }
             else{ 

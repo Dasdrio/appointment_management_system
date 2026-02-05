@@ -49,7 +49,44 @@ public class Register_content_model : View_model_base
 
     public void Button_Action_Register(){
         //Add funktionality here
-        message = "register";
+        if(user_name=="")
+        {
+            message = "Es wurde keine E-mail Eingetragen!";
+            return;
+        }
+        if (!is_email(user_name))
+        {
+            message = "Das ist kein gültiges E-Mail Format";
+            return;
+        }
+        string? user = Database_access.get_password_hash(user_name);
+        if(user != null)
+        {
+            message = "Diese E-Mail wurde berreits registriert. Bei Problemen wenden sie sich bitte an den Support!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            return;
+        }
+        if(password =="")
+        {
+            message = "Es wurde kein Passwort eingetragen!";
+            return;
+        }
+        if(first_name =="")
+        {
+            message = "Es wurde kein Vorname eingetragen!";
+            return;
+        }
+        if(surname == "")
+        {
+            message = "Es wurde kein Nachname eingetragen!";
+            return;
+        }
+        if(password.Equals(repeat_password))
+        {
+            message = "Die Passwörter stimmen nicht überein!";
+        }
+        password = SHA256_hash_creator(password);
+        //Insert command to insert user here
+        message = "Sie wurden erfolgreich registriert. Bitte loggen sie sich im Login fenster ein";
         Console.WriteLine("Button_Action_Register");
     }
 
