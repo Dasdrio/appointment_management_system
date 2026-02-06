@@ -200,7 +200,7 @@ public class Database_access
     /// <param name="description">A short summary for the appointment</param>
     public static void insert_appointment(DateTime date_and_time, String patient_ID, String doctor_ID, String description){
         try{
-            string procedure = "sp_insert_appointment";
+            string procedure = "sp_appointments_insert_appointment";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
 
@@ -222,7 +222,7 @@ public class Database_access
     /// <param name="p_surname">The surname of the Person as a String</param>
     /// <param name="p_email">The email of the Person as a String</param>
     /// <param name="p_password_hash">The hasched password of the Person as a String</param>
-    public static void inser_new_person(String p_name, String p_surname, String p_email, String p_password_hash)
+    public static void insert_new_person(String p_name, String p_surname, String p_email, String p_password_hash)
     {
         try{
             string procedure = "sp_persons_insert_person";
@@ -272,6 +272,37 @@ public class Database_access
         return appointments;
     }
     /// <summary>
+    /// Selects every appointment from the given date and time for the given doctor
+    /// </summary>
+    /// <param name="p_doctor_ID">The id of the selected doctor</param>
+    /// <param name="p_date_and_time">The date and time as a startingpoint for the selection</param>
+    /// <returns>Returns a List with String Arrays that contains the values 
+    /// (appointment_ID, date_and_time, name of the patient, surname of the patient, description)
+    /// </returns>
+    public static List<String[]> get_appointments_as_doctor(int p_doctor_ID, DateTime p_date_and_time)
+    {
+        List<String[]> appointments = new List<string[]>();
+        try{
+            string procedure = "sp_appointments_get_appointments_from_doctor";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_doctor_ID", p_doctor_ID);
+            command.Parameters.AddWithValue("p_date_and_time", p_date_and_time);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+
+                while (reader.Read())
+                {
+                    appointments.Add(new String[]{reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString()});
+                }
+            }
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return appointments;
+    }
+    /// <summary>
     /// Updates the description of the appointment
     /// </summary>
     /// <param name="p_appointment_ID">The Id of the appointment to update</param>
@@ -299,7 +330,7 @@ public class Database_access
     public static void delete_appointment(int p_appointment_ID)
     {
         try{
-            string procedure = "sp_delete_appointment";
+            string procedure = "sp_appointments_delete_appointment";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
 
