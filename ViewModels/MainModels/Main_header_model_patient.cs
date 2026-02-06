@@ -34,6 +34,8 @@ public class Main_header_model_patient : View_model_base{
     public void Button_Action_View_Appointments(){
 
         parent.current_content = View_Appointments_Content;
+        //If the Person has new appointments made they also have to be added to the view
+        ((View_appointments_patient_content_model)View_Appointments_Content).calculate_appointments();
         //Add funktionality here
         Console.WriteLine("Button_Action_View_Appointments");
     }
@@ -49,7 +51,7 @@ public class Main_header_model_patient : View_model_base{
         parent.current_header = parent._login_header;
         parent.current_content = parent._blank_content;
         //I delete the header so no patient can get info about the doctor if they search in ram ot something
-        parent._main_header_patient = null;
+        parent._main_header_patient = new Blank_content_model();
         parent.user_name = "";
         parent.first_name = "";
         parent.surname = "";

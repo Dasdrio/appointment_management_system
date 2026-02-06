@@ -222,7 +222,7 @@ public class Database_access
     /// <param name="p_surname">The surname of the Person as a String</param>
     /// <param name="p_email">The email of the Person as a String</param>
     /// <param name="p_password_hash">The hasched password of the Person as a String</param>
-    public static void inser_new_person(String p_name, String p_surname, String p_email, String p_password_hash)
+    public static void insert_new_person(String p_name, String p_surname, String p_email, String p_password_hash)
     {
         try{
             string procedure = "sp_persons_insert_person";

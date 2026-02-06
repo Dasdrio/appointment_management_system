@@ -10,9 +10,25 @@ using appointment_management_system.Views;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
-public class appointments
+public class appointment_layout: IComparable
 {
+    public int CompareTo(object o)
+    {
+        appointment_layout comparing_partner = (appointment_layout)o;
+        if (comparing_partner.appointment_time > this.appointment_time)
+        {
+            return -1;
+        }else if(comparing_partner.appointment_time < this.appointment_time)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
     public DateTime appointment_time {get;set;}
     public string doctor_name {get;set;}="";
     public string appointment_id {get;set;}="";
@@ -24,9 +40,10 @@ public class View_appointments_patient_content_model : View_model_base{
     //continue by making a view and showing all appointments. Then you can read them and if you want to you can delete them
     private bool _button_back_visable = true;
     private bool _button_for_visable = true;
+    int position = 0;
     private MainWindow_view_model parent;
-    private ObservableCollection<appointments> _my_Appointments = new ObservableCollection<appointments>();
-    private ObservableCollection<appointments> _all_my_Appointments = new ObservableCollection<appointments>();
+    private ObservableCollection<appointment_layout> _my_Appointments = new ObservableCollection<appointment_layout>();
+    private List<appointment_layout> _all_my_Appointments = new List<appointment_layout>();
     private ObservableCollection<bool> _visable = new ObservableCollection<bool>{true,true,true};
 
     public bool button_back_visable
@@ -39,7 +56,7 @@ public class View_appointments_patient_content_model : View_model_base{
         get => _button_for_visable;
         set => this.RaiseAndSetIfChanged(ref _button_for_visable,value);
     }
-    public ObservableCollection<appointments> my_Appointments
+    public ObservableCollection<appointment_layout> my_Appointments
     {
         get => _my_Appointments;
         set => this.RaiseAndSetIfChanged(ref _my_Appointments,value);
@@ -53,7 +70,12 @@ public class View_appointments_patient_content_model : View_model_base{
     public View_appointments_patient_content_model(MainWindow_view_model parent)
     {
         this.parent = parent;
-        //Insert command that  loads all Appointments of this person
+        //Now add funktion for back and for and make a more beautiful layout and make the buttons work
+    }
+    public void calculate_appointments()
+    {
+        my_Appointments = new ObservableCollection<appointment_layout>();
+        _all_my_Appointments = new List<appointment_layout>();
         List<string[]> unconverted_appointments = Database_access.get_appointments_as_patient((int)parent.user_id,DateTime.Now);
         foreach(string[] u_appoint in unconverted_appointments)
         {
@@ -76,44 +98,45 @@ public class View_appointments_patient_content_model : View_model_base{
                 Console.WriteLine();
                 dateTime_from_database = new DateTime(Int32.Parse(date_temp[2]),Int32.Parse(date_temp[1]),Int32.Parse(date_temp[0]),Int32.Parse(time_temp[0]),Int32.Parse(time_temp[1]),Int32.Parse(time_temp[2]));
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 dateTime_from_database = DateTime.Now;
                 Console.WriteLine("Eror at parse int date or time");
                 continue;
             }
             Console.WriteLine(u_appoint);
-            _all_my_Appointments.Add(new appointments{doctor_name=u_appoint[2]+" "+u_appoint[3],appointment_id=u_appoint[0],description=u_appoint[4],appointment_time=dateTime_from_database});
+            _all_my_Appointments.Add(new appointment_layout{doctor_name=u_appoint[2]+" "+u_appoint[3],appointment_id=u_appoint[0],description=u_appoint[4],appointment_time=dateTime_from_database});
+            _all_my_Appointments.Sort();
         }
-        int i;
+        int amount_appointments;
         if(_all_my_Appointments.Count < 3)
         {
-            i = _all_my_Appointments.Count;
+            amount_appointments = _all_my_Appointments.Count;
         }
         else
         {
-            i = 3;
+            amount_appointments = 3;
         }
-        for(; i < 3; i++)
+        for(int i = 0; i < amount_appointments; i++)
         {
             my_Appointments.Add(_all_my_Appointments[i]);
         }
-        //Now add funktion for back and for and make a more beautiful layout and make the buttons work
     }
     public void button_action_back()
     {
-        
+        //Next time add button back and forward (you added positon for that to determane the starting pos of _all_my_Appointments)
+        //Add check logic and stuff and then replace the stuff in my_appointments
     }
     public void button_action_forward()
     {
         
     }
-    public void button_action_delete(/*int pos*/)
+    public void button_action_delete(string appointment_id)
     {
-        Console.WriteLine("delete");
+        Console.WriteLine("delete: "+appointment_id);
     }
-    public void button_action_update(/*int pos*/)
+    public void button_action_update(string appointment_id)
     {
-        Console.WriteLine("Update");
+        Console.WriteLine("Update: "+appointment_id);
     }
 }
