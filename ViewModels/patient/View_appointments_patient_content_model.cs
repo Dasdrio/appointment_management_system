@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using DynamicData;
 
 public class appointment_layout: IComparable
 {
@@ -38,7 +39,8 @@ public class appointment_layout: IComparable
 }
 public class View_appointments_patient_content_model : View_model_base{
     //continue by making a view and showing all appointments. Then you can read them and if you want to you can delete them
-    private bool _button_back_visable = true;
+    private static int amount_per_page = 3;
+    private bool _button_back_visable = false;
     private bool _button_for_visable = true;
     int position = 0;
     private MainWindow_view_model parent;
@@ -74,8 +76,8 @@ public class View_appointments_patient_content_model : View_model_base{
     }
     public void calculate_appointments()
     {
-        my_Appointments = new ObservableCollection<appointment_layout>();
-        _all_my_Appointments = new List<appointment_layout>();
+        my_Appointments.Clear();
+        _all_my_Appointments.Clear();
         List<string[]> unconverted_appointments = Database_access.get_appointments_as_patient((int)parent.user_id,DateTime.Now);
         foreach(string[] u_appoint in unconverted_appointments)
         {
@@ -109,34 +111,111 @@ public class View_appointments_patient_content_model : View_model_base{
             _all_my_Appointments.Sort();
         }
         int amount_appointments;
-        if(_all_my_Appointments.Count < 3)
+        if(_all_my_Appointments.Count < amount_per_page)
         {
             amount_appointments = _all_my_Appointments.Count;
+            button_for_visable = false;
         }
         else
         {
-            amount_appointments = 3;
+            amount_appointments = amount_per_page;
         }
         for(int i = 0; i < amount_appointments; i++)
         {
             my_Appointments.Add(_all_my_Appointments[i]);
         }
+        Console.WriteLine(_all_my_Appointments.Count);
     }
     public void button_action_back()
     {
+        if (position == 0)
+        {
+            button_back_visable = false;
+            return;
+        }
+        position-=amount_per_page;
+        if (position == 0)
+        {
+            button_back_visable = false;
+        }
+        show_current_appointments();
         //Next time add button back and forward (you added positon for that to determane the starting pos of _all_my_Appointments)
         //Add check logic and stuff and then replace the stuff in my_appointments
     }
     public void button_action_forward()
     {
-        
+        if (position+amount_per_page >= _all_my_Appointments.Count)
+        {
+            button_for_visable = false;
+            return;
+        }
+        button_back_visable = true;
+        position+=amount_per_page;
+        show_current_appointments();
+
+    }
+    private void show_current_appointments()
+    {
+        my_Appointments.Clear();
+        int amount_at_this_page;
+        if (position + amount_per_page >= _all_my_Appointments.Count - 1)
+        {
+            amount_at_this_page = _all_my_Appointments.Count-1;
+            button_for_visable = false;
+        }
+        else
+        {
+            button_for_visable = true;
+            amount_at_this_page = position+amount_per_page-1;
+        }
+        for(int i = position; i <= amount_at_this_page; i++)
+        {
+            my_Appointments.Add(_all_my_Appointments[i]);
+        }
+    }
+    private appointment_layout search_appointment_for_id_in_my_Appointments(string appointment_id)
+    {
+        //default value to not crash something in worst case
+        appointment_layout to_update = new appointment_layout();
+        //Is always about 3 Items so it is faster to search about 3 Items thatn to create a whole extra dictonary
+        foreach(appointment_layout searching in my_Appointments)
+        {
+            if (searching.appointment_id == appointment_id)
+            {
+                to_update = searching;
+                break;
+            }
+        }
+        return to_update;
     }
     public void button_action_delete(string appointment_id)
     {
+        //I try deleting then removing form loaded appointments
+        appointment_layout to_delete = search_appointment_for_id_in_my_Appointments(appointment_id);
+        try
+        {
+            Database_access.delete_appointment(Int32.Parse(to_delete.appointment_id));
+            _all_my_Appointments.Remove(to_delete);
+            show_current_appointments();
+        }
+        catch
+        {
+            Console.WriteLine("Error parsing appointment ID or no appointment was found");
+        }
         Console.WriteLine("delete: "+appointment_id);
     }
     public void button_action_update(string appointment_id)
     {
-        Console.WriteLine("Update: "+appointment_id);
+        appointment_layout to_update = search_appointment_for_id_in_my_Appointments(appointment_id);
+        try
+        {
+            Database_access.update_description(Int32.Parse(to_update.appointment_id),to_update.description);
+        }
+        catch
+        {
+            Console.WriteLine("Error parsing appointment ID or no appointment was found");
+        }
+
+        Console.WriteLine("Update: "+appointment_id+" Text: "+to_update.description);
     }
 }
