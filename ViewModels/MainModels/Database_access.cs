@@ -19,7 +19,7 @@ public enum Specialization{
 public class Database_access
 {
     private static Database_access? instance;
-    private String mysql_connection_string = "server=localhost;port=3306;uid=access_client;pwd=accesspassword;database=appointment_management";
+    private String mysql_connection_string = "server=localhost;port=3306;uid=root;pwd=rootpassword;database=appointment_managment";
     private static MySqlConnection mysql_connection;
     private static MySqlCommand? command;
 
