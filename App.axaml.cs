@@ -29,6 +29,7 @@ public partial class App : Application
                 DataContext = new MainWindow_view_model(desktop),
             };
             desktop.MainWindow.Closed += (sender,e) => Shutdown(desktop);
+            
         }
 
         base.OnFrameworkInitializationCompleted();

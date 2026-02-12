@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.Login_content_model"
         x:DataType="vm:Login_content_model">
-    <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*"> 
-        <TextBox Grid.Row="0" Name="user_name" Text="{Binding user_name}" FontSize="20"/>
-        <TextBox Grid.Row="1" Name="password" Text="{Binding password}" FontSize="20"/>
-        <Button Grid.Row="2"  Command="{Binding button_action_login}" FontSize="20" >Login</Button>
-        <TextBlock Grid.Row="3" Name="Message" Text="{Binding message}" FontSize="20"/>
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="E-mail:" FontSize="40"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="user_name" Text="{Binding user_name}" FontSize="30"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Passwort:" FontSize="40"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="password" Text="{Binding password}" PasswordChar="☺" FontSize="30"/>
+        <Button Grid.Row="2" Command="{Binding button_action_login}" FontSize="40">Login</Button>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" Name="Message" Text="{Binding message}" FontSize="40"/>
     </Grid>
 </UserControl>

@@ -15,7 +15,9 @@ public class Main_header_model_patient : View_model_base{
     public Main_header_model_patient(MainWindow_view_model parent){
         this.parent = parent;
         //View_Appointments_Content = new some_other_model(parent);
-        Make_Appointments_Content = new Make_appointments_patient_content_model();
+        Make_Appointments_Content = new Make_appointments_patient_content_model(parent);
+
+        View_Appointments_Content = new View_appointments_patient_content_model(parent);
     }
     private string _site_name = "Our Appointment Management System";
     public string site_name{
@@ -30,12 +32,18 @@ public class Main_header_model_patient : View_model_base{
         set => parent.password = value;
     }
     public void Button_Action_View_Appointments(){
+
+        parent.current_content = View_Appointments_Content;
+        //If the Person has new appointments made they also have to be added to the view
+        ((View_appointments_patient_content_model)View_Appointments_Content).calculate_appointments();
         //Add funktionality here
         Console.WriteLine("Button_Action_View_Appointments");
     }
     public void Button_Action_Make_Appointments(){
         Console.WriteLine("Button_Action_Make_Appointments");
         parent.current_content = Make_Appointments_Content;
+        //I don't know why i have to calculate that every time i switch into this view even if nothing changed, but otherwhise not all days that should be disabled are disabled
+        ((Make_appointments_patient_content_model)Make_Appointments_Content).calculate_appointment_days(((Make_appointments_patient_content_model)Make_Appointments_Content).chosen_doctor.value);
         //Add funktionality here
     }
     public void Button_Action_Logout(){
@@ -43,7 +51,7 @@ public class Main_header_model_patient : View_model_base{
         parent.current_header = parent._login_header;
         parent.current_content = parent._blank_content;
         //I delete the header so no patient can get info about the doctor if they search in ram ot something
-        parent._main_header_patient = null;
+        parent._main_header_patient = new Blank_content_model();
         parent.user_name = "";
         parent.first_name = "";
         parent.surname = "";

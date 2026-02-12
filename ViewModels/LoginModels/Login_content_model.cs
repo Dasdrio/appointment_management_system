@@ -37,12 +37,14 @@ public class Login_content_model : View_model_base
         if (!is_email(parent.user_name))
         {
             message = "Das ist kein gültiges e-mail format";
+            Console.WriteLine(message);
             return;
         }
         string? hash = Database_access.get_password_hash(parent.user_name);
         if(hash == null)
         {
             message = "Die E-Mail existiert nicht";
+            Console.WriteLine(message);
             return;
         }
         hash = hash.ToLower();
@@ -52,7 +54,8 @@ public class Login_content_model : View_model_base
             message = "Das Passwort ist falsch";
             return;
         }
-        string[] user = Database_access.get_personal_information(parent.user_name);
+        List<string[]> temp_user = Database_access.get_personal_information(parent.user_name);
+        string[] user = temp_user[0];
         //Console.WriteLine("person_ID: "+user[0]+" Specialization:"+user[1]+" name:"+user[2]+" surname:"+user[3]+" e-mail:"+user[4]);
         //saving info
         try

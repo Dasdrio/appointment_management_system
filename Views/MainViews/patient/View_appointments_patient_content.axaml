@@ -5,7 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="appointment_management_system.Views.View_appointments_patient_content_model"
         x:DataType="vm:View_appointments_patient_content_model">
-    <Grid Name="Top_Row_Grid" ColumnDefinitions="50,*,*,*,*,*" RowDefinitions="*">
+    <Grid Name="Top_Row_Grid" ColumnDefinitions="*,*,3*,*" RowDefinitions="Auto,Auto,*">
+        <Button Grid.Row="0" Grid.Column="0" Margin="5" IsVisible="{Binding button_back_visable}" HorizontalAlignment="Stretch" Command = "{Binding button_action_back}" Background="rgba(255, 255, 150, 1)" Name="Button_Back" Content="back"></Button>
+        <Button Grid.Row="0" Grid.Column="4" Margin="5" IsVisible="{Binding button_for_visable}"  HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 150, 1)" Name="Button_Forwoard" Content="for"></Button>
 
+        <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding my_Appointments}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,100,*,Auto,Auto" RowDefinitions="Auto">
+                        <!--I can format the string with String format {} says that it is only a string and {0:D2} says fill the integer eith 2 positions with 0 os-->
+                        <Grid Grid.Column="0" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*">
+                            <TextBlock Grid.Column="0" Text="{Binding appointment_time.Day, StringFormat={}{0:D2}}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding appointment_time.Month, StringFormat=.{0:D2}}"/>
+                            <TextBlock Grid.Column="4" Text="{Binding appointment_time.Year, StringFormat=.{0:D2} }"/>
+                            <TextBlock Grid.Column="6" Text="{Binding appointment_time.Hour, StringFormat={} {0:D2}}"/>
+                            <TextBlock Grid.Column="8" Text="{Binding appointment_time.Minute, StringFormat=:{0:D2} }"/>
+                            <TextBlock Grid.Column="9" Text=" "/>
+                            <!--Fix the formating -->
+                        </Grid>
+                        <TextBlock Grid.Column="1" Text="{Binding doctor_name}"/>
+                        <ScrollViewer Grid.Column="2">
+                            <TextBox TextWrapping="Wrap" AcceptsReturn="True"  Text="{Binding description}"/>
+                        </ScrollViewer>
+                        <!--I have to find the correct binding for the index or make a property of the observable collection the index--><!--CommandParameter="{Binding}"--><!--CommandParameter="{Binding}"-->
+                        <Button Grid.Column="3" Command="{Binding $parent[ItemsControl].DataContext.button_action_update}" CommandParameter="{Binding appointment_id}" >Update</Button>
+                        <Button Grid.Column="4" Command="{Binding $parent[ItemsControl].DataContext.button_action_delete}" CommandParameter="{Binding appointment_id}">🗑</Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

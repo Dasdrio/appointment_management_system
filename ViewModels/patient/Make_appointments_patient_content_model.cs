@@ -10,6 +10,7 @@ using appointment_management_system.Views;
 using System.Collections.ObjectModel;
 using Avalonia.Markup.Xaml.Templates;
 using System.Collections.Generic;
+using Avalonia.Dialogs.Internal;
 
 public class specilasation_name_pair
 {
@@ -24,6 +25,8 @@ public class id_name_pair
 
 public class Make_appointments_patient_content_model : View_model_base{
 
+    public Window describe_appointment;
+    private MainWindow_view_model parent;
     private ObservableCollection<specilasation_name_pair> _specilazation= new();
     private specilasation_name_pair _chosen_specilazation;
     private ObservableCollection<id_name_pair> _doctors = new();
@@ -60,57 +63,14 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _chosen_doctor;
         set
         {
-            //Console.WriteLine(value.value+" Hallo");
-            //I get the appointments of the current months
-            List<string[]> appointments_day = Database_access.get_appointments_per_day(value.value,new DateTime((int)year,(int)month,1));
-            //Console.WriteLine("Amount of appointments: "+appointments_day.Count);
-            //Now check if works
-            foreach(string[] day_info in appointments_day)
-            {
-                //Parsing info
-                int day;
-                try
-                {
-                    day = int.Parse(day_info[1]);
-                }
-                catch (System.Exception)
-                {
-                    
-                    Console.WriteLine("Error parsing: "+day_info[1]);
-                    continue;
-                }
-                int amount_appointments;
-                try
-                {
-                    amount_appointments = int.Parse(day_info[0]);
-                }
-                catch (System.Exception)
-                {
-                    
-                    Console.WriteLine("Error parsing: "+day_info[0]);
-                    continue;
-                }
-                
-                //Then you check if the amount of appintments is greater or equals to 16 to determane if the button should be visable or not
-                if(amount_appointments >= 16)
-                {
-                    Console.WriteLine("Day "+ day+" is enabled");
-                    continue;
-                }
-                else
-                {
-                    //determane the pos of the bool if the button is visable
-                    int pos_day = this.day.IndexOf(day);
-                    //then set so false
-                    _day_visable[pos_day] = false;
-                    Console.WriteLine("Day "+ day+" is disabled");
-                }
-                //continue by checking if it works by manually inserting appointments into database
-
-            }
+            //this is very stupid but it works because i calculate all the weekdays to enable the buttons that should be enabeled but the alternative is creating a whole new array and change a funktion so i don't do it
+            calculate_weekdays();
+            //I get the appointments of the current months and disable the days that have no appointments left
+            calculate_appointment_days(value.value);
             this.RaiseAndSetIfChanged(ref _chosen_doctor,value); 
         } 
     }
+    
     public ObservableCollection<int> day {
         get => _day;
         set=> this.RaiseAndSetIfChanged(ref _day,value);
@@ -176,8 +136,9 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _button_for_visable;
         set => this.RaiseAndSetIfChanged(ref _button_for_visable,value);
     }
-    public Make_appointments_patient_content_model()
+    public Make_appointments_patient_content_model(MainWindow_view_model parent)
     {
+        this.parent = parent;
         year = currentDateTime.Year;
         month = currentDateTime.Month;
         _specilazation.Add(new specilasation_name_pair{display_name ="Allgemeinmedizin", value= Specialization.GENERAL_PRACTICE});
@@ -190,6 +151,8 @@ public class Make_appointments_patient_content_model : View_model_base{
         change_doctors(Specialization.GENERAL_PRACTICE);
         chosen_doctor = doctors[0];
         calculate_weekdays();
+        //calculate_appointment_days(chosen_doctor.value);
+        
     }
     private void change_doctors(Specialization chosen_special)
     {
@@ -208,7 +171,61 @@ public class Make_appointments_patient_content_model : View_model_base{
         }
         //Next step is to create a view for the day to choose a time in dropdown and make a description and send it to the database
     }
-    private void calculate_weekdays()
+    public void calculate_appointment_days(string doctor_ID)
+    {
+        List<string[]> appointments_day = Database_access.get_appointments_per_day(doctor_ID,new DateTime((int)year,(int)month,1));
+        //Now check if works
+        foreach(string[] day_info in appointments_day)
+        {
+            //Parsing info
+            int day;
+            try
+            {
+                day = int.Parse(day_info[1].Split('.')[0]);
+            }
+            catch (System.Exception)
+            {
+                
+                Console.WriteLine("Error parsing day: "+day_info[1].Split('.')[0]);
+                continue;
+            }
+            int amount_appointments;
+            try
+            {
+                amount_appointments = int.Parse(day_info[0]);
+                Console.WriteLine("Anzahl appointments: "+amount_appointments);
+            }
+            catch (System.Exception)
+            {
+                
+                Console.WriteLine("Error parsing amount: "+day_info[0]);
+                continue;
+            }
+            
+            //Then you check if the amount of appintments is greater or equals to 16 to determane if the button should be visable or not
+            if(amount_appointments < 16)
+            {
+                Console.WriteLine("Day "+ day+" is enabled");
+                continue;
+            }
+            else
+            {
+                //determane the pos of the bool if the button is visable
+                int pos_day = this.day.IndexOf(day);
+                //Failsafe if something goes wrong
+                if(pos_day == -1)
+                {
+                    Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake (It could also be that an appointment somehow got on the Weekend!");
+                    continue;
+
+                }
+                //then set so false
+                _day_visable[pos_day] = false;
+                Console.WriteLine("Day "+ day+" is disabled");
+            }
+        }
+    }
+    public void calculate_weekdays()
     {
         
         day_visable = new() {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
@@ -224,6 +241,7 @@ public class Make_appointments_patient_content_model : View_model_base{
         int year = (int)this.year;
         if(year <= currentDateTime.Year && month < currentDateTime.Month)
         {
+            Console.WriteLine("Hi");
             return;
         }
         DateTime beginning_of_month = new DateTime(year,month,1);
@@ -246,17 +264,20 @@ public class Make_appointments_patient_content_model : View_model_base{
             i += weekday_at_beginning-5;
             weekday = 0;
         }
-        
+        Console.WriteLine(days_in_month);
         //button_pos++;
         while(i<=days_in_month){
             if(weekday <= 4){
-                if (i < currentDateTime.Day && month <=currentDateTime.Month && year <=currentDateTime.Year)
-                {
-                    i++;
-                    continue;
-                }
                 day[button_pos] = i;
-                day_visable[button_pos] = true;
+
+                if (i < currentDateTime.Day && month <= currentDateTime.Month && year <= currentDateTime.Year)
+                {
+                    day_visable[button_pos] = false;
+                }
+                else
+                {
+                    day_visable[button_pos] = true;
+                }
                 button_pos++;
                 weekday++;
                 i++;
@@ -265,6 +286,11 @@ public class Make_appointments_patient_content_model : View_model_base{
                 weekday = 0;
                  i+=2;
             }
+        }
+        //If there are no appointments in the current month you imedeatly skip into the next
+        if (!_day_visable.Contains(true))
+        {
+            button_action_forward();
         }
         
     }
@@ -286,6 +312,7 @@ public class Make_appointments_patient_content_model : View_model_base{
             button_back_visable = false;
         }
         calculate_weekdays();
+        calculate_appointment_days(chosen_doctor.value);
         //calculate_weekdays();
         Console.WriteLine("back");
     }
@@ -304,12 +331,20 @@ public class Make_appointments_patient_content_model : View_model_base{
         }
         button_back_visable = true;
         calculate_weekdays();
+        calculate_appointment_days(chosen_doctor.value);
         //calculate_weekdays();
         Console.WriteLine("for");
     }
     public void button_action_day(int pos)
     {
+        describe_appointment = new appointment_management_system.Views.Make_day_appointment_patient_content_model()
+        {
+            DataContext = new Make_day_appointment_patient_content_model(this,day[pos],parent.user_id),
+        };
         Console.WriteLine(pos);
+        
+        describe_appointment.ShowDialog(parent.desktop.MainWindow);
+        
     }
 
 }
