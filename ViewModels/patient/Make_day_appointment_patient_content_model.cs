@@ -89,7 +89,7 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         for(i = 0; i <= 15; i++)
         {
             TimeOnly time_to_add = new TimeOnly(8+i/2,i%2*30);
-            if (!times.Contains(time_to_add))
+            if (!times.Contains(time_to_add) && time_to_add >= TimeOnly.FromDateTime(DateTime.Now))
             {
                 _times_appointmens.Add(new time_name_pair{display_time=time_to_add.Hour+":"+time_to_add.Minute,value=time_to_add});
             }

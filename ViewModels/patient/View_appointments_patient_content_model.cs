@@ -40,33 +40,33 @@ public class appointment_layout: IComparable
 public class View_appointments_patient_content_model : View_model_base{
     //continue by making a view and showing all appointments. Then you can read them and if you want to you can delete them
     private static int amount_per_page = 3;
-    private bool _button_back_visable = false;
-    private bool _button_for_visable = true;
+    private bool _button_back_visible = false;
+    private bool _button_for_visible = true;
     int position = 0;
     private MainWindow_view_model parent;
     private ObservableCollection<appointment_layout> _my_Appointments = new ObservableCollection<appointment_layout>();
     private List<appointment_layout> _all_my_Appointments = new List<appointment_layout>();
-    private ObservableCollection<bool> _visable = new ObservableCollection<bool>{true,true,true};
+    private ObservableCollection<bool> _visible = new ObservableCollection<bool>{true,true,true};
 
-    public bool button_back_visable
+    public bool button_back_visible
     {
-        get => _button_back_visable;
-        set => this.RaiseAndSetIfChanged(ref _button_back_visable,value);
+        get => _button_back_visible;
+        set => this.RaiseAndSetIfChanged(ref _button_back_visible,value);
     }
-    public bool button_for_visable
+    public bool button_for_visible
     {
-        get => _button_for_visable;
-        set => this.RaiseAndSetIfChanged(ref _button_for_visable,value);
+        get => _button_for_visible;
+        set => this.RaiseAndSetIfChanged(ref _button_for_visible,value);
     }
     public ObservableCollection<appointment_layout> my_Appointments
     {
         get => _my_Appointments;
         set => this.RaiseAndSetIfChanged(ref _my_Appointments,value);
     }
-    public ObservableCollection<bool> visable
+    public ObservableCollection<bool> visible
     {
-        get => _visable;
-        set => this.RaiseAndSetIfChanged(ref _visable,value);
+        get => _visible;
+        set => this.RaiseAndSetIfChanged(ref _visible,value);
     }
     
     public View_appointments_patient_content_model(MainWindow_view_model parent)
@@ -78,7 +78,7 @@ public class View_appointments_patient_content_model : View_model_base{
     {
         my_Appointments.Clear();
         _all_my_Appointments.Clear();
-        List<string[]> unconverted_appointments = Database_access.get_appointments_as_patient((int)parent.user_id,DateTime.Now);
+        List<string[]> unconverted_appointments = Database_access.get_appointments_as_patient((int)parent.user_id,DateTime.Now.Date);
         foreach(string[] u_appoint in unconverted_appointments)
         {
             DateTime dateTime_from_database = DateTime.Now;
@@ -114,7 +114,7 @@ public class View_appointments_patient_content_model : View_model_base{
         if(_all_my_Appointments.Count < amount_per_page)
         {
             amount_appointments = _all_my_Appointments.Count;
-            button_for_visable = false;
+            button_for_visible = false;
         }
         else
         {
@@ -130,13 +130,13 @@ public class View_appointments_patient_content_model : View_model_base{
     {
         if (position == 0)
         {
-            button_back_visable = false;
+            button_back_visible = false;
             return;
         }
         position-=amount_per_page;
         if (position == 0)
         {
-            button_back_visable = false;
+            button_back_visible = false;
         }
         show_current_appointments();
         //Next time add button back and forward (you added positon for that to determane the starting pos of _all_my_Appointments)
@@ -146,10 +146,10 @@ public class View_appointments_patient_content_model : View_model_base{
     {
         if (position+amount_per_page >= _all_my_Appointments.Count)
         {
-            button_for_visable = false;
+            button_for_visible = false;
             return;
         }
-        button_back_visable = true;
+        button_back_visible = true;
         position+=amount_per_page;
         show_current_appointments();
 
@@ -161,11 +161,11 @@ public class View_appointments_patient_content_model : View_model_base{
         if (position + amount_per_page >= _all_my_Appointments.Count - 1)
         {
             amount_at_this_page = _all_my_Appointments.Count-1;
-            button_for_visable = false;
+            button_for_visible = false;
         }
         else
         {
-            button_for_visable = true;
+            button_for_visible = true;
             amount_at_this_page = position+amount_per_page-1;
         }
         for(int i = position; i <= amount_at_this_page; i++)

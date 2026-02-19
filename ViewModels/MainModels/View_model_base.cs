@@ -22,15 +22,15 @@ public abstract class View_model_base : ReactiveObject{
         }
         return hash;
     }
-    public bool is_email(string posible_mail)
+    public bool is_email(string possible_mail)
     {
-        int at_pos = posible_mail.IndexOf('@');
+        int at_pos = possible_mail.IndexOf('@');
         //testing if @ is there and not at the start of the string and behind the @ is at least one char
         if(at_pos == -1|| at_pos == 0)
         {
             return false;
         }
-        if (at_pos + 1 >= posible_mail.Length)
+        if (at_pos + 1 >= possible_mail.Length)
         {
             return false;
         }

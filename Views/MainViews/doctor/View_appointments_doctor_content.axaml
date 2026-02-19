@@ -1,9 +1,0 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:appointment_management_system.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Class="appointment_management_system.Views.View_appointments_doctor_content_model"
-        x:DataType="vm:View_appointments_doctor_content_model">
-    
-</UserControl>

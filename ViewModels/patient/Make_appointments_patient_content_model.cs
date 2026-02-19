@@ -32,15 +32,15 @@ public class Make_appointments_patient_content_model : View_model_base{
     private ObservableCollection<id_name_pair> _doctors = new();
     private id_name_pair _chosen_doctor;
     private ObservableCollection<int> _day = new() {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
-    private ObservableCollection<bool> _day_visable;
+    private ObservableCollection<bool> _day_visible;
     private ObservableCollection<string> _weekdays = new() {"Monday","Tuesday","Wednsday","Thurday","Friday"};
     private int? _month = 1;
     private int? _year = 1;
     private DateTime currentDateTime = DateTime.Now;
     private string _button_back_text = "back";
     private string _button_for_text = "for";
-    private bool _button_back_visable = false;
-    private bool _button_for_visable = true;
+    private bool _button_back_visible = false;
+    private bool _button_for_visible = true;
     public ObservableCollection<specilasation_name_pair> specilazation
     {
         get => _specilazation;
@@ -75,9 +75,9 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _day;
         set=> this.RaiseAndSetIfChanged(ref _day,value);
     }
-    public ObservableCollection<bool> day_visable {
-        get => _day_visable;
-        set=> this.RaiseAndSetIfChanged(ref _day_visable,value);
+    public ObservableCollection<bool> day_visible {
+        get => _day_visible;
+        set=> this.RaiseAndSetIfChanged(ref _day_visible,value);
     }
     public ObservableCollection<string> weekdays {
         get => _weekdays;
@@ -128,13 +128,13 @@ public class Make_appointments_patient_content_model : View_model_base{
         get => _button_for_text;
         set => this.RaiseAndSetIfChanged(ref _button_for_text,value);
     }
-    public bool button_back_visable {
-        get => _button_back_visable;
-        set => this.RaiseAndSetIfChanged(ref _button_back_visable,value);
+    public bool button_back_visible {
+        get => _button_back_visible;
+        set => this.RaiseAndSetIfChanged(ref _button_back_visible,value);
     }
-    public bool button_for_visable {
-        get => _button_for_visable;
-        set => this.RaiseAndSetIfChanged(ref _button_for_visable,value);
+    public bool button_for_visible {
+        get => _button_for_visible;
+        set => this.RaiseAndSetIfChanged(ref _button_for_visible,value);
     }
     public Make_appointments_patient_content_model(MainWindow_view_model parent)
     {
@@ -164,7 +164,7 @@ public class Make_appointments_patient_content_model : View_model_base{
             doctors.Add(new id_name_pair{display_name =info[1]+" "+info[2], value=info[0]});
         }
         
-        //Temp stuff get the real doctors then use calculate weekdays and make the ones that are not available not visable at first and every tima a doctor changes
+        //Temp stuff get the real doctors then use calculate weekdays and make the ones that are not available not visible at first and every tima a doctor changes
         if(doctors.Count >= 0)
         {
             chosen_doctor = doctors[0];
@@ -202,7 +202,7 @@ public class Make_appointments_patient_content_model : View_model_base{
                 continue;
             }
             
-            //Then you check if the amount of appintments is greater or equals to 16 to determane if the button should be visable or not
+            //Then you check if the amount of appintments is greater or equals to 16 to determane if the button should be visible or not
             if(amount_appointments < 16)
             {
                 Console.WriteLine("Day "+ day+" is enabled");
@@ -210,7 +210,7 @@ public class Make_appointments_patient_content_model : View_model_base{
             }
             else
             {
-                //determane the pos of the bool if the button is visable
+                //determane the pos of the bool if the button is visible
                 int pos_day = this.day.IndexOf(day);
                 //Failsafe if something goes wrong
                 if(pos_day == -1)
@@ -220,7 +220,7 @@ public class Make_appointments_patient_content_model : View_model_base{
 
                 }
                 //then set so false
-                _day_visable[pos_day] = false;
+                _day_visible[pos_day] = false;
                 Console.WriteLine("Day "+ day+" is disabled");
             }
         }
@@ -228,7 +228,7 @@ public class Make_appointments_patient_content_model : View_model_base{
     public void calculate_weekdays()
     {
         
-        day_visable = new() {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+        day_visible = new() {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
         if(this.month == null)
         {
             this.month = currentDateTime.Month;
@@ -252,7 +252,7 @@ public class Make_appointments_patient_content_model : View_model_base{
         weekday_at_beginning = (weekday_at_beginning+6)%7;
         int button_pos = 0;
 
-        //do calculate wich day stand where at which date and which buttons are visable
+        //do calculate wich day stand where at which date and which buttons are visible
         int i = 1;
         int weekday = weekday_at_beginning;
         if (weekday_at_beginning <= 4)
@@ -272,11 +272,11 @@ public class Make_appointments_patient_content_model : View_model_base{
 
                 if (i < currentDateTime.Day && month <= currentDateTime.Month && year <= currentDateTime.Year)
                 {
-                    day_visable[button_pos] = false;
+                    day_visible[button_pos] = false;
                 }
                 else
                 {
-                    day_visable[button_pos] = true;
+                    day_visible[button_pos] = true;
                 }
                 button_pos++;
                 weekday++;
@@ -288,7 +288,7 @@ public class Make_appointments_patient_content_model : View_model_base{
             }
         }
         //If there are no appointments in the current month you imedeatly skip into the next
-        if (!_day_visable.Contains(true))
+        if (!_day_visible.Contains(true))
         {
             button_action_forward();
         }
@@ -309,7 +309,7 @@ public class Make_appointments_patient_content_model : View_model_base{
         }
         if(month <= currentDateTime.Month&&year<=currentDateTime.Year)
         {
-            button_back_visable = false;
+            button_back_visible = false;
         }
         calculate_weekdays();
         calculate_appointment_days(chosen_doctor.value);
@@ -329,7 +329,7 @@ public class Make_appointments_patient_content_model : View_model_base{
         {
             month = month+1;
         }
-        button_back_visable = true;
+        button_back_visible = true;
         calculate_weekdays();
         calculate_appointment_days(chosen_doctor.value);
         //calculate_weekdays();

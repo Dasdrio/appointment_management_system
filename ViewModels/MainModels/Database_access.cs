@@ -169,7 +169,7 @@ public class Database_access
     /// <code> Database_acces.get_appointments_on_day("3", new DateTime(2017, 07, 25, 23, 45, 5));
     /// </code>
     /// </example>
-    /// <returns>An List with every appointment an doctor has</returns>
+    /// <returns>A List with every appointment a doctor has</returns>
     public static  List<String> get_appointments_on_day(String doctor_ID, DateTime date_and_time){
         List<String> appointments_list = new List<string>();
         try{
