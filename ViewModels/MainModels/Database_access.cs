@@ -342,6 +342,36 @@ public class Database_access
             Console.WriteLine(ex.ToString());
         }
     }
+    /// <summary>
+    /// Gives the appointment with the given ID
+    /// </summary>
+    /// <param name="p_appointment_ID"></param>
+    /// <returns>Returns a List with Strings with followling values (date_and_time, name, surname, description) </returns>
+    public static List<String> get_appointment_by_id(int p_appointment_ID)
+    {
+        List<String> appointment = new List<string>();
+        try{
+            string procedure = "sp_appointments_get_appointment_by_ID";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_appointment_ID", p_appointment_ID);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+
+                while (reader.Read())
+                {
+                    appointment.Add(reader[0].ToString());
+                    appointment.Add(reader[1].ToString());
+                    appointment.Add(reader[2].ToString());
+                    appointment.Add(reader[3].ToString());
+                }
+            }
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return appointment;
+    }
     //TODO delete after Project Completion
     /*public static{
         try{
