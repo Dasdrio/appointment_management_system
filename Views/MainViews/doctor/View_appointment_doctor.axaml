@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:appointment_management_system.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:v="clr-namespace:appointment_management_system.Views"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
+        x:Class="appointment_management_system.Views.View_appointment_doctor_window_model"
+        x:DataType="vm:View_appointment_doctor_window_model"
+        Icon="/../Assets/avalonia-logo.ico"
+        Title="appointment_management_system"
+        Height="450"
+        Width="450"
+        CanResize="True">
+    <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="{Binding date}"></TextBlock>
+            <TextBlock Text="{Binding time}"></TextBlock>
+            <TextBlock Text="{Binding patient_name}"></TextBlock>
+        </StackPanel>
+        <TextBlock>Beschreibung</TextBlock>
+        <TextBlock Text="{Binding description}"></TextBlock>
+        <Button Command="{Binding cancel_appointment}">Absacken</Button>
+    </StackPanel>
+</Window>

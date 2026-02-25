@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using DynamicData;
+using Avalonia.Markup.Xaml.Templates;
+using Avalonia.Dialogs.Internal;
 
 public class appointment_info : IComparable{
     public string id {get; set;} = "";
@@ -79,26 +81,6 @@ public class View_appointment_doctor_content_model : View_model_base{
     }
 
     public View_appointment_doctor_content_model(MainWindow_view_model parent){
-
-        // Console.WriteLine();
-        // Console.WriteLine();
-        // Console.WriteLine("Start");
-        // Console.WriteLine();
-        // Console.WriteLine();
-        // for(int i = 0; i < 80; i++){
-        //                 Console.WriteLine("<Button Grid.Column=\"" + ((int)(i / 16) + 1) + "\" Grid.Row=\"" + (i % 16 + 1) + "\" Content=\"{Binding appointments_of_week[" + i + "].patient_name}\" IsVisible=\"{Binding visible[" + i + "]}\" Command=\"{Binding button_action_show_appointment}\" CommandParameter=\"{Binding appointments_of_week[" + i + "].id}\"></Button>\"");
-        // }
-        // Console.WriteLine();
-        // Console.WriteLine();
-        // Console.WriteLine("End");
-        // Console.WriteLine();
-        // Console.WriteLine();
-
-
-
-
-
-
         Console.WriteLine("Doctor Contentent Created");
 
         this.parent = parent;
@@ -126,9 +108,9 @@ public class View_appointment_doctor_content_model : View_model_base{
                 Console.WriteLine(date_arr[0]+ " "+date_arr[1]+" "+date_arr[2]+ " | "+time_arr[0]+" "+time_arr[1]+" "+time_arr[2]);
                 appointments.Add(new appointment_info(
                         appointment[0],
-                        new DateTime(int.Parse(date_arr[0]),
+                        new DateTime(int.Parse(date_arr[2]),
                             int.Parse(date_arr[1]),
-                            int.Parse(date_arr[2]),
+                            int.Parse(date_arr[0]),
                             int.Parse(time_arr[0]),
                             int.Parse(time_arr[1]),
                             int.Parse(time_arr[2])
@@ -143,6 +125,7 @@ public class View_appointment_doctor_content_model : View_model_base{
             }
         }
         appointments.Sort();
+        update_time();
     }
     public void button_previous_week(){
         if(thursday.AddDays(4) > DateTime.Now.AddDays(6))
@@ -162,20 +145,22 @@ public class View_appointment_doctor_content_model : View_model_base{
             days[i]=(byte)thursday.AddDays(i-3).Day;
         }
         for(int i = 0; i < 80; i++) visible[i] = false;
-        //Somewhere we do not get all the appointments because none are shown
-        for(int i = 0; i < appointments.Count; i++){
-            if (appointments[i].date_and_time < thursday.AddDays(-3).Date) continue;
-            else if (appointments[i].date_and_time > thursday.AddDays(1).Date) break;
+        foreach(appointment_info appointment in appointments){
+            if (appointment.date_and_time < thursday.AddDays(-3).Date) continue;
+            else if (appointment.date_and_time > thursday.AddDays(2).Date) break;
             //the standard is that Sunday is 0 but we want Monday to be 0. If we subtract 1 we would have Sunday -1 but since there are no appointments everything is fine.
-            int position = ((int)appointments[i].date_and_time.DayOfWeek-1)*16 +   //day
-                (appointments[i].date_and_time.Hour - 8) * 2 +              //hour
-                appointments[i].date_and_time.Minute / 30;                  //minutes
-            appointments_of_week[position] = appointments[i];
+            int position = ((int)appointment.date_and_time.DayOfWeek-1)*16 +    //day
+                (appointment.date_and_time.Hour - 8) * 2 +                      //hour
+                appointment.date_and_time.Minute / 30;                          //minutes
+            appointments_of_week[position] = appointment;
             appointments_of_week[position].visible = true;
             visible[position] = true;
         }
     }
     public void button_action_show_appointment(string id){
-        Console.WriteLine(id);
+        Window describe_appointment = new Views.View_appointment_doctor_window_model(){
+            DataContext = new View_appointment_doctor_window_model(parent,id),
+        };
+        describe_appointment.ShowDialog(parent.desktop.MainWindow);
     }
 }

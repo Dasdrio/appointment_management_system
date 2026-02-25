@@ -3,7 +3,7 @@ standards
 	programming_language:	C#
 	framework:				Avalonia
 	language_for_comments:	english
-	commit_message_sprache:	english
+	commit_message_sprache:	english, suomi
 	Nameconevtions
 		_field_name
 		property_name
