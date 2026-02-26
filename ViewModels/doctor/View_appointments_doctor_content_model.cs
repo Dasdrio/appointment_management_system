@@ -82,18 +82,23 @@ public class View_appointment_doctor_content_model : View_model_base{
 
     public View_appointment_doctor_content_model(MainWindow_view_model parent){
         Console.WriteLine("Doctor Contentent Created");
-
+        thursday = DateTime.Now;
         this.parent = parent;
-        days = new ObservableCollection<byte>{0,0,0,0,0};
-        appointments_of_week = new ObservableCollection<appointment_info>();
-        visible = new ObservableCollection<bool>();
+        initilise_appointments();
+    }
+    public void initilise_appointments()
+    {
+        DateTime thursday_temp = thursday;
+        thursday = DateTime.Now; 
+        thursday = thursday.AddDays((((double)(thursday.DayOfWeek + 6) % 7) * - 1) + 3);
+        _days = new ObservableCollection<byte>{0,0,0,0,0};
+        _appointments_of_week = new ObservableCollection<appointment_info>();
+        _visible = new ObservableCollection<bool>();
         for(int i = 0; i < 80; i++){
             visible.Add(false);
             appointments_of_week.Add(new appointment_info());
         }
         appointments = new List<appointment_info>();
-        thursday = DateTime.Now; 
-        thursday = thursday.AddDays((((double)(thursday.DayOfWeek + 6) % 7) * - 1) + 3);
 
         update_time();
 
@@ -125,7 +130,9 @@ public class View_appointment_doctor_content_model : View_model_base{
             }
         }
         appointments.Sort();
+        thursday = thursday_temp;
         update_time();
+        
     }
     public void button_previous_week(){
         if(thursday.AddDays(4) > DateTime.Now.AddDays(6))
@@ -157,10 +164,10 @@ public class View_appointment_doctor_content_model : View_model_base{
             visible[position] = true;
         }
     }
+    Window describe_appointment = new Views.View_appointment_doctor_window_model();
     public void button_action_show_appointment(string id){
-        Window describe_appointment = new Views.View_appointment_doctor_window_model(){
-            DataContext = new View_appointment_doctor_window_model(parent,id),
-        };
+        describe_appointment = new Views.View_appointment_doctor_window_model();
+        describe_appointment.DataContext = new View_appointment_doctor_window_model(parent,id,describe_appointment,this);
         describe_appointment.ShowDialog(parent.desktop.MainWindow);
     }
 }
