@@ -19,8 +19,8 @@ public enum Specialization{
 public class Database_access
 {
     private static Database_access? instance;
-    //Change back to uid=root;pwd=rootpassword;database=appointment_managment and in the finished product to a seperate account
-    private String mysql_connection_string = "server=localhost;port=3306;uid=root;pwd=;database=appointment_management";
+    //Change in the finished product to a seperate account
+    private String mysql_connection_string = "server=localhost;port=3306;uid=root;pwd=rootpassword;database=appointment_managment";
     private static MySqlConnection mysql_connection;
     private static MySqlCommand? command;
 
