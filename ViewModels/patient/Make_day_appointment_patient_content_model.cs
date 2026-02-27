@@ -116,8 +116,8 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         Console.WriteLine("appointment time: "+appointment_time+" userid: "+user_id+" doctor: "+parent.chosen_doctor.value+"");
         Console.WriteLine(chosen_time.value+" <-time name:"+parent.chosen_doctor.display_name+" month: "+parent.month+" day:"+day);
         //This is to check if a day has no other appointments left
-        parent.calculate_weekdays();
         parent.calculate_appointment_days(parent.chosen_doctor.value);
+        parent.calculate_weekdays();
         parent.describe_appointment.Close();
     }
 }

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DynamicData;
 public class View_appointment_doctor_window_model : View_model_base{
-    private Window this_window;
+    private Window window;
     View_appointment_doctor_content_model parent_direct;
     private MainWindow_view_model parent;
     private DateOnly _date;
@@ -40,12 +40,12 @@ public class View_appointment_doctor_window_model : View_model_base{
         get => _description;
         set => this.RaiseAndSetIfChanged(ref _description, value);
     }
-    public View_appointment_doctor_window_model(MainWindow_view_model parent, string id,Window this_window,View_appointment_doctor_content_model parent_direct){
+    public View_appointment_doctor_window_model(MainWindow_view_model parent, string id,Window window,View_appointment_doctor_content_model parent_direct){
         this.parent = parent;
         this.parent_direct = parent_direct;
         this._id = id;
         Console.WriteLine(id);
-        this.this_window = this_window;
+        this.window = window;
         //Returns a List with Strings with followling values (date_and_time, name, surname, description)
         List<string> appointment_info = Database_access.get_appointment_by_id(int.Parse(id));
         _patient_name = appointment_info[1]+" "+appointment_info[2];
@@ -65,7 +65,7 @@ public class View_appointment_doctor_window_model : View_model_base{
     }
     public void cancel_appointment() {
         Database_access.delete_appointment(int.Parse(id));
-        parent_direct.initilise_appointments();
-        this.this_window.Close();
+        parent_direct.set_appointments_from_database();
+        this.window.Close();
     }
 }
