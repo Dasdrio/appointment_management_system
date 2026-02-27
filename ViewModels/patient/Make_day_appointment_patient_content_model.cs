@@ -118,6 +118,8 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         //This is to check if a day has no other appointments left
         parent.calculate_appointment_days(parent.chosen_doctor.value);
         parent.calculate_weekdays();
+        parent.button_action_forward();
+        parent.button_action_back();
         parent.describe_appointment.Close();
     }
 }

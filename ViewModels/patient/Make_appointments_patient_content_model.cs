@@ -179,28 +179,46 @@ public class Make_appointments_patient_content_model : View_model_base{
             
             //Then you check if the amount of appintments is greater or equals to 16 to determane if the button should be visible or not
             Console.WriteLine("day: " + day + "amount_appointments:" + amount_appointments);
-            int diff = 0;
+            int occupied = 0;
+            int possible_available;
             if(new DateTime((int)year, (int)month, day).Day == DateTime.Now.Day){
                 //Replace the value with the one from the Database connection
-                diff = 2;
-            }
-            if(amount_appointments < 16-diff){
-                Console.WriteLine("Day "+ day+" is enabled");
-                continue;
-            }
-            else{
-                //determane the pos of the bool if the button is visible
-                int pos_day = this.day.IndexOf(day);
-                //Failsafe if something goes wrong
-                if(pos_day == -1){
-                    Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake (It could also be that an appointment somehow got on the Weekend!");
+                possible_available = 16-((DateTime.Now.Hour - 8) * 2 +  DateTime.Now.Minute / 30);
+                occupied = Database_access.get_todays_appointments_from_now(int.Parse(doctor_ID));
+                Console.WriteLine("available: " + possible_available + " occupied: " + occupied + "doctor_ID " + doctor_ID);
+                if (possible_available > occupied){
+                    Console.WriteLine("Day "+ day+" is enabled");
                     continue;
-
+                }else{
+                    //determane the pos of the bool if the button is visible
+                    int pos_day = this.day.IndexOf(day);
+                    //Failsafe if something goes wrong
+                    if(pos_day == -1){
+                        Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake (It could also be that an appointment somehow got on the Weekend!");
+                        continue;
+                    }//then set so false
+                    _day_visible[pos_day] = false;
+                    Console.WriteLine("Day "+ day+" is disabled");
                 }
-                //then set so false
-                _day_visible[pos_day] = false;
-                Console.WriteLine("Day "+ day+" is disabled");
+            }else{
+                if(amount_appointments < 16){
+                    Console.WriteLine("Day "+ day+" is enabled");
+                    continue;
+                }
+                else{
+                    //determane the pos of the bool if the button is visible
+                    int pos_day = this.day.IndexOf(day);
+                    //Failsafe if something goes wrong
+                    if(pos_day == -1){
+                        Console.WriteLine("Day "+day+"Skipped. Somewhere is a mistake (It could also be that an appointment somehow got on the Weekend!");
+                        continue;
+                    }//then set so false
+                    _day_visible[pos_day] = false;
+                    Console.WriteLine("Day "+ day+" is disabled");
+                }
             }
+            
+            
         }
     }
     public void calculate_weekdays(){

@@ -380,25 +380,25 @@ public class Database_access
     /// <returns></returns>
     public static int get_todays_appointments_from_now(int p_doctor_ID)
     {
-        int appointments = 0;
+        string appointments = "";
         try{
             string procedure = "sp_appointments_count_todays_appointments_from_now";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
-
+            Console.WriteLine("p_doctor_od: " + p_doctor_ID);
             command.Parameters.AddWithValue("p_doctor_ID", p_doctor_ID);
             using(MySqlDataReader reader = command.ExecuteReader()){
 
                 while (reader.Read())
                 {
-                    appointments = (int)reader[0];
+                    appointments = reader[0].ToString();
                 }
             }
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        return appointments;
+        return int.Parse(appointments);
     }
     //TODO delete after Project Completion
     /*
