@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 25. Feb 2026 um 14:07
+-- Erstellungszeit: 27. Feb 2026 um 06:57
 -- Server-Version: 8.0.44
 -- PHP-Version: 8.3.26
 
@@ -25,6 +25,12 @@ DELIMITER $$
 --
 -- Prozeduren
 --
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_count_todays_appointments_from_now` (IN `p_doctor_ID` INT)   SELECT Count(*) FROM Appointments
+WHERE doctor_ID = p_doctor_ID
+AND day(date_and_time) = day(now())
+AND hour(date_and_time) >= hour(now())
+AND MINUTE(date_and_time) >= MINUTE(NOW())$$
+
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_delete_appointment` (IN `p_appointment_id` INT)   DELETE FROM Appointments 
 WHERE appointment_ID = p_appointment_ID$$
 
