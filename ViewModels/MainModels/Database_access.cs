@@ -372,8 +372,35 @@ public class Database_access
         }
         return appointment;
     }
+    /// <summary>
+    /// Counts evrey appointment the doctor has from the current time on the current day
+    /// </summary>
+    /// <param name="p_doctor_ID"></param>
+    /// <returns></returns>
+    public static int get_todays_appointments_from_now(int p_doctor_ID)
+    {
+        int appointments = 0;
+        try{
+            string procedure = "sp_appointments_count_todays_appointments_from_now";
+            MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
+            command.CommandType =CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("p_doctor_ID", p_doctor_ID);
+            using(MySqlDataReader reader = command.ExecuteReader()){
+
+                while (reader.Read())
+                {
+                    appointments = (int)reader[0];
+                }
+            }
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.ToString());
+        }
+        return appointments;
+    }
     //TODO delete after Project Completion
-    /*public static{
+    /*
         try{
             string procedure = "";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
@@ -389,5 +416,5 @@ public class Database_access
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-    }*/
+    */
 }
