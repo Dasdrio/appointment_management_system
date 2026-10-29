@@ -6,6 +6,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using appointment_management_system.ViewModels;
 using appointment_management_system.Views;
+using System;
 
 namespace appointment_management_system;
 

@@ -89,7 +89,7 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         for(i = 0; i <= 15; i++)
         {
             TimeOnly time_to_add = new TimeOnly(8+i/2,i%2*30);
-            if (!times.Contains(time_to_add))
+            if (!times.Contains(time_to_add) && (time_to_add >= TimeOnly.FromDateTime(DateTime.Now) || DateTime.Now < new DateTime((int)parent.year,(int)parent.month,day)))
             {
                 _times_appointmens.Add(new time_name_pair{display_time=time_to_add.Hour+":"+time_to_add.Minute,value=time_to_add});
             }
@@ -116,8 +116,10 @@ public class Make_day_appointment_patient_content_model : View_model_base{
         Console.WriteLine("appointment time: "+appointment_time+" userid: "+user_id+" doctor: "+parent.chosen_doctor.value+"");
         Console.WriteLine(chosen_time.value+" <-time name:"+parent.chosen_doctor.display_name+" month: "+parent.month+" day:"+day);
         //This is to check if a day has no other appointments left
-        parent.calculate_weekdays();
         parent.calculate_appointment_days(parent.chosen_doctor.value);
+        parent.calculate_weekdays();
+        parent.button_action_forward();
+        parent.button_action_back();
         parent.describe_appointment.Close();
     }
 }

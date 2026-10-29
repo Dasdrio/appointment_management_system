@@ -25,11 +25,11 @@ DELIMITER $$
 --
 -- Prozeduren
 --
+
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_count_todays_appointments_from_now` (IN `p_doctor_ID` INT)   SELECT Count(*) FROM Appointments
 WHERE doctor_ID = p_doctor_ID
-AND day(date_and_time) = day(now())
-AND hour(date_and_time) >= hour(now())
-AND MINUTE(date_and_time) >= MINUTE(NOW())$$
+AND DATE(date_and_time) = DATE(now())
+AND TIME(date_and_time) >= TIME(NOW())$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_delete_appointment` (IN `p_appointment_id` INT)   DELETE FROM Appointments 
 WHERE appointment_ID = p_appointment_ID$$

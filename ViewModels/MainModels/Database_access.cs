@@ -19,6 +19,7 @@ public enum Specialization{
 public class Database_access
 {
     private static Database_access? instance;
+    //Change in the finished product to a seperate account
     private String mysql_connection_string = "server=localhost;port=3306;uid=root;pwd=rootpassword;database=appointment_managment";
     private static MySqlConnection mysql_connection;
     private static MySqlCommand? command;
@@ -169,7 +170,7 @@ public class Database_access
     /// <code> Database_acces.get_appointments_on_day("3", new DateTime(2017, 07, 25, 23, 45, 5));
     /// </code>
     /// </example>
-    /// <returns>An List with every appointment an doctor has</returns>
+    /// <returns>A List with every appointment a doctor has</returns>
     public static  List<String> get_appointments_on_day(String doctor_ID, DateTime date_and_time){
         List<String> appointments_list = new List<string>();
         try{
@@ -379,25 +380,25 @@ public class Database_access
     /// <returns></returns>
     public static int get_todays_appointments_from_now(int p_doctor_ID)
     {
-        int appointments = 0;
+        string appointments = "";
         try{
             string procedure = "sp_appointments_count_todays_appointments_from_now";
             MySqlCommand command = new MySqlCommand(procedure, mysql_connection);
             command.CommandType =CommandType.StoredProcedure;
-
+            Console.WriteLine("p_doctor_od: " + p_doctor_ID);
             command.Parameters.AddWithValue("p_doctor_ID", p_doctor_ID);
             using(MySqlDataReader reader = command.ExecuteReader()){
 
                 while (reader.Read())
                 {
-                    appointments = (int)reader[0];
+                    appointments = reader[0].ToString();
                 }
             }
         }
         catch(Exception ex){
             Console.WriteLine(ex.ToString());
         }
-        return appointments;
+        return int.Parse(appointments);
     }
     //TODO delete after Project Completion
     /*

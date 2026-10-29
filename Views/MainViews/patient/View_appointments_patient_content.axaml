@@ -6,8 +6,8 @@
         x:Class="appointment_management_system.Views.View_appointments_patient_content_model"
         x:DataType="vm:View_appointments_patient_content_model">
     <Grid Name="Top_Row_Grid" ColumnDefinitions="*,*,3*,*" RowDefinitions="Auto,Auto,*">
-        <Button Grid.Row="0" Grid.Column="0" Margin="5" IsVisible="{Binding button_back_visable}" HorizontalAlignment="Stretch" Command = "{Binding button_action_back}" Background="rgba(255, 255, 150, 1)" Name="Button_Back" Content="back"></Button>
-        <Button Grid.Row="0" Grid.Column="4" Margin="5" IsVisible="{Binding button_for_visable}"  HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 150, 1)" Name="Button_Forwoard" Content="for"></Button>
+        <Button Grid.Row="0" Grid.Column="0" Margin="5" IsVisible="{Binding button_back_visible}" HorizontalAlignment="Stretch" Command = "{Binding button_action_back}" Background="rgba(255, 255, 150, 1)" Name="Button_Back" Content="back"></Button>
+        <Button Grid.Row="0" Grid.Column="4" Margin="5" IsVisible="{Binding button_for_visible}"  HorizontalAlignment="Stretch" Command = "{Binding button_action_forward}" Background="rgba(255, 255, 150, 1)" Name="Button_Forwoard" Content="for"></Button>
 
         <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding my_Appointments}">
             <ItemsControl.ItemTemplate>
