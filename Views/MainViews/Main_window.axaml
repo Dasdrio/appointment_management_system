@@ -21,9 +21,9 @@
             <vm:Impressum_content_model />
         </DataTemplate>-->
     </Window.Resources>
-    <Grid Name="Main_Grid" ColumnDefinitions="*" RowDefinitions="100,*,50">
+    <Grid Name="Main_Grid" ColumnDefinitions="*" RowDefinitions="100,*,50" Background="rgba(255, 255, 150, 1)">
         <!-- Background and Backgroundimage -->
-        <Image Stretch="UniformToFill" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="\..\Assets\wartezimmer.jpg"/>
+        <Image Stretch="UniformToFill" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="\..\Assets\cutefox.jpg"/>
         <Border Background="rgba(204, 229, 255, 0.95)" Grid.Row="0" ></Border>
         <Border Background="rgba(204, 229, 255, 0.95)" Grid.Row="2" ></Border>
         <!-- Standardbuttons 

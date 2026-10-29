@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 23. Jan 2026 um 06:59
+-- Erstellungszeit: 27. Feb 2026 um 06:57
 -- Server-Version: 8.0.44
 -- PHP-Version: 8.3.26
 
@@ -25,17 +25,50 @@ DELIMITER $$
 --
 -- Prozeduren
 --
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_count_todays_appointments_from_now` (IN `p_doctor_ID` INT)   SELECT Count(*) FROM Appointments
+WHERE doctor_ID = p_doctor_ID
+AND DATE(date_and_time) = DATE(now())
+AND TIME(date_and_time) >= TIME(NOW())$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_delete_appointment` (IN `p_appointment_id` INT)   DELETE FROM Appointments 
+WHERE appointment_ID = p_appointment_ID$$
+
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_find_day` (IN `p_date_and_time` DATETIME, IN `p_doctor_ID` INT)   SELECT COUNT(CAST(date_and_time AS DATE)), CAST(date_and_time AS DATE) FROM `Appointments` 
 WHERE MONTH(date_and_time) = MONTH(p_date_and_time) 
 AND YEAR(date_and_time) = YEAR(p_date_and_time)
 AND doctor_ID = p_doctor_ID
 GROUP BY CAST(date_and_time AS DATE)$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_doctor_by_specialization` (IN `p_specialization` ENUM('PATIENT','GENERAL_PRACTICE','PEDIATRICS','OPHTALMOLOGY','DERMATOLOGY','CARDIOLOGY','OTOLARYNGOLOGY'))   SELECT person_ID, name, surname FROM Persons WHERE specialization = p_specialization$$
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_get_appointments_from_doctor` (IN `p_doctor_ID` INT, IN `p_date_and_time` DATETIME)   SELECT appointment_ID, date_and_time, name, surname, description FROM Appointments 
+JOIN Persons ON patient_ID = person_ID
+WHERE doctor_ID = p_doctor_ID AND date_and_time >= p_date_and_time$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_get_appointments_from_patient` (IN `p_patient_ID` INT, IN `p_date_and_time` DATETIME)   SELECT appointment_ID, date_and_time, name, surname, description FROM Appointments 
+JOIN Persons ON doctor_ID = person_ID
+WHERE patient_ID = p_patient_ID AND date_and_time >= p_date_and_time$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_get_appointments_on_day` (IN `p_doctor_ID` INT, IN `p_date_and_time` DATETIME)   SELECT date_and_time FROM Appointments
+WHERE doctor_ID = p_doctor_ID
+AND CAST(date_and_time AS DATE) = CAST(p_date_and_time AS DATE)$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_get_appointment_by_ID` (IN `p_appointment_ID` INT)   SELECT date_and_time, name, surname, description FROM Appointments 
+JOIN Persons ON patient_ID = person_ID
+WHERE appointment_ID = p_appointment_ID$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_insert_appointment` (IN `p_date_and_time` DATETIME, IN `p_patient_ID` INT UNSIGNED, IN `p_doctor_ID` INT UNSIGNED, IN `p_description` TEXT)   INSERT INTO Appointments VALUES(null, p_date_and_time, p_patient_ID, p_doctor_ID, p_description)$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_appointments_update_description` (IN `p_appointment_ID` INT, IN `p_description` TEXT CHARSET utf8mb4)   UPDATE Appointments
+SET description = p_description
+WHERE appointment_ID = p_appointment_ID$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_doctor_by_specialization` (IN `p_specialization` ENUM('GENERAL_PRACTICE','PEDIATRICS','OPHTALMOLOGY','DERMATOLOGY','CARDIOLOGY','OTOLARYNGOLOGY'))   SELECT person_ID, name, surname FROM Persons WHERE specialization = p_specialization$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_information_by_email` (IN `p_email` VARCHAR(100))   SELECT * FROM Persons WHERE email = p_email$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_get_password_hash_by_email` (IN `p_email` VARCHAR(100))   SELECT password_hash FROM Persons WHERE email = p_email$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `sp_persons_insert_person` (IN `p_name` VARCHAR(50), IN `p_surname` VARCHAR(50), IN `p_email` VARCHAR(100), IN `p_password_hash` VARCHAR(64))   INSERT INTO Persons Values(null, "PATIENT", p_name, p_surname, p_email, p_password_hash)$$
 
 DELIMITER ;
 
@@ -90,7 +123,9 @@ CREATE TABLE `appointment_managment_log` (
 
 INSERT INTO `appointment_managment_log` (`log_ID`, `name_user`, `name_table`, `trigger_time`, `target_ID`, `action_performed`) VALUES
 (1, 'root@%', 'Persons', '2026-01-07 09:03:35', 10, 'INSERT'),
-(2, 'root@%', 'Persons', '2026-01-07 09:08:53', 10, 'DELETE');
+(2, 'root@%', 'Persons', '2026-01-07 09:08:53', 10, 'DELETE'),
+(3, 'root@%', 'Persons', '2026-02-05 07:17:21', 11, 'INSERT'),
+(4, 'root@%', 'Persons', '2026-02-05 07:17:28', 11, 'DELETE');
 
 -- --------------------------------------------------------
 
@@ -160,7 +195,8 @@ ALTER TABLE `appointment_managment_log`
 -- Indizes für die Tabelle `Persons`
 --
 ALTER TABLE `Persons`
-  ADD PRIMARY KEY (`person_ID`);
+  ADD PRIMARY KEY (`person_ID`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -170,19 +206,19 @@ ALTER TABLE `Persons`
 -- AUTO_INCREMENT für Tabelle `Appointments`
 --
 ALTER TABLE `Appointments`
-  MODIFY `appointment_ID` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `appointment_managment_log`
 --
 ALTER TABLE `appointment_managment_log`
-  MODIFY `log_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `log_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `Persons`
 --
 ALTER TABLE `Persons`
-  MODIFY `person_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `person_ID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints der exportierten Tabellen

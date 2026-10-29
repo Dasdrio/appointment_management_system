@@ -79,15 +79,15 @@ database_design:
 		CARDIOLOGY			(Herz doctor)
 		OTOLARYNGOLOGY		(HNO Arzt)
 
-	Personen ID und Passwort
-		1 peter PATIENT
-		2 anna123 PATIENT
-		3 weber456 GENERAL_PRACTICE
-		4 klein789 PEDIATRICS
-		5 mueller321 CARDIOLOGY
-		6 fischer654 DERMATOLOGY
-		7 becker987 OPHTALMOLOGY
-		8 krueger159 OTOLARYNGOLOGY
-		9 jonas753 PATIENT
+	Personen ID, email, password, specialization
+		1 peter.pet@fakemail.com peter PATIENT
+		2 anna.schmidt@example.com anna123 PATIENT
+		3 markus.weber@gpclinic.de weber456 GENERAL_PRACTICE
+		4 julia.klein@kinderarzt.de klein789 PEDIATRICS
+		5 thomas.mueller@herzpraxis.de mueller321 CARDIOLOGY
+		6 sabine.fischer@hautarzt.de fischer654 DERMATOLOGY
+		7 leon.becker@augenzentrum.de becker987 OPHTALMOLOGY
+		8 nina.krueger@hno-praxis.de krueger159 OTOLARYNGOLOGY
+		9 jonas.meier@example.com jonas753 PATIENT
 
 	access_client accesspassword

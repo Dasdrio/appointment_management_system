@@ -6,6 +6,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using appointment_management_system.ViewModels;
 using appointment_management_system.Views;
+using System;
 
 namespace appointment_management_system;
 
@@ -29,6 +30,7 @@ public partial class App : Application
                 DataContext = new MainWindow_view_model(desktop),
             };
             desktop.MainWindow.Closed += (sender,e) => Shutdown(desktop);
+            
         }
 
         base.OnFrameworkInitializationCompleted();
